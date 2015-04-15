@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Crear Clientes</title>
+
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
+		<link rel="stylesheet" href="../css/style.css">
+
+	    <script src="../js/jquery.js"></script>
+	    <script src="../js/bootstrap-transition.js"></script>
+    	<script src="../js/bootstrap-alert.js"></script>
+    	<script src="../js/bootstrap-modal.js"></script>
+    	<script src="../js/bootstrap-dropdown.js"></script>
+    	<script src="../js/bootstrap-scrollspy.js"></script>
+    	<script src="../js/bootstrap-tab.js"></script>
+    	<script src="../js/bootstrap-tooltip.js"></script>
+    	<script src="../js/bootstrap-popover.js"></script>
+    	<script src="../js/bootstrap-button.js"></script>
+    	<script src="../js/bootstrap-collapse.js"></script>
+    	<script src="../js/bootstrap-carousel.js"></script>
+    	<script src="../js/bootstrap-typeahead.js"></script>
+    	<script src="../js/bootstrap-affix.js"></script>
+    	<script src="../js/holder/holder.js"></script>
+    	<script src="../js/google-code-prettify/prettify.js"></script>
+    	<script src="../js/application.js"></script>
+
+	</head>
+	<body data-spy="scroll" data-target=".bs-docs-sidebar">
+		<div class="control-group info">
+			<form  metod ="post" name="form1" action="">
+			<table width="80%" class="table" border="0">
+				<tr class="info"> 
+					<td colspan="2"> <center><strong>Crear Usuario</strong></td>
+				</tr>
+				<tr>
+				<td>
+				<label for="textfield">Nombre:</label>
+				<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>
+				<label for="textfield">Apellido:</label>
+				<input type="text" name="apellido" id="apellido" value="" autocomplete="off" required>			
+				<label for="textfield">Ciudad:</label>
+				<input type="text" name="ciudad" id="ciudad" value="" autocomplete="off" required></br>
+				<div class="input-prepend input-append">
+            	<label for="textfield">Sueldo: </label>
+           		<span class="add-on">$</span><input type="text" name="sueldo" id="sueldo" value="" size="5" autocomplete="off" required><span class="add-on">.00</span>
+           		</div>
+           		<label for="textfield">Cuenta de Usuario: </label>
+       			<input type="text" name="usuario" id="usuario" value="" autocomplete="off" required>
+        		<a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal">Ver Contraseña</a>
+ 	    		<br><br>
+       			<button class="btn btn-large btn-primary" type="submit"></button>
+                <a href="crear_clientes.php" class="btn">Cancelar</a>
+				</td>
+				<td>
+				<label for="textfield">Direccion: </label><input type="text" name="direccion" id="direccion" value="" autocomplete="off" required>
+       			<label for="textfield">Colonia: </label>
+       			<input type="text" name="colonia" id="colonia" value="" autocomplete="off">
+       			<label for="textfield">Telefono: </label><input type="text" name="telefono" id="telefono" value="" autocomplete="off" required>
+        		<label for="textfield">Celular: </label><input type="text" name="celular" id="celular" value="" autocomplete="off">
+        		<label for="radio">Tipo de Usuario</label>
+       			<label class="radio">
+       			<input type="radio" name="tipo" id="optionsRadios1" value="a">Administrador</label>
+       			<label class="radio">
+       			<input type="radio" name="tipo" id="optionsRadios2" value="cl">Vendedor</label>
+       			<label class="radio">
+        		<input type="radio" name="tipo" id="optionsRadios3" value="ca">Cajera</label>
+				</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+		    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Recordar Contraseña</h3>
+            </div>
+            <div class="modal-body">
+            <p><?php echo $nombre; ?></p>
+            <p>Contraseña:<strong> <?php echo $dato['con']; ?></strong></p>
+            </div>
+            <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+	</body>
+</html>
