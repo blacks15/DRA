@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Crear Libro</title>
+
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
+	<link rel="stylesheet" href="../css/style.css">
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap-transition.js"></script>
+    <script src="../js/bootstrap-alert.js"></script>
+    <script src="../js/bootstrap-modal.js"></script>
+    <script src="../js/bootstrap-dropdown.js"></script>
+    <script src="../js/bootstrap-scrollspy.js"></script>
+    <script src="../js/bootstrap-tab.js"></script>
+    <script src="../js/bootstrap-tooltip.js"></script>
+    <script src="../js/bootstrap-popover.js"></script>
+    <script src="../js/bootstrap-button.js"></script>
+    <script src="../js/bootstrap-collapse.js"></script>
+    <script src="../js/bootstrap-carousel.js"></script>
+    <script src="../js/bootstrap-typeahead.js"></script>
+    <script src="../js/bootstrap-affix.js"></script>
+    <script src="../js/holder/holder.js"></script>
+    <script src="../js/google-code-prettify/prettify.js"></script>
+    <script src="../js/application.js"></script>
+</head>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+	<div align="center">
+		<table width="80%" border="0" class="table">
+			<tr class="info">
+				<td colspan="4"><center><strong>Crear Libro</strong></center></td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="control-group info">
+						<form name="form1" method="post" action="">
+							<div class="input-append">
+								<input type="text" class="span2" id="codigo" name="codigo" placeholder="Código del Producto">
+								<button class="btn" type="submit">Confirmar Código</button>
+							</div>
+						</form>
+					</div>
+				</td>
+				<div class="control-group info">
+					<form action="" name="form2" method="post" enctype="multipart/form.data"></form>
+					<tr>
+						<td width="24%">
+							<label>Código Libro: </label>
+							<input type="text" name="codigo" id="codigo" readonly="true">
+							<label>Nombre Libro: </label>
+							<input type="text" name="nombre" id="nombre" required>
+							<label>ISBN: </label>
+							<input type="text" name="isbn" id="isbn" required>
+							<label>Género: </label>
+							<select name="generp" id="genero"></select>
+							<label>Autor: </label>
+							<select name="autor" id="autor"></select>
+						</td>
+						<td>
+							<label>Editorial: </label>
+							<select name="editorial" id="editorial"></select>
+							<label>Núm. de Páginas: </label>
+							<input type="text" name="pag" id="pag" required>
+							<label>Descripción: </label>
+							<label for="textarea"></label><textarea name="obs" id="obs" cols="45" rows="5"></textarea><br>
+							<button type="submit" class="btn btn-primary">Enviar</button>
+						</td>
+						<td width="45%">
+							<center><label>Imagen del Producto: </label></center>
+							<center></center><br>
+							<center><input type="file" name="img" id="img"></center>
+						</td>
+					</tr>
+				</div>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
