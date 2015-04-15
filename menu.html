@@ -2,15 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le styles -->
+
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
-    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap-transition.js"></script>
     <script src="js/bootstrap-alert.js"></script>
@@ -44,9 +44,8 @@
             <li class="dropdown">
               <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="clientes.php" target="admin">Buscar Clientes</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="crear_clientes.php" target="admin">Crear Clientes</a></li>
-                <!--<li role="presentation" class="divider"></li>-->  
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarClientes.html" target="admin">Buscar Clientes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearClientes.html" target="admin">Crear Clientes</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -55,11 +54,31 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="producto.php" target="admin">Buscar Producto</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="crear_producto.php" target="admin">Crear Producto</a></li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="proveedor.php" target="admin">Buscar Proveedor</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="crear_proveedor.php" target="admin">Crear Proveedor</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarProveedor.html" target="admin">Buscar Proveedor</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearProveedor.html" target="admin">Crear Proveedor</a></li>
               </ul>
             </li>
-            
+              <li class="dropdown">
+              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Editorial<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarUsuarios.html" target="admin">Buscar Editorial</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearEditorial.html" target="admin">Crear Editorial</a></li>
+              </ul>
+            </li>
+              <li class="dropdown">
+              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Autor<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarUsuarios.html" target="admin">Buscar Autor</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearAutor.html" target="admin">Crear Autor</a></li>
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Usuarios<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarUsuarios.html" target="admin">Buscar Usuarios</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearUsuarios.html" target="admin">Crear Usuarios</a></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
@@ -71,14 +90,13 @@
                 Listado de Productos</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFestado_inventario.php" target="admin"><i class="icon-th-list"></i> 
                 Estado de Inventario</a></li>
-               <!--  <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="conceptos.php" target="admin">Administrar Conceptos</a></li>-->
+
               </ul>
             </li>
           </ul>
           <ul class="nav pull-right">
             <li id="fat-menu" class="dropdown">
-              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Hola! <?php echo $_SESSION['username']; ?> <b class="caret"></b></a>
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Hola!<b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="cambiar_clave.php" target="admin"><i class="icon-refresh"></i> Cambiar Contraseña</a></li>
                 <li role="presentation" class="divider"></li>
@@ -94,9 +112,9 @@
   <tr>
     <td><iframe src="empresa.php" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
   </tr>
-  <tr>
+    <tr>
     <td>
-    <pre><center><strong><a href="https://www.facebook.com/soft.unicorn" target="_blank" style="color:#000">Distribuciónes y Representaciones Arvizu</a></strong></center></pre>
+    <pre><center><strong>Distribuciones y Representaciones Arvizu</strong></center></pre>
     </td>
   </tr>
 </table>
