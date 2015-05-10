@@ -15,27 +15,26 @@
 <a class="hiddenanchor" id="tologin"></a>
 <div id="wrapper">
 	<div id="login" class="animate form">
-	 <form action=""method="post">
+	 <form method="post">
 		<h2>Iniciar Sesión</h2>
 		<figure>
 			<img src="css/img/user.jpg" width="100" height="100">
 		</figure>
-		<input type="text" class="input-text" name="usuario" placeholder="Usuario">
-		<input type="password" class="input-text" name="contraseña" placeholder="Contraseña"><br>
-		<button type="submit" class="btn btn-large btn-primary">Iniciar</button></br>
+		<input type="text" class="input-text" name="user_name" id="user_name" placeholder="Usuario">
+		<input type="password" class="input-text" name="pass" id="pass" placeholder="Contraseña"><br>
+		<button type="submit" class="btn btn-large btn-primary" name="inicio" id="inicio">Iniciar</button></br>
 		<p class="change_link">
 		<a href="#toregister">Registrarse</a>
 		</p>
 	 </form>
 	</div>
 	<div id="register" class="animate form">
-        <form  action="">
+        <form method="POST">
            <h1>Registrarse </h1> 
            <p> 
-           <label for="usernamesignup" class="uname">Usuario</label>
+           <label>Usuario</label>
            <input id="user_name" name="user_name" required="required" type="text"/>
            </p>
-           <p>
            <p> 
             <label>Contraseña: </label>
             <input id="pass" name="pass" required="required" type="password"/>
@@ -45,7 +44,7 @@
             <input id="c_pass" name="c_pass" required="required" type="password"/>
            </p>
            <p class="signin button"> 
-			<input type="submit" class="btn btn-primary btn-large" value="Registrarse"/> 
+			<input type="submit" class="btn btn-primary btn-large" name="registrarse" id="registrarse" value="Registrarse"/> 
 		   </p>
            <p class="change_link">  
 			<a href="#tologin">Iniciar Sesión</a>

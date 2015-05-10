@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Crear Producto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
+	<link rel="stylesheet" href="../css/style.css">
+
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<div align="center">
+<table width="80%" border="0" class="table">
+  <tr class="info">
+    <td colspan="4"><center><strong>Alta de Productos</strong></center></td>
+  </tr>
+   <tr>
+    <td colspan="3">
+    <div class="control-group info">
+    <form name="form1" method="post" action="">
+    	<div class="input-append">
+   			 <input class="span2" id="ccodigo" name="ccodigo" type="text" placeholder="Codigo del Articulo">
+    	 	 <button class="btn" type="submit">Confirmar Codigo</button>
+   		</div>
+   	</td>    
+    <div class="control-group info">
+    <form name="form2" method="post" enctype="multipart/form-data" action="">
+  	<tr>
+    	<td width="24%">
+        	<label>Codigo: </label><input type="text" name="codigo" id="codigo" value="" readonly>
+            <label>Nombre: </label><input type="text" name="nom" id="nom" value="" required>
+            <label>Proveedor</label>
+            <select name="prov" id="prov">
+            </select>
+            <label>Cod. Producto del Proveedor: </label><input type="text" name="cprov" id="cprov" value="" required>
+            <label>Precio Compra: </label>
+            <div class="input-prepend input-append">
+                <span class="add-on">$</span>
+                <input type="text" name="costo" id="costo" value="" required> 
+                <span class="add-on">.00</span>
+            </div>
+            
+        </td>
+    	<td width="28%">            
+            <label>Cantidad Actual: </label><input type="text" name="cantidad" id="cantidad" value="" required>
+            <label>Cantidad Minima: </label><input type="text" name="minimo" id="minimo" value="" >
+            <label>Tipo Producto: </label> 
+            <select name="seccion" id="seccion">
+            </select>
+            <label>Precio Venta: </label>
+            <div class="input-prepend input-append">
+                <span class="add-on">$</span>
+                <input type="text" name="venta" id="venta" value="" required> 
+                <span class="add-on">.00</span>
+            </div><br><br>
+           
+            	<button type="submit" class="btn btn-primary">
+           
+        </td>
+    	<td width="48%">
+       		<center><label>Imagen del Producto</label></center>
+            <center>
+            </center><br>
+            <center><input type="file" name="imagen" id="imagen"></center>
+        </td>      
+	</tr>
+    </form>
+    </div>
+  </table>
+  </div>
+	    <script src="../js/jquery.js"></script>
+	    <script src="../js/bootstrap-transition.js"></script>
+    	<script src="../js/bootstrap-alert.js"></script>
+    	<script src="../js/bootstrap-modal.js"></script>
+    	<script src="../js/bootstrap-dropdown.js"></script>
+    	<script src="../js/bootstrap-scrollspy.js"></script>
+    	<script src="../js/bootstrap-tab.js"></script>
+    	<script src="../js/bootstrap-tooltip.js"></script>
+    	<script src="../js/bootstrap-popover.js"></script>
+    	<script src="../js/bootstrap-button.js"></script>
+    	<script src="../js/bootstrap-collapse.js"></script>
+    	<script src="../js/bootstrap-carousel.js"></script>
+    	<script src="../js/bootstrap-typeahead.js"></script>
+    	<script src="../js/bootstrap-affix.js"></script>
+    	<script src="../js/holder/holder.js"></script>
+    	<script src="../js/google-code-prettify/prettify.js"></script>
+    	<script src="../js/application.js"></script>
+</body>
+</html>
+    </form>
+    </div>
