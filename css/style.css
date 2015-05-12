@@ -8,6 +8,8 @@ body
 	position: relative;
 	font-size: 12px;
 	background-color: #f5f5f5;
+	background-image: url(img/.jpg);
+	background-repeat: center;
 }
 body .navbar
 {
@@ -52,7 +54,7 @@ header
 table
 {
 	margin: .1em auto;
-	background: rgb(225, 234, 235);
+	background-color: #D3D3D3;
 }
 .bs-docs-example-submenus .dropup > .dropdown-menu,
 .bs-docs-example-submenus .dropdown > .dropdown-menu {

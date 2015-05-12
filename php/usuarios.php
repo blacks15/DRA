@@ -17,60 +17,67 @@
 
 	function inicio_sesion()
 	{
-		$usuario = trim($_POST["usuario"]);
-		$clave = trim($_POST["clave"]);
+		$usuario = trim($_POST['usuario']);
+		$clave = trim($_POST['clave']);
 		$response = true;
 
 		$conecta   = mysql_connect("localhost","root","");
 		mysql_select_db("venta_libros");
 		
-		$usuario = stripslashes($usuario);
-		$clave = stripslashes($clave);
-		$usuario = mysql_real_escape_string($usuario);
-		$clave = mysql_real_escape_string($clave);
-		
-		$consulta = "select nombre_usuario from usuarios WHERE nombre_usuario = '".$usuario."' and contraseña = '".$clave."'";
-		mysql_query($consulta);
+		$consulta = "select nombre_usuario from usuarios WHERE nombre_usuario = '".$usuario."' and password = '".$clave."'";
+		$resultado = mysql_query($consulta) or die(mysql_error());
+		$respuesta = false;
+		$row=mysql_fetch_object($resultado);
+		$nr = mysql_num_rows($resultado);
 
-		if ($dato = mysql_fetch_array($consulta))
-		 {
-			$_SESSION['user_name'] = $dato['nombre_usuario'];
-			//header('location:menu.html');
-		 }
-		 else
-		 {
-		 	//echo "<div>Usuario  y Contraseña Incorrecto</div>";
-		 }
-		 
+		if($nr == 1){
+		echo "No ingreso";
+		}
+		else if($nr == 0) {
+			$respuesta = true;
+		}
 		 print json_encode($response);
 	}
 
 	
 	function grabar_usuario()
 	{
-		$usuario = $_POST["user"];
-		$clave = $_POST["pass"];
+		$conecta = mysql_connect("localhost","root","")or die(mysql_error());
+
+		if (!is_resource($conecta)) {
+			echo "Fallo la Conexión al Servidor";
+		}
+		else
+		{
+		$db = mysql_select_db("venta_libros",$conecta);
+		if ($db == 0) {
+			echo "Error al Conectar Base de Datos";
+		}
+		else {
+		$usuario = $_POST['usuario'];
+		$clave = $_POST['clave'];
 		$estado = 'Activo';
-		$conecta = mysql_connect("localhost","root","");
-		mysql_select_db("venta_libros");
 
-		$usuario = stripslashes($usuario);
-		$clave = stripslashes($clave);
-		$usuario = mysql_real_escape_string($usuario);
-		$clave = mysql_real_escape_string($clave);
-		
-		$consulta = "insert into usuarios values('".$usuario."','".md5($clave)."','".$estado."')";
-
+		$consulta = "insert into usuarios (nombre_usuario,password,estado) values('".$usuario."','".md5($clave)."','".$estado."')";
 		//ejecutar consulta
-		mysql_query($consulta);
+		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
+
 		if (mysql_affected_rows() > 0)
 		{
 			$respuesta = true;
+			echo "Usuario Gurardado Correctamente";
+			$salidaJSON = array('respuesta' => $respuesta );
+			print json_encode($salidaJSON);
+			mysql_close($conecta);
 		}
-		$salidaJSON = array('respuesta' => $respuesta );
-		print json_encode($salidaJSON);
+		else
+		{
+			echo "Error al Insertar Datos";
+		}
+		}
 	}
+}
 
 	// function buscausuario()
 	// {
