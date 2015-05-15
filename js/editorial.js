@@ -11,24 +11,24 @@ $(document).ready(function(){
 				data: {opc:"guardar_editorial", name: name },
 				success: function(response)
 				{
-					if(response.respuesta == true)
+					if(response.respuesta == false)
 					{
-						alert("Editorial Registrado");
+						alert("Editorial No Registrado");
 						$("#nombre").val("");
 						$("#apellido").val("");
 					}
 					else
 					{
-						alert("Editorial No Registrado");
+						alert("Editorial Registrado");
 						$("#nombre").val("");
 						$("#apellido").val("");
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError)
 					{
-						console.log(throwError);
+						console.log("Ocurrio un Error");
 					}
 			});
     });
 
-});
+});	

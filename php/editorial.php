@@ -36,21 +36,21 @@
 				if (!$valid) {
 					echo "La Editorial ya Existe";
 				}else{
-				//$consulta = sprintf("insert into editoriales(nombre,estado) values('".$name."','".$estado."')",mysql_real_escape_string($name),mysql_real_escape_string($estado));
-				///$resultado = mysql_query($consulta)or die(mysql_error());
-					echo $valid;
+					$consulta = "insert into editoriales(nombre,estado) values('".$name."','".$estado."')";
+				  //ejecutar consulta
+					$resultado = mysql_query($consulta,$conecta)or die(mysql_error());
+					$respuesta = false;
+					
+				if ($resultado){
 					$respuesta = true;
-			// 	if ($resultado) {
-			// 		$respuesta = true;
-			// 		$salidaJSON = array('respuesta' => $respuesta );
-			// 		print json_encode($salidaJSON);
-			// 		mysql_close($conecta);
-			// } else {
-			// 	$mensaje  = 'Consulta no válida: ' . mysql_error() . "\n";
-			// 	echo "Error al Insertar Datos";
-			// 	}
-			}
-		  }
+					$salidaJSON = array('respuesta' => $respuesta );
+					print json_encode($salidaJSON);
+					mysql_close($conecta);
+				} else{
+					echo "Ocurrio un Error";
+					}
+	   			}
+		    }
 		}
 	}
 ?>

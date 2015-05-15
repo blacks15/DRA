@@ -12,15 +12,15 @@ $(document).ready(function(){
 				data: {opc:"guardar_autor", first_name: first_name, last_name: last_name },
 				success: function(response)
 				{
-					if(response.respuesta == true)
+					if(response.respuesta == false)
 					{
-						alert("Autor Registrado");
+						alert("Autor No Registrado");
 						$("#nombre").val("");
 						$("#apellido").val("");
 					}
 					else
 					{
-						alert("Autor No Registrado");
+						alert("Autor Registrado");
 						$("#nombre").val("");
 						$("#apellido").val("");
 					}

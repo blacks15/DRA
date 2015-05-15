@@ -11,20 +11,20 @@ $(document).ready(function(){
 				data: {opc:"guardar_genero", name: name },
 				success: function(response)
 				{
-					if(response.respuesta == true)
+					if(response.respuesta == false)
 					{
-						alert("Genero Registrado");
+						alert("Genero No Registrado");
 						$("#nombre").val("");
-						$("#apellido").val("");
 					}
 					else
 					{
-						alert("Genero No Registrado");
+						alert("Genero Registrado");
+						$("#nombre").val("");
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError)
 					{
-						console.log(throwError);
+						console.log("Ocurrio un Error");
 					}
 			});
     });

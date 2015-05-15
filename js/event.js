@@ -41,15 +41,19 @@ $(document).ready(function(){
 				data: {opc:"grabar_usuario", usuario: usuario, clave: clave },
 				success: function(response)
 				{
-					if(response.respuesta == true)
+					if(response.respuesta == false)
 					{
-						$(".mensajealta").html("Usuario Registrado");
+						alert("Usuario Registrado");
 						$("#name").val("");
 						$("#pass").val("");
+						$("#c_pass").val("");
 					}
 					else
 					{
-						$(".mensajealta").html("Usuario No Registrado");
+						alert("Usuario No Registrado");
+						$("#name").val("");
+						$("#pass").val("");
+						$("#c_pass").val("");
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError)
