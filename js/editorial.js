@@ -13,18 +13,20 @@ $(document).ready(function(){
 				{
 					if(response.respuesta == true)
 					{
-						$(".mensajealta").html("Editorial Registrado");
+						alert("Editorial Registrado");
 						$("#nombre").val("");
 						$("#apellido").val("");
 					}
 					else
 					{
-						$(".mensajealta").html("Editorial No Registrado");
+						alert("Editorial No Registrado");
+						$("#nombre").val("");
+						$("#apellido").val("");
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError)
 					{
-						console.log("Ocurrio un Error");
+						console.log(throwError);
 					}
 			});
     });

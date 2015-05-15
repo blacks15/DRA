@@ -2,24 +2,24 @@
 	$opc = $_POST["opc"];
 	switch ($opc) 
 	{
-		case 'guardar_autor':
-			guardar_autor();
+		case 'guardar_genero':
+			guardar_genero();
 		break;
 		
-		case 'baja_autor':
-			baja_autor();
+		case 'baja_genero':
+			baja_genero();
 		break;
 
-		case 'consultar_autor':
-			consultar_autor();
+		case 'consultar_genero':
+			consultar_genero();
 		break;
 
-		case 'modificar_autor':
-			modificar_autor();
+		case 'modificar_genero':
+			modificar_genero();
 		break;
 	}
 
-	function guardar_autor()
+	function guardar_genero()
 	{
 		$conecta = mysql_connect("localhost","root","")or die(mysql_error());
 
@@ -30,31 +30,28 @@
 		if ($db == 0) {
 			echo "Error al Conectar Base de Datos";
 		}else {
-		$first_name = $_POST['first_name'];
-		$last_name = $_POST['last_name'];
+		$name = $_POST['name'];
 		$estado = 'Activo';
-
-		$valid = "select * from autores where firstname_autor = '".$first_name."' and lastname_autor = '".$last_name."'" ;
+		$valid = "select * from generos where nombre = '".$name."' and estado = '".$estado."'" ;
 		if (!$valid) {
-			echo "El Autor ya Existe";
+			echo "El Genero ya Existe";
 		}else{
 
-		$consulta = "insert into autores (firstname_autor,lastname_autor,estado) values('".$first_name."','".$last_name."','".$estado."')";
+		$consulta = "insert into generos (nombre,estado) values('".$name."','".$estado."')";
 		//ejecutar consulta
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
 
-		if ($resultado)
-		{
+		if ($resultado){
 			$respuesta = true;
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);
 			mysql_close($conecta);
 		}else{
-			echo "Ocurrio un Error";
+			echo "Error al Insertar Datos";
 		}
+	  }
 	 }
 	}
   }
- }
 ?>
