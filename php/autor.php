@@ -35,7 +35,8 @@
 		$estado = 'Activo';
 
 		$valid = "select * from autores where firstname_autor = '".$first_name."' and lastname_autor = '".$last_name."'" ;
-		if (!$valid) {
+		//$res = mysql_query($valid);
+		if ($res) {
 			echo "El Autor ya Existe";
 		}else{
 
