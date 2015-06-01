@@ -24,7 +24,7 @@ $(document).ready(function(){
 				}
 		});
 		alert("Ingreso exitoso"); 
-      					window.location.href = "menu.php"; 
+      	window.location.href = "menu.php"; 
 	});
 
 	$("#registrarse").click(function(){
