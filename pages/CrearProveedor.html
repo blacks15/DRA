@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -18,15 +18,15 @@
 			<tr>
 				<td>
 			    <label for="textfield">Código: </label>
-			    <input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>
+			    <input type="text" name="codigo" id="codigo" value="" autocomplete="off" readonly="true" required>
   				<label for="textfield">Empresa: </label>
-	   			<input type="text" name="apellido" id="apellido" value="" autocomplete="off" required>			
+	   			<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>			
 		  		<label for="textfield">Contacto: </label>
-			   	<input type="text" name="ciudad" id="ciudad" value="" autocomplete="off" required>
+			   	<input type="text" name="c_name" id="c_name" value="" autocomplete="off" required>
       			<label for="textfield">Observaciones: </label>
      		  	<label for="textarea"></label><textarea name="obs" id="obs" cols="45" rows="5"></textarea><br>
-     			<button class="btn btn-large btn-primary" type="submit"></button>
-        		<a href="crear_clientes.php" class="btn">Cancelar</a>
+     			<button class="btn btn-large btn-primary" id="btnsave" name="btnsave" type="submit"></button>
+        		<a href="CrearProveedor.html" class="btn">Cancelar</a>
 				</td>
 				<td>
 				<label for="textfield">Direccion: </label><input type="text" name="direccion" id="direccion" value="" autocomplete="off" required>
@@ -35,26 +35,27 @@
        			<label for="textfield">Teléfono: </label><input type="text" name="telefono" id="telefono" value="" autocomplete="off" required>
         		<label for="textfield">Celular: </label><input type="text" name="celular" id="celular" value="" autocomplete="off">
         		<label for="textfield">Correo Electronico: </label>
-          		<input type="text" name="corre" id="corre" value="" autocmplete="off">
+          		<input type="text" name="correo" id="correo" value="" autocmplete="off">
 			</td>
 			</tr>
 		</table>
 	</form>
    </div>
    	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap-transition.js"></script>
-    <script src="../js/bootstrap-alert.js"></script>
-    <script src="../js/bootstrap-modal.js"></script>
-    <script src="../js/bootstrap-dropdown.js"></script>
-    <script src="../js/bootstrap-scrollspy.js"></script>
-    <script src="../js/bootstrap-tab.js"></script>
-    <script src="../js/bootstrap-tooltip.js"></script>
-    <script src="../js/bootstrap-popover.js"></script>
-    <script src="../js/bootstrap-button.js"></script>
-    <script src="../js/bootstrap-collapse.js"></script>
-    <script src="../js/bootstrap-carousel.js"></script>
-    <script src="../js/bootstrap-typeahead.js"></script>
-    <script src="../js/bootstrap-affix.js"></script>
+    <script src="../js/proveedor.js"></script>
+	  <script src="../js/bootstrap/bootstrap-transition.js"></script>
+    <script src="../js/bootstrap/bootstrap-alert.js"></script>
+    <script src="../js/bootstrap/bootstrap-modal.js"></script>
+    <script src="../js/bootstrap/bootstrap-dropdown.js"></script>
+    <script src="../js/bootstrap/bootstrap-scrollspy.js"></script>
+    <script src="../js/bootstrap/bootstrap-tab.js"></script>
+    <script src="../js/bootstrap/bootstrap-tooltip.js"></script>
+    <script src="../js/bootstrap/bootstrap-popover.js"></script>
+    <script src="../js/bootstrap/bootstrap-button.js"></script>
+    <script src="../js/bootstrap/bootstrap-collapse.js"></script>
+    <script src="../js/bootstrap/bootstrap-carousel.js"></script>
+    <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
+    <script src="../js/bootstrap/bootstrap-affix.js"></script>
     <script src="../js/holder/holder.js"></script>
     <script src="../js/google-code-prettify/prettify.js"></script>
     <script src="../js/application.js"></script>

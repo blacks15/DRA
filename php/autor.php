@@ -21,7 +21,7 @@
 
 	function guardar_autor()
 	{
-		$conecta = mysql_connect("localhost","root","")or die(mysql_error());
+		$conecta = mysql_connect("localhost","root","123")or die(mysql_error());
 
 		if (!is_resource($conecta)) {
 			echo "Fallo la Conexión al Servidor";
@@ -33,12 +33,6 @@
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$estado = 'Activo';
-
-		$valid = "select * from autores where firstname_autor = '".$first_name."' and lastname_autor = '".$last_name."'" ;
-		//$res = mysql_query($valid);
-		if ($res) {
-			echo "El Autor ya Existe";
-		}else{
 
 		$consulta = "insert into autores (firstname_autor,lastname_autor,estado) values('".$first_name."','".$last_name."','".$estado."')";
 		//ejecutar consulta
@@ -57,5 +51,4 @@
 	 }
 	}
   }
- }
 ?>

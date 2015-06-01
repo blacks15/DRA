@@ -1,4 +1,7 @@
 <?php
+	header('Content-Type: application/json');
+	error_reporting(0);
+	
 	$opc = $_POST['opc'];
 	switch ($opc) 
 	{
@@ -21,26 +24,25 @@
 
 	function guardar_editorial()
 	{
-		$conecta = mysql_connect("localhost","root","") or die(mysql_error());
+		$conecta = mysql_connect("localhost","root","123") or die(mysql_error());
 
 		if (!is_resource($conecta)) {
 			echo "Fallo la Conexion al Servidor";
-		}else{
+		} else {
 			$db = mysql_select_db("venta_libros",$conecta);
 			if ($db == 0) {
 				echo "Error al Conectar a la Base de Datos";
-			}else{
-				$name = trim($_POST['name']);
-				$estado = 'Activo';
-				$valid = "select * from editoriales where nombre = '".$name."' and estado = '".$estado."'" ;
-				if (!$valid) {
-					echo "La Editorial ya Existe";
-				}else{
-					$consulta = "insert into editoriales(nombre,estado) values('".$name."','".$estado."')";
+			 } else {
+			    $name = trim($_POST['name']);
+			 	$estado = 'Activo';
+			 	
+			 		$consulta = "insert into editoriales(nombre,estado) values('".$name."','".$estado."')";
 				  //ejecutar consulta
-					$resultado = mysql_query($consulta,$conecta)or die(mysql_error());
-					$respuesta = false;
-					
+					 $resultado = mysql_query($consulta)or die(mysql_error());
+					 $respuesta = false;
+					 $total = mysql_num_rows($resultado);
+					 echo $total;
+			 		
 				if ($resultado){
 					$respuesta = true;
 					$salidaJSON = array('respuesta' => $respuesta );
@@ -52,5 +54,4 @@
 	   			}
 		    }
 		}
-	}
 ?>

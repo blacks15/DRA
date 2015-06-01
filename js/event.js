@@ -22,9 +22,9 @@ $(document).ready(function(){
 				{
 					console.log("Ocurrió un error");
 				}
-		});
+		});		
 		alert("Ingreso exitoso"); 
-      	window.location.href = "menu.php"; 
+		window.location.href = "menu.php"; 
 	});
 
 	$("#registrarse").click(function(){

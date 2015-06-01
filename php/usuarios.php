@@ -21,8 +21,8 @@
 		$clave = trim($_POST['clave']);
 		$response = true;
 
-		$conecta   = mysql_connect("localhost","root","");
-		mysql_select_db("venta_libros");
+		$conecta   = mysql_connect("localhost","root","123");
+		mysql_select_db("venta_libros")or die(mysql_error());
 		
 		$consulta = "select nombre_usuario from usuarios WHERE nombre_usuario = '".$usuario."' and password = '".$clave."'";
 		$resultado = mysql_query($consulta) or die(mysql_error());
