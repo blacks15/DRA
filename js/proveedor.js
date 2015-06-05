@@ -15,9 +15,10 @@ $(document).ready(function(){
 			type: "POST",
 			datatype: "json",
 			url: "../php/proveedor.php",
-			data: {name: name,contacto: contacto,obs: obs,dir: dir,col: col,tel: tel,cel: cel,email: email},
+			data: {opc:"guardar_proveedor",name: name,contacto: contacto,obs: obs,dir: dir,col: col,tel: tel,cel: cel,email: email},
 			success: function(response){
-				if (response.respuest == true)
+				alert("ok");
+				if (response.respuesta == false)
 				{
 					alert("Proveedor Guardado con Exito");
 					$("#nombre").val("");
