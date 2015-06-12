@@ -20,7 +20,16 @@ $(document).ready(function(){
                     sortorder: 'asc',
                     viewrecords: true,
                     caption: 'AUTORES',
-                    altRows: true
+                    altRows: true,
                 });
-	jQuery("#autores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:true});
+	jQuery("#autores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:true},
+         {},//opciones edit
+         {}, //opciones add
+         {}, //opciones del
+         {multipleSearch:true,closeAfterSearch: true, closeOnEscape: true}//opciones search
+         ).jqGrid("filterToolbar");
+
+    for(var i=0;i<=mydata.length;i++)
+        jQuery("#list").jqGrid('addRowData',i+1,mydata[i]);
+        jQuery("#list").trigger("reloadGrid")
 });
