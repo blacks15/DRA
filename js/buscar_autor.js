@@ -1,22 +1,26 @@
 $(document).ready(function(){
+
 		jQuery("#autores").jqGrid({
                     url:'../php/buscar_Autor.php',
                     datatype: 'json',
                     mtype: 'POST',
                     colNames:['ID','NOMBRE', 'APELLIDO','ESTADO'],
                     colModel:[
-                        {name:'clave_autor', index:'clave_autor', width:50, resizable:false, align:"center"},
-                        {name:'firstname_autor', index:'firstname_autor', width:160,resizable:true},
-                        {name:'lastname_autor', index:'lastname_autor', width:150},
-                        {name:'estado', index:'estado', width:70},
+                        {name:'clave_autor', index:'clave_autor', width:80, resizable:false, align:"center"},
+                        {name:'firstname_autor', index:'firstname_autor', width:190,resizable:true},
+                        {name:'lastname_autor', index:'lastname_autor', width:200},
+                        {name:'estado', index:'estado', width:100}
                     ],
+                    height: 300,
+                    autowidth: true,
                     pager: '#pager2',
-                    rowNum:10,
+                    rowNum:12,
                     rowList:[10,20],
                     sortname: 'clave_autor',
                     sortorder: 'asc',
                     viewrecords: true,
-                    caption: 'AUTORES'
+                    caption: 'AUTORES',
+                    altRows: true
                 });
-	jQuery("#autores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false});
+	jQuery("#autores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:true});
 });
