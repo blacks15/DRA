@@ -1,5 +1,5 @@
 $(document).ready(function(){
-		
+
 	$("#alta").click(function(){
 		var first_name = $("#nombre").val();
 		var last_name = $("#apellido").val();

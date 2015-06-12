@@ -2,7 +2,7 @@
 	header('Content-Type: application/json');
 	error_reporting(0);
 
-	mostrar_editorial();
+	//mostrar_editorial();
 	mostrar_autor();
 
 	function mostrar_editorial()
