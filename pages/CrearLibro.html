@@ -5,8 +5,10 @@
 	<title>Crear Libro</title>
 
 	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/jquery.fileupload.css">
+	<link rel="stylesheet" href="../css/jquery.fileupload-ui.css">
+
 
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -58,7 +60,12 @@
 						<td width="45%">
 							<center><label>Imagen del Producto: </label></center>
 							<center></center><br>
-							<center><input type="file" name="img" id="img"></center>
+							<center><input type="file" name="files[]" id="files_upload"></center>
+							<div id="files">
+                <h2>Vista Previa</h2>
+                <ul id="filePreview"></ul>
+                <a id="remove" href="#" title="Remove file">Borrar Archivos</a>
+            </div>
 						</td>
 					</tr>
 				</div>
@@ -66,7 +73,17 @@
 		</table>
 	</div>
 	<script src="../js/jquery.js"></script>
+	<script src="../jqueryui/jquery-ui.min.js"></script>
 	<script src="../js/libros.js"></script>
+	<script src="../js/jquery.fileupload.js"></script>
+    <script src="../js/jquery.iframe-transport.js"></script>
+    <script src="../js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="../js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="../js/jquery.fileupload-validate.js"></script>
+<!-- The main application script -->
+<script src="../js/main.js"></script>
 	<script src="../js/bootstrap/bootstrap-transition.js"></script>
     <script src="../js/bootstrap/bootstrap-alert.js"></script>
     <script src="../js/bootstrap/bootstrap-modal.js"></script>
@@ -81,7 +98,6 @@
     <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
     <script src="../js/bootstrap/bootstrap-affix.js"></script>
     <script src="../js/holder/holder.js"></script>
-    <script src="../js/google-code-prettify/prettify.js"></script>
     <script src="../js/application.js"></script>
 </body>
 </html>
