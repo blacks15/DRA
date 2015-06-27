@@ -11,16 +11,17 @@ $(document).ready(function(){
                         {name:'lastname_autor', index:'lastname_autor', width:200,search:true},
                         {name:'estado', index:'estado', search:false,width:100}
                     ],
-                    height: 300,
+                    height: "100%",
                     autowidth: true,
                     pager: '#pager2',
-                    rowNum:12,
+                    rowNum:10,
                     rowList:[10,20],
                     sortname: 'clave_autor',
-                    sortorder: 'asc',
+                    sortorder: 'desc',
                     viewrecords: true,
                     caption: 'AUTORES',
                     altRows: true,
+                    pagination: true,
                     onSelectRow: function(ids) {
                         var selr = jQuery('#autores').jqGrid('getGridParam','selrow'); 
                             if(!selr){
@@ -86,19 +87,15 @@ $(document).ready(function(){
                 datatype: "json",
                 url: "../php/autor.php",
                 data: {opc:"baja_autor", clave_autor:clave_autor},
-                success: function(response)
-                {
-                    if(response.respuesta == false)
-                    {
+                success: function(response)  {
+                    if(response.respuesta == false)  {
                         alert("Autor No Eliminado");
                     }
-                    else
-                    {
+                    else{
                         alert("Autor Eliminado");
                     }
                 },  
-                    error: function(xhr,ajaxOptions,throwError)
-                    {
+                    error: function(xhr,ajaxOptions,throwError){
                         console.log("Ocurrio un Error");
                     }
             });

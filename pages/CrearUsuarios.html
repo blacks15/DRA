@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Crear Clientes</title>
+		<title>Crear Usuarios</title>
 
 		<link rel="stylesheet" href="../css/bootstrap.css">
 		<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
@@ -11,44 +11,57 @@
 	</head>
 	<body data-spy="scroll" data-target=".bs-docs-sidebar">
 		<div class="control-group info">
-			<form  metod ="post" name="form1" action="">
+			<form  metod ="post" name="form1" id="form1" action="">
 			<table width="80%" class="table" border="0">
 				<tr class="info"> 
-					<td colspan="2"> <center><strong>Crear Usuario</strong></td>
+					<td colspan="3"> <center><strong>Crear Usuario</strong></td>
 				</tr>
 				<tr>
 				<td>
 				<label for="textfield">Nombre:</label>
-				<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>
-				<label for="textfield">Apellido:</label>
-				<input type="text" name="apellido" id="apellido" value="" autocomplete="off" required>			
-				<label for="textfield">Ciudad:</label>
-				<input type="text" name="ciudad" id="ciudad" value="" autocomplete="off" required></br>
-				<div class="input-prepend input-append">
-            	<label for="textfield">Sueldo: </label>
-           		<span class="add-on">$</span><input type="text" name="sueldo" id="sueldo" value="" size="5" autocomplete="off" required><span class="add-on">.00</span>
-           		</div>
-           		<label for="textfield">Cuenta de Usuario: </label>
-       			<input type="text" name="usuario" id="usuario" value="" autocomplete="off" required>
-        		<a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal">Ver Contraseña</a>
- 	    		<br><br>
-       			<button class="btn btn-large btn-primary" type="submit"></button>
+				<input type="text"class="input-medium" name="nombre" id="nombre" value="" autocomplete="off" required maxlength="20">
+				<label for="textfield">Apellido Paterno:</label>
+				<input type="text" class="input-medium" name="apaterno" id="apaterno" value="" autocomplete="off" requiredmaxlength="30">
+        <label for="textfield">Apellido Materno:</label>
+        <input type="text" class="input-medium" name="amaterno" id="amaterno" value="" autocomplete="off" required maxlength="30">   
+        <label for="textfield">Cuenta de Usuario: </label>
+       	<input type="text" class="input-medium" name="usuario" id="usuario" value="" autocomplete="off" >
+        		<a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal" id="vc">Ver Contraseña</a>
+        <label for="textfield">Contraseña: </label>
+        <input type="text" class="input-medium" name="pass" id="pass" value="" autocomplete="off" >
+        <label for="textfield">Repite Contraseña: </label>
+        <input type="text" class="input-medium" name="rpass" id="rpass" value="" autocomplete="off" >
+ 	    	<br><br>
+       			<button class="btn  btn-primary" type="submit" id="alta" name="alta">Enviar</button>
                 <a href="CrearUsuarios.html" class="btn">Cancelar</a>
 				</td>
 				<td>
-				<label for="textfield">Direccion: </label><input type="text" name="direccion" id="direccion" value="" autocomplete="off" required>
-       			<label for="textfield">Colonia: </label>
-       			<input type="text" name="colonia" id="colonia" value="" autocomplete="off">
-       			<label for="textfield">Telefono: </label><input type="text" name="telefono" id="telefono" value="" autocomplete="off" required>
-        		<label for="textfield">Celular: </label><input type="text" name="celular" id="celular" value="" autocomplete="off">
-        		<label for="radio">Tipo de Usuario</label>
-       			<label class="radio">
-       			<input type="radio" name="tipo" id="optionsRadios1" value="a">Administrador</label>
-       			<label class="radio">
-       			<input type="radio" name="tipo" id="optionsRadios2" value="cl">Vendedor</label>
-       			<label class="radio">
-        		<input type="radio" name="tipo" id="optionsRadios3" value="ca">Cajera</label>
+        <label for="textfield">Estado:</label>
+        <input type="text" class="input-medium" name="edo" id="edo" value="" autocomplete="off" required></br>     
+        <label for="textfield">Ciudad:</label>
+        <input type="text" class="input-medium" name="ciudad" id="ciudad" value="" autocomplete="off" required></br>
+				<label for="textfield">Calle: </label>
+        <input type="text" class="input-medium" name="calle" id="calle" value="" autocomplete="off" required>
+        <label for="textfield">Número: </label>
+        <input type="text" class="input-small" name="num" id="num" value="" size:"5" maxlength="5" autocomplete="off" required>
+   			<label for="textfield">Colonia: </label>
+   			<input type="text"class="input-medium" name="colonia" id="colonia" value="" autocomplete="off">
+   			<label for="textfield">Telefono: </label><input type="text" name="telefono" id="telefono" value="" autocomplete="off"class="input-medium" required maxlength="10">
 				</td>
+        <td>
+        <label for="textfield">Celular: </label><input type="text" name="celular" id="celular" value="" autocomplete="off"class="input-medium" maxlength="10"><br>
+        <div class="input-prepend input-append">
+          <label for="textfield">Sueldo: </label>
+          <span class="add-on">$</span><input type="text" name="sueldo" id="sueldo" value="" size="5" autocomplete="off" class="input-small" required maxlength="5"><span class="add-on">.00</span>
+          </div><br>
+        <label for="radio">Tipo de Usuario</label>
+        <label class="radio">
+        <input type="radio" name="tipo" id="optionsRadios1" value="a">Administrador</label>
+        <label class="radio">
+        <input type="radio" name="tipo" id="optionsRadios2" value="v">Vendedor</label>
+        <label class="radio">
+        <input type="radio" name="tipo" id="optionsRadios3" value="ca">Cajera</label>
+        </td>
 				</tr>
 			</table>
 			</form>
@@ -59,29 +72,28 @@
             <h3 id="myModalLabel">Recordar Contraseña</h3>
             </div>
             <div class="modal-body">
-            <p><?php echo $nombre; ?></p>
-            <p>Contraseña:<strong> <?php echo $dato['con']; ?></strong></p>
+            <p></p>
+            <p>Contraseña:<strong> </strong></p>
             </div>
             <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         </div>
     </div>
       <script src="../js/jquery.js"></script>
-      <script src="../js/bootstrap-transition.js"></script>
-      <script src="../js/bootstrap-alert.js"></script>
-      <script src="../js/bootstrap-modal.js"></script>
-      <script src="../js/bootstrap-dropdown.js"></script>
-      <script src="../js/bootstrap-scrollspy.js"></script>
-      <script src="../js/bootstrap-tab.js"></script>
-      <script src="../js/bootstrap-tooltip.js"></script>
-      <script src="../js/bootstrap-popover.js"></script>
-      <script src="../js/bootstrap-button.js"></script>
-      <script src="../js/bootstrap-collapse.js"></script>
-      <script src="../js/bootstrap-carousel.js"></script>
-      <script src="../js/bootstrap-typeahead.js"></script>
-      <script src="../js/bootstrap-affix.js"></script>
+      <script src="../js/usuario.js"></script>
+      <script src="../js/bootstrap/bootstrap-transition.js"></script>
+      <script src="../js/bootstrap/bootstrap-alert.js"></script>
+      <script src="../js/bootstrap/bootstrap-modal.js"></script>
+      <script src="../js/bootstrap/bootstrap-dropdown.js"></script>
+      <script src="../js/bootstrap/bootstrap-scrollspy.js"></script>
+      <script src="../js/bootstrap/bootstrap-tab.js"></script>
+      <script src="../js/bootstrap/bootstrap-tooltip.js"></script>
+      <script src="../js/bootstrap/bootstrap-popover.js"></script>
+      <script src="../js/bootstrap/bootstrap-button.js"></script>
+      <script src="../js/bootstrap/bootstrap-collapse.js"></script>
+      <script src="../js/bootstrap/bootstrap-carousel.js"></script>
+      <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
+      <script src="../js/bootstrap/bootstrap-affix.js"></script>
       <script src="../js/holder/holder.js"></script>
-      <script src="../js/google-code-prettify/prettify.js"></script>
-      <script src="../js/application.js"></script>
 	</body>
 </html>

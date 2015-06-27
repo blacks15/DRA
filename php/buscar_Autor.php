@@ -52,6 +52,12 @@
   if (!$se) {
     $estado = 'activo';
     $sql = "select clave_autor,firstname_autor,lastname_autor,estado from autores where  estado = 'Activo'";
+    if( !empty($post['orden']) && !empty($post['orderby']))
+    //Añadimos de una ves la parte de la consulta para ordenar el resultado
+    $sql .= " ORDER BY $post[orderby] $post[orden] ";
+  if($post['limit'] && $post['offset']) $sql.=" limit $post[offset], $post[limit]";
+    //añadimos el limite para solamente sacar las filas de la apgina actual que el sistema esta consultando
+    elseif($post['limit']) $sql .=" limit 0,$post[limit]";
     $query = mysql_query($sql);
     
     if(!$query)
@@ -59,7 +65,12 @@
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
   $sql = "select clave_autor,firstname_autor,lastname_autor,estado from autores".$se;
-    
+    if( !empty($post['orden']) && !empty($post['orderby']))
+    //Añadimos de una ves la parte de la consulta para ordenar el resultado
+    $sql .= " ORDER BY $post[orderby] $post[orden] ";
+  if($post['limit'] && $post['offset']) $sql.=" limit $post[offset], $post[limit]";
+    //añadimos el limite para solamente sacar las filas de la apgina actual que el sistema esta consultando
+    elseif($post['limit']) $sql .=" limit 0,$post[limit]";
   $query = mysql_query($sql);
   if(!$query)
     echo mysql_error();

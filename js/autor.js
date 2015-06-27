@@ -1,9 +1,14 @@
 $(document).ready(function(){
 
+	$("#nombre").focus();
+	$("#lblnombre").hide();
+	$("#lblapellido").hide();
+
 	$("#alta").click(function(){
 		var first_name = $("#nombre").val();
 		var last_name = $("#apellido").val();
 
+		if (validar() ) {
 			$.ajax({
 				cache: false,
 				type: "POST",
@@ -15,14 +20,13 @@ $(document).ready(function(){
 					if(response.respuesta == false)
 					{
 						alert("Autor No Registrado");
-						$("#nombre").val("");
-						$("#apellido").val("");
+						limpiar();
 					}
 					else
 					{
 						alert("Autor Registrado");
-						$("#nombre").val("");
-						$("#apellido").val("");
+						$("#mensajealta").show();
+						limpiar();
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError)
@@ -30,6 +34,30 @@ $(document).ready(function(){
 						console.log("Ocurrio un Error");
 					}
 			});
+		} else{
+			alert("Debe Llenar Todos los Campos.");
+		}
     });
+
+    function validar(){
+    	var first_name = $("#nombre").val();
+		var last_name = $("#apellido").val();
+
+		if(first_name == ""){
+			$("#nombre").focus();
+			$("#lblnombre").show();
+			return false;
+		} else if (last_name == "") {
+			$("#apellido").focus();
+			$("#lblapellido").show();
+			return false;
+		}
+		return true;
+    }
+
+    function limpiar (){
+    	$("#nombre").val("");
+		$("#apellido").val("");
+    }
 
 });
