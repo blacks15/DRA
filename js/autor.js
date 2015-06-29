@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
 	$("#nombre").focus();
-	$("#lblnombre").hide();
-	$("#lblapellido").hide();
+	$("#errornom").hide();
+	$("#errorap").hide();
+	$("#mensajealta").hide();
+	$("#error").hide();
 
 	$("#alta").click(function(){
 		var first_name = $("#nombre").val();
@@ -21,21 +23,35 @@ $(document).ready(function(){
 					{
 						alert("Autor No Registrado");
 						limpiar();
-					}
-					else
-					{
-						alert("Autor Registrado");
-						$("#mensajealta").show();
+					} else {				
+						$("#mensajealta").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold", duration: 200},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
 						limpiar();
+						$("#errornom").hide();
+						$("#errorap").hide();
 					}
 				},	
-					error: function(xhr,ajaxOptions,throwError)
-					{
+					error: function(xhr,ajaxOptions,throwError){
 						console.log("Ocurrio un Error");
 					}
 			});
 		} else{
-			alert("Debe Llenar Todos los Campos.");
+			$("#error").dialog({
+				modal: true,
+	            width: 270,
+	            height: 170,
+	            show: {effect : "fold" ,duration: 200},
+	            hide: {effect : "explode", duration: 300},
+	            resizable: "false",
+	            buttons: { "OK": function () { $(this).dialog("close"); } },   
+	        });
 		}
     });
 
@@ -45,13 +61,15 @@ $(document).ready(function(){
 
 		if(first_name == ""){
 			$("#nombre").focus();
-			$("#lblnombre").show();
+			$("#errornom").show();
 			return false;
 		} else if (last_name == "") {
 			$("#apellido").focus();
-			$("#lblapellido").show();
+			$("#errorap").show();
 			return false;
 		}
+		$("#errornom").hide();
+		$("#errorap").hide();
 		return true;
     }
 
