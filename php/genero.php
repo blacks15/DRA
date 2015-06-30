@@ -14,19 +14,19 @@
 		break;
 	}
 
-	function guardar_genero()
-	{
+	function guardar_genero(){
 		$name = trim($_POST['name']); 
 		$consulta = "insert into generos (nombre) values('".$name."')";
 
 		//ejecutar consulta
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
+		$total = mysql_num_rows($resultado);
+		echo $total;
 		if ($resultado){
 			$respuesta = true;
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);
-			mysql_close($conecta);
 		} else {
 			echo "Ocurrio un Error";
 		}

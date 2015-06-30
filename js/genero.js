@@ -16,7 +16,7 @@ $(document).ready(function(){
 				url: "../php/genero.php",
 				data: {opc:"guardar_genero",name: name },
 				success: function(response) {
-					if(response.respuesta == false){
+					if (response.respuesta == false){
 						alert("Genero No Registrado");
 						$("#nombre").val("");
 					} else {
