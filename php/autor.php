@@ -30,8 +30,7 @@
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
 
-		if ($resultado)
-		{
+		if ($resultado){
 			$respuesta = true;
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);

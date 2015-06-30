@@ -5,8 +5,8 @@
 	<title>Crear Editorial</title>
 
 	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../jqueryui/jquery-ui.css">
 
 </head>
 <body>
@@ -22,18 +22,33 @@
 						<label for="textfield">Código: </label>
 						<input type="text" readonly="true" name="codigo" id="codigo" value="" autocomplete="off" required>
 						<label for="textfield">Nombre Editorial: </label>
-						<label for="textfield" id="lblnombre">Debe Ingresar un Nombre. </label>
 						<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>
+						<div class="ui-widget" id="errornom">
+							<div class="ui-corner-all" style="padding: 0 .2em;">
+								<p>
+									<span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN NOMBRE.
+								</p>
+							</div>
+						</div>
  	    				<br><br>
        					<button class="btn btn-primary" type="submit" id="altaeditorial" name="altaeditorial">Enviar</button>
                 <a href="CrearEditorial.html" class="btn">Cancelar</a>
 				</td>
 				</tr>
 			</table>
+			<div class="" id="mensajealta" title="Información Guardada">
+				<span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+			    <center> <strong>Editorial Guardado con Exito.</strong></center>
+			</div>
+			<div class="" id="error" title="Advertencia">
+				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .1em;"></span>
+				<center><strong>Debe Llenar Todos los Campos.</strong></center>
+			</div>
 			</form>
 		</div>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/editorial.js"></script>
+	<script src="../jqueryui/jquery-ui.min.js"></script>
 	<script src="../js/bootstrap/bootstrap-transition.js"></script>
     <script src="../js/bootstrap/bootstrap-alert.js"></script>
     <script src="../js/bootstrap/bootstrap-modal.js"></script>
@@ -48,7 +63,6 @@
     <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
     <script src="../js/bootstrap/bootstrap-affix.js"></script>
     <script src="../js/holder/holder.js"></script>
-    <script src="../js/google-code-prettify/prettify.js"></script>
     <script src="../js/application.js"></script>
 </body>
 </html>
