@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $("#war").hide();
     $("#mensajealta").hide();
-
+    $("#delete").hide();
 		jQuery("#autores").jqGrid({
                     url:'../php/buscar_Autor.php',
                     datatype: 'json',
@@ -12,7 +12,7 @@ $(document).ready(function(){
                         {name:'clave_autor', index:'clave_autor',search:false,width:80,resizable:false, align:"center",key:true},
                         {name:'firstname_autor', index:'firstname_autor', width:190,resizable:true,search:true},
                         {name:'lastname_autor', index:'lastname_autor', width:200,search:true},
-                        {name:'estado', index:'estado', search:false,width:100}
+                        {name:'estado', index:'estado', search:false, width:100, align:"center" }
                     ],
                     height: "100%",
                     autowidth: true,
@@ -101,35 +101,48 @@ $(document).ready(function(){
                     buttons: { "OK": function () { $(this).dialog("close"); } },   
                 });
             }else{
-                if(!confirm("¿Está seguro de que desea eliminar el registro seleccionado?"))
-                        exit(); 
-
-                $.ajax({
-                cache: false,
-                type: "POST",
-                datatype: "json",
-                url: "../php/autor.php",
-                data: {opc:"baja_autor", clave_autor:clave_autor},
-                success: function(response)  {
-                    if(response.respuesta == false)  {
-                        alert("Autor No Eliminado");
-                    }
-                    else{
-                       $("#mensajealta").dialog({
-                            modal: true,
-                            width: 270,
-                            height: 170,
-                            show: {effect : "fold" ,duration: 300},
-                            hide: {effect : "explode", duration: 300},
-                            resizable: "false",
-                            buttons: { "OK": function () { $(this).dialog("close"); } },   
-                        });
-                    }
-                },  
-                    error: function(xhr,ajaxOptions,throwError){
-                        console.log("Ocurrio un Error");
-                    }
-            });
+               $( "#delete" ).dialog({
+                      resizable: false,
+                      height:170,
+                      modal: true,
+                      show: {effect : "fold" ,duration: 300},
+                      hide: {effect : "explode", duration: 300},
+                      buttons: {
+                        "Eliminar": function() {
+                          $.ajax({
+                            cache: false,
+                            type: "POST",
+                            datatype: "json",
+                            url: "../php/autor.php",
+                            data: {opc:"baja_autor", clave_autor:clave_autor},
+                            success: function(response)  {
+                                if(response.respuesta == false)  {
+                                    alert("Autor No Eliminado");
+                                }
+                                else{
+                                   $("#mensajealta").dialog({
+                                        modal: true,
+                                        width: 270,
+                                        height: 170,
+                                        show: {effect : "fold" ,duration: 300},
+                                        hide: {effect : "explode", duration: 300},
+                                        resizable: "false",
+                                        buttons: { "OK": function () { $(this).dialog("close"); } },   
+                                    });
+                                }
+                            },  
+                                error: function(xhr,ajaxOptions,throwError){
+                                    console.log("Ocurrio un Error");
+                                }
+                            });
+                            $( this ).dialog( "close" );
+                            $("#autores").trigger("reloadGrid");
+                        },
+                        Cancelar: function() {
+                          $( this ).dialog( "close" );
+                        }
+                      }
+                    });
         }
         return false;
 }

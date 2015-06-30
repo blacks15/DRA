@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$("#nombre").focus();
-	ocultar();
+		ocultar();
 	$("#btnsave").click(function(){
 		
 		if( validar_datos() ){
@@ -21,13 +21,12 @@ $(document).ready(function(){
 			url: "../php/proveedor.php",
 			data: {opc:"guardar_proveedor",name: name,contacto: contacto,obs: obs,dir: dir,col: col,tel: tel,cel: cel,email: email},
 			success: function(response){
-				if (response.respuesta == false)
-				{
+				if (response.respuesta == false){
 					alert("Proveedor No Registrado");
 					limpiar();
 				} else {
 					alert("Proveedor Registrado ");
-					$("#error").dialog({
+					$("#mensajealta").dialog({
 						modal: true,
 			            width: 270,
 			            height: 170,
