@@ -14,7 +14,7 @@
 
 		case 'baja_usuario':
 			baja_usuario();
-			break;
+		break;
 	}
 
 	function guardar_usuario(){
@@ -39,7 +39,6 @@
 		$estado = 'ACTIVO';
 
 		$consulta = "insert into users (nombre,apellido_paterno,apellido_materno,usuario,password,calle,numero,colonia,ciudad,estado,telefono,celular,sueldo,tipo,status) values ('".$nombre."','".$apaterno."','".$amaterno."','".$usuario."','".md5($pass)."','".$calle."','".$num."','".$col."','".$city."','".$edo."','".$tel."','".$cel."','".$sueldo."','".$tipo."','".$estado."')";
-		echo $consulta;
 			//ejecutar consulta
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
@@ -49,6 +48,24 @@
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);
 		} else {
+			echo "Ocurrio un Error";
+		}
+	}
+
+	function baja_usuario(){
+		$clave_usuario = trim($_POST['clave_usuario']);
+  		$estado = 'BAJA';
+
+  		$consulta = "update users set status='".$estado."'where clave_usuario = '".$clave_usuario."'";
+  		
+  		$resultado = mysql_query($consulta) or die(mysql_error());
+		$respuesta = false;
+
+		if ($resultado == true){
+			$respuesta = true;
+			$salidaJSON = array('respuesta' => $respuesta );
+			print json_encode($salidaJSON);
+		}else{
 			echo "Ocurrio un Error";
 		}
 	}

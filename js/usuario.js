@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	$("#vc").hide();
-	$("#nombre").
+	ocultar();
+	$("#nombre").focus();
 	$("#alta").click(function(){
 			
-	//	if ( validar_datos() ) {
+		if ( validar_datos() ) {
 		var cadena = $("#form1").serialize();
 			alert(cadena);
 
@@ -13,28 +13,38 @@ $(document).ready(function(){
 				datatype: "json",
 				url: "../php/user.php",
 				data: {opc:"guardar_usuario",cadena },
-				success: function(response)
-				{
-					if(response.respuesta == false)
-					{
+				success: function(response) {
+					if(response.respuesta == false) {
 						alert("Empleado No Registrado");
 						//limpiar();
-					}
-					else
-					{
-						alert("Empleado Registrado");
-						//limpiar();
+					} else {
+						$("#mensajealta").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold" ,duration: 300},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+						limpiar();
 					}
 				},	
-					error: function(xhr,ajaxOptions,throwError)
-					{
+					error: function(xhr,ajaxOptions,throwError){
 						console.log("Ocurrio un Error");
 					}
 			});
-				//} else{
-				//	alert("Favor de llenar todos los campos");
-				//}
-			
+				} else {
+					$("#error").dialog({
+						modal: true,
+			            width: 270,
+			            height: 170,
+			            show: {effect : "fold" ,duration: 300},
+			            hide: {effect : "explode", duration: 300},
+			            resizable: "false",
+			            buttons: { "OK": function () { $(this).dialog("close"); } },   
+			        });
+				}
     });
 
 		function validar_datos(){
@@ -56,39 +66,50 @@ $(document).ready(function(){
 			
 			if (name == "") {
 				$("#nombre").focus();
+				$("#errornom").show();
 				return false
 			} else if (apaterno ==""){
 				$("#apaterno").focus();
+				$("#errorapp").show();
 				return false
 			} else if (amaterno == ""){
 				$("#amaterno").focus();
+				$("#errorapm").show();
 				return false
 			} else if (estado == ""){
 				$("#edo").focus();
+				$("#erroredo").show();
 				return false
 			} else if (city == ""){
 				$("#ciudad").focus();
+				$("#errorcity").show();
 				return false
 			} else if (calle == ""){
 				$("#calle").focus();
+				$("#errorcalle").show();
 				return false
 			} else if (num == ""){
 				$("#num").focus();
+				$("#errornum").show();
 				return false
 			} else if (col == ""){
 				$("#colonia").focus();
+				$("#errorcol").show();
 				return false
 			} else if (tel == ""){
 				$("#telefono").focus();
+				$("#errortel").show();
 				return false
 			} else if (cel == ""){
 				$("#celular").focus();
+				$("#errorcel").show();
 				return false
 			} else if (sueldo == ""){
 				$("#sueldo").focus();
+				$("#errorsueldo").show();
 				return false
 			}
-
+			ocultar();
 			return true;
 		}
 
@@ -108,6 +129,23 @@ $(document).ready(function(){
 			$("#celular").val("");
 			$("#sueldo").val("");
 			$("tipo").val("");
+		}
+
+		function ocultar() {
+			$("#vc").hide();
+			$("#error").hide();
+			$("#errornom").hide();
+			$("#errorapp").hide();
+			$("#errorapm").hide();
+			$("#erroredo").hide();
+			$("#errorcity").hide();
+			$("#errorcalle").hide();
+			$("#errornum").hide();
+			$("#errorcol").hide();
+			$("#errortel").hide();
+			$("#errorcel").hide();
+			$("#errorsueldo").hide();
+			$("#mensajealta").hide();
 		}
 		
 });

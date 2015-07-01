@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	
+	   $("#war").hide();
+       $("#mensajealta").hide();
+       $("#delete").hide();
+
 		jQuery("#usuarios").jqGrid({
 						url:'../php/buscar_usuarios.php',
 						datatype: 'json',
@@ -34,7 +37,15 @@ $(document).ready(function(){
                         onSelectRow: function(ids) {
                         var selr = jQuery('#usuarios').jqGrid('getGridParam','selrow'); 
                             if(!selr){
-                                 alert("No selected row"); 
+                                 $("#war").dialog({
+                                        modal: true,
+                                        width: 270,
+                                        height: 170,
+                                        show: {effect : "fold" ,duration: 300},
+                                        hide: {effect : "explode", duration: 300},
+                                        resizable: "false",
+                                        buttons: { "OK": function () { $(this).dialog("close"); } },   
+                                    });
                             }  
                             return false; 
                            }
@@ -65,47 +76,78 @@ $(document).ready(function(){
                 var id_tipo = $("#usuarios").jqGrid('getGridParam','selrow'); 
 
                 if( id_tipo == null ){
-                        alert("Para modificar un registro debe seleccionarlo previamente."); 
+                         $("#war").dialog({
+                            modal: true,
+                            width: 270,
+                            height: 170,
+                            show: {effect : "fold" ,duration: 300},
+                            hide: {effect : "explode", duration: 300},
+                            resizable: "false",
+                            buttons: { "OK": function () { $(this).dialog("close"); } },   
+                        });
                 }else{
                         $.get("../php/autor.php?opc=modificar_autor&id="+id_tipo, function(data){
                                 crear_modal(300,250,data);
                         });
                 }
                 return false;
-        }
+            }
 
         function borrar(){
             var clave_usuario = $("#usuarios").jqGrid('getGridParam','selrow'); 
-            alert(clave_usuario);
+            
             if( clave_usuario == null ){
-                alert("Para Eliminar un Registro Debe Seleccionarlo Previamente."); 
-            }else{
-                if(!confirm("¿Está seguro de que desea eliminar el registro seleccionado?"))
-                        exit(); 
-
-                $.ajax({
-                cache: false,
-                type: "POST",
-                datatype: "json",
-                url: "../php/user.php",
-                data: {opc:"baja_usuario", clave_usuario:clave_usuario},
-                success: function(response)
-                {
-                    if(response.respuesta == false)
-                    {
-                        alert("Usuario No Eliminado");
-                    }
-                    else
-                    {
-                        alert("Usuarios Eliminado");
-                        $('#usuarios').trigger("reloadGrid");
-                    }
-                },  
-                    error: function(xhr,ajaxOptions,throwError)
-                    {
-                        console.log("Ocurrio un Error");
-                    }
-            });
+                 $("#war").dialog({
+                    modal: true,
+                    width: 270,
+                    height: 170,
+                    show: {effect : "fold" ,duration: 300},
+                    hide: {effect : "explode", duration: 300},
+                    resizable: "false",
+                    buttons: { "OK": function () { $(this).dialog("close"); } },   
+                });
+            }else {
+                 $( "#delete" ).dialog({
+                      resizable: false,
+                      height: 170,
+                      modal: true,
+                      show: {effect : "fold" ,duration: 300},
+                      hide: {effect : "explode", duration: 300},
+                      buttons: {
+                        "Eliminar": function() {
+                            $.ajax({
+                            cache: false,
+                            type: "POST",
+                            datatype: "json",
+                            url: "../php/user.php",
+                            data: {opc:"baja_usuario", clave_usuario:clave_usuario},
+                            success: function(response) {
+                                if(response.respuesta == false) {
+                                    alert("Usuario No Eliminado");
+                                } else {
+                                 $("#mensajealta").dialog({
+                                    modal: true,
+                                    width: 270,
+                                    height: 170,
+                                    show: {effect : "fold" ,duration: 300},
+                                    hide: {effect : "explode", duration: 300},
+                                    resizable: "false",
+                                    buttons: { "OK": function () { $(this).dialog("close"); } },   
+                                });
+                                }
+                            },  
+                                error: function(xhr,ajaxOptions,throwError) {
+                                    console.log("Ocurrio un Error");
+                                }
+                        });
+                            $( this ).dialog( "close" );
+                            $("#usuarios").trigger("reloadGrid");
+                        },
+                        Cancelar: function() {
+                          $( this ).dialog( "close" );
+                        }
+                      }
+                    });
         }
         return false;
 }
