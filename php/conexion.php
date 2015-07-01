@@ -1,7 +1,7 @@
 <?php 
 	function conectarse()
 	{
-		$conecta = mysql_connect("localhost","root","root") or die(mysql_error());
+		$conecta = mysql_connect("localhost","root","") or die(mysql_error());
 
 		if (!is_resource($conecta)) {
 			echo "Fallo la Conexion al Servidor";
