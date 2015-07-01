@@ -1,14 +1,13 @@
 <?php
 	require_once("conexion.php");
-	header('Content-Type: application/json');
-	error_reporting(0);
+	header('Content-type: application/json');
+	//error_reporting(0);
 	
 	conectarse();
 
 	$opc = $_POST['opc'];
 
-	switch ($opc)
-	{
+	switch ($opc){
 		case 'guardar_genero':
 			guardar_genero();
 		break;
@@ -17,18 +16,16 @@
 	function guardar_genero(){
 		$name = trim($_POST['name']); 
 		$consulta = "insert into generos (nombre) values('".$name."')";
-
-		//ejecutar consulta
+					//ejecutar consulta
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
-		$total = mysql_num_rows($resultado);
-		echo $total;
-		if ($resultado){
+		if ($resultado == true) {
 			$respuesta = true;
 			$salidaJSON = array('respuesta' => $respuesta );
-			print json_encode($salidaJSON);
+			print(json_encode($salidaJSON));
 		} else {
 			echo "Ocurrio un Error";
 		}
+
   }
 ?>

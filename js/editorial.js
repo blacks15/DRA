@@ -18,6 +18,7 @@ $(document).ready(function(){
 				success: function(response) {
 					if(response.respuesta == false) {
 						alert("Editorial No Registrado");
+						$("#nombre").val("");
 					} else {				
 						$("#mensajealta").dialog({
 							modal: true,
@@ -28,6 +29,7 @@ $(document).ready(function(){
 				            resizable: "false",
 				            buttons: { "OK": function () { $(this).dialog("close"); } }
 				        });
+				        $("#nombre").val("");
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError){

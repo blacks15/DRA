@@ -8,7 +8,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
 
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -99,7 +98,7 @@
     </td>
   </tr>
   <tr>
-    <td><iframe src="empresa.php" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
+    <td><iframe src="" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
   </tr>
     <tr>
     <td>
@@ -122,7 +121,5 @@
     <script src="js/bootstrap/bootstrap-typeahead.js"></script>
     <script src="js/bootstrap/bootstrap-affix.js"></script>
     <script src="js/holder/holder.js"></script>
-    <script src="js/google-code-prettify/prettify.js"></script>
-    <script src="js/application.js"></script>
 </body>
 </html>

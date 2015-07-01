@@ -2,6 +2,7 @@ $(document).ready(function(){
 	   
        $("#war").hide();
        $("#mensajealta").hide();
+       $("#delete").hide();
 
 		jQuery("#proveedores").jqGrid({
 						url:'../php/buscar_proveedores.php',
@@ -29,6 +30,7 @@ $(document).ready(function(){
                         viewrecords: true,
                         caption: 'PROVEEDORES',
                         altRows: true,
+                        pagination:true,
                         onSelectRow: function(ids) {
                         var selr = jQuery('#proveedores').jqGrid('getGridParam','selrow'); 
                             if(!selr){
@@ -46,7 +48,7 @@ $(document).ready(function(){
                            }
                 });
 	jQuery("#proveedores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
-         {},//opciones edit
+         {height:280,reloadAfterSubmit:true},//opciones edit
          {}, //opciones add
          {}, //opciones del
          {multipleSearch:true,closeAfterSearch: true, closeOnEscape: true}//opciones search
@@ -91,7 +93,7 @@ $(document).ready(function(){
 
         function borrar(){
             var clave_proveedor = $("#proveedores").jqGrid('getGridParam','selrow'); 
-
+ 
             if( clave_proveedor == null ){
                 $("#war").dialog({
                     modal: true,
@@ -102,36 +104,49 @@ $(document).ready(function(){
                     resizable: "false",
                     buttons: { "OK": function () { $(this).dialog("close"); } },   
                 });
-            }else{
-                if(!confirm("¿Está seguro de que desea eliminar el registro seleccionado?"))
-                        exit(); 
-
-                $.ajax({
-                cache: false,
-                type: "POST",
-                datatype: "json",
-                url: "../php/autor.php",
-                data: {opc:"baja_proveedor", clave_proveedor:clave_proveedor},
-                success: function(response)  {
-                    if(response.respuesta == false)  {
-                        alert("Proveedor No Eliminado");
-                    }
-                    else{
-                        $("#mensajealta").dialog({
-                            modal: true,
-                            width: 270,
-                            height: 170,
-                            show: {effect : "fold" ,duration: 300},
-                            hide: {effect : "explode", duration: 300},
-                            resizable: "false",
-                            buttons: { "OK": function () { $(this).dialog("close"); } },   
-                        });
-                    }
-                },  
-                    error: function(xhr,ajaxOptions,throwError){
-                        console.log("Ocurrio un Error");
-                    }
-            });
+            }else {
+                $( "#delete" ).dialog({
+                      resizable: false,
+                      height: 170,
+                      modal: true,
+                      show: {effect : "fold" ,duration: 300},
+                      hide: {effect : "explode", duration: 300},
+                      buttons: {
+                        "Eliminar": function() {
+                          $.ajax({
+                            cache: false,
+                            type: "POST",
+                            datatype: "json",
+                            url: "../php/proveedor.php",
+                            data: {opc:"baja_proveedor", clave_proveedor:clave_proveedor},
+                            success: function(response)  {
+                                if(response.respuesta == false)  {
+                                    alert("Proveedor No Eliminado");
+                                }
+                                else{
+                                    $("#mensajealta").dialog({
+                                        modal: true,
+                                        width: 270,
+                                        height: 170,
+                                        show: {effect : "fold" ,duration: 300},
+                                        hide: {effect : "explode", duration: 300},
+                                        resizable: "false",
+                                        buttons: { "OK": function () { $(this).dialog("close"); } },   
+                                    });
+                            }
+                        },  
+                            error: function(xhr,ajaxOptions,throwError){
+                                console.log("Ocurrio un Error");
+                            }
+                         });
+                            $( this ).dialog( "close" );
+                            $("#proveedores").trigger("reloadGrid");
+                        },
+                        Cancelar: function() {
+                          $( this ).dialog( "close" );
+                        }
+                      }
+                    });
         }
         return false;
 }
