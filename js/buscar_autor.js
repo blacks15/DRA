@@ -103,7 +103,11 @@ $(document).ready(function(){
             }else{
                $( "#delete" ).dialog({
                       resizable: false,
+<<<<<<< HEAD
                       height: 170,
+=======
+                      height:170,
+>>>>>>> origin/local
                       modal: true,
                       show: {effect : "fold" ,duration: 300},
                       hide: {effect : "explode", duration: 300},
