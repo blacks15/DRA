@@ -20,9 +20,9 @@
 				<tr>
 					<td>
 						<label for="textfield">Código: </label>
-						<input type="text" readonly="true" name="codigo" id="codigo" value="" autocomplete="off" required>
+						<input type="text" readonly="true" name="codigo" id="codigo" value="" autocomplete="off" >
 						<label for="textfield">Nombre: </label> 
-						<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>
+						<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required maxlength="20">
 						<div class="ui-widget" id="errornom">
 							<div class="ui-corner-all" style="padding: 0 .2em;">
 								<p>
@@ -31,7 +31,7 @@
 							</div>
 						</div>
 						<label for="textfield">Apellido: </label>
-						<input type="text" name="apellido" id="apellido" value="" autocomplete="off" required>
+						<input type="text" name="apellido" id="apellido" value="" autocomplete="off" required maxlength="20">
 						<div class="ui-widget" id="errorap">
 							<div class="ui-corner-all" style="padding: 0 .2em;">
 								<p>
@@ -52,6 +52,10 @@
 			<div class="" id="error" title="Advertencia">
 				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
 				<center><strong>Debe Llenar Todos los Campos.</strong></center>
+			</div>
+			<div class="" id="letras" title="Advertencia">
+				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+				<center><strong>Solo se Permiten Letras.</strong></center>
 			</div>
 			</form>
 		</div>

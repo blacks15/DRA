@@ -15,8 +15,9 @@
 
 	function guardar_genero(){
 		$name = trim($_POST['name']); 
-		$consulta = "insert into generos (nombre) values('".$name."')";
-					//ejecutar consulta
+		$estado = 'Activo';
+		$consulta = "insert into generos (nombre,estado) values('".$name."','".$estado."')";
+			//ejecutar consulta
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
 		if ($resultado == true) {

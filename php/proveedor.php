@@ -18,8 +18,7 @@
 			break;
 	}
 
-	function guardar_proveedor()
-	{
+	function guardar_proveedor(){
 		$name = trim($_POST['name']);
 		$contacto = trim($_POST['contacto']);
 		$obs = trim($_POST['obs']);
@@ -32,8 +31,8 @@
 				
 		$consulta = "insert into proveedores (nombre,contacto,observaciones,direccion,colonia,telefono,celular,email,estado )values('".$name."','".$contacto."','".$obs."','".$dir."','".$col."','".$tel."','".$cel."','".$email."','".$estado."')";
 		 //ejecutamos la consulta
-		   $resultado = mysql_query($consulta)or die(mysql_error());
-		 	 $respuesta = false;
+		  $resultado = mysql_query($consulta)or die(mysql_error());
+		  $respuesta = false;
 		  $total = mysql_num_rows($resultado);
 		  echo $total;
 

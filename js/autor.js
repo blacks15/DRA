@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
+	ocultar();
 	$("#nombre").focus();
-	$("#errornom").hide();
-	$("#errorap").hide();
-	$("#mensajealta").hide();
-	$("#error").hide();
+
+	$("#nombre").keypress(validatetext);
+	$("#apellido").keypress(validatetext);
 
 	$("#alta").click(function(){
 		var first_name = $("#nombre").val();
@@ -77,5 +77,32 @@ $(document).ready(function(){
     	$("#nombre").val("");
 		$("#apellido").val("");
     }
+
+    function ocultar(){
+    	$("#errornom").hide();
+		$("#errorap").hide();
+		$("#mensajealta").hide();
+		$("#error").hide();
+		$("#letras").hide();
+	    }
+
+	function validatetext(event) {
+		var key = window.event ? event.keyCode : event.which;
+		//alert(key);
+		if ((event.keyCode > 65) && (event.keyCode < 90)|| (event.keyCode > 97) && (event.keyCode < 122)){
+			return true;
+			} else {
+				$("#letras").dialog({
+				modal: true,
+	            width: 270,
+	            height: 170,
+	            show: {effect : "fold" ,duration: 300},
+	            hide: {effect : "explode", duration: 300},
+	            resizable: "false",
+	            buttons: { "OK": function () { $(this).dialog("close"); } },   
+	        });
+			return false;
+			}
+		}
 
 });

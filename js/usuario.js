@@ -5,7 +5,6 @@ $(document).ready(function(){
 			
 		if ( validar_datos() ) {
 		var cadena = $("#form1").serialize();
-			alert(cadena);
 
 			$.ajax({
 				cache: false,
@@ -16,13 +15,13 @@ $(document).ready(function(){
 				success: function(response) {
 					if(response.respuesta == false) {
 						alert("Empleado No Registrado");
-						//limpiar();
+						limpiar();
 					} else {
 						$("#mensajealta").dialog({
 							modal: true,
 				            width: 270,
 				            height: 170,
-				            show: {effect : "fold" ,duration: 300},
+				            show: {effect : "fold" ,duration: 350},
 				            hide: {effect : "explode", duration: 300},
 				            resizable: "false",
 				            buttons: { "OK": function () { $(this).dialog("close"); } },   
@@ -39,7 +38,7 @@ $(document).ready(function(){
 						modal: true,
 			            width: 270,
 			            height: 170,
-			            show: {effect : "fold" ,duration: 300},
+			            show: {effect : "fold" ,duration: 350},
 			            hide: {effect : "explode", duration: 300},
 			            resizable: "false",
 			            buttons: { "OK": function () { $(this).dialog("close"); } },   
@@ -75,6 +74,17 @@ $(document).ready(function(){
 			} else if (amaterno == ""){
 				$("#amaterno").focus();
 				$("#errorapm").show();
+				return false
+			} else if (pass != rpass) {
+				$("#errorpass").dialog({
+						modal: true,
+			            width: 270,
+			            height: 170,
+			            show: {effect : "fold" ,duration: 350},
+			            hide: {effect : "explode", duration: 300},
+			            resizable: "false",
+			            buttons: { "OK": function () { $(this).dialog("close"); } },   
+			        });
 				return false
 			} else if (estado == ""){
 				$("#edo").focus();
@@ -144,6 +154,7 @@ $(document).ready(function(){
 			$("#errorcol").hide();
 			$("#errortel").hide();
 			$("#errorcel").hide();
+			$("#errorpass").hide();
 			$("#errorsueldo").hide();
 			$("#mensajealta").hide();
 		}

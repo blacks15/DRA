@@ -6,15 +6,13 @@
 	conectarse();
 
 	$opc = $_POST['opc'];
-	switch ($opc) 
-	{
+	switch ($opc) {
 		case 'guardar_editorial':
 			guardar_editorial();
 		break;
 	}
 
-	function guardar_editorial()
-	{
+	function guardar_editorial(){
 	    $name = trim($_POST['name']);
 	 	$estado = 'Activo';
 	 	
@@ -23,7 +21,7 @@
 		 $resultado = mysql_query($consulta)or die(mysql_error());
 		 $respuesta = false;
  		
-		if ($resultado == true{
+		if ($resultado == true){
 			$respuesta = true;
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);

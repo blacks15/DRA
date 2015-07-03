@@ -1,62 +1,58 @@
 <?php 
 
-	require_once('conexion.php');
+	require_once("conexion.php");
 	header('Content-Type: application/json');
 	error_reporting(0);
+
 	conectarse();
 
 	$opc = $_POST['opc'];
-
 	switch ($opc) {
-		case 'guardar_usuario':
-			guardar_usuario();
+		case 'guardar_cliente':
+			guardar_cliente();
 		break;
 
-		case 'baja_usuario':
-			baja_usuario();
+		case 'baja_clientes':
+			baja_clientes();
 		break;
 	}
 
-	function guardar_usuario(){
-
+	function guardar_cliente(){
+		//RECIBIMOS EL SERIALIZE() Y LO ASIGNAMOS A VARIABLES
 		parse_str($_POST["cadena"], $_POST);
-		
+		$empresa = trim($_POST['empresa']);
 		$nombre = trim($_POST['nombre']);
 		$apaterno = trim($_POST['apaterno']);
 		$amaterno = trim($_POST['amaterno']);
-		$usuario = trim($_POST['usuario']);
-		$pass = trim($_POST['pass']);
-		
-		$city = trim($_POST['ciudad']);
-		$edo = trim($_POST['edo']);
 		$calle = trim($_POST['calle']);
 		$num = trim($_POST['num']);
 		$col = trim($_POST['colonia']);
+		$city = trim($_POST['ciudad']);
+		$edo = trim($_POST['edo']);	
 		$tel = trim($_POST['telefono']);
 		$cel = trim($_POST['celular']);
-		$sueldo = trim($_POST['sueldo']);
-		$tipo = trim($_POST['tipo']);
-		$estado = 'ACTIVO';
-
-		$consulta = "insert into users (nombre,apellido_paterno,apellido_materno,usuario,password,calle,numero,colonia,ciudad,estado,telefono,celular,sueldo,tipo,status) values ('".$nombre."','".$apaterno."','".$amaterno."','".$usuario."','".md5($pass)."','".$calle."','".$num."','".$col."','".$city."','".$edo."','".$tel."','".$cel."','".$sueldo."','".$tipo."','".$estado."')";
-			//ejecutar consulta
+		$email = trim($_POST['correo']);
+		$status = 'ACTIVO';
+			//GENERAMOS LA CONSULTA
+		$consulta = "insert into clientes (empresa,nombre_contacto,apellido_paterno,apellido_materno,calle,numero,colonia,ciudad,estado,telefono,celular,email,status) values ('".$empresa."','".$nombre."','".$apaterno."','".$amaterno."','".$calle."','".$num."','".$col."','".$city."','".$edo."','".$tel."','".$cel."','".$email."','".$status."')";
+			//EJECUTAMOS LA CONSULTA
 		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
 
-		if ($resultado == true){
+		if ($resultado == true) {
 			$respuesta = true;
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);
 		} else {
 			echo "Ocurrio un Error";
-		}
+		}			
 	}
 
-	function baja_usuario(){
-		$clave_usuario = trim($_POST['clave_usuario']);
+	function baja_clientes(){
+  		$matricula = trim($_POST['matricula']);
   		$estado = 'BAJA';
 
-  		$consulta = "update users set status='".$estado."'where clave_usuario = '".$clave_usuario."'";
+  		$consulta = "update clientes set status='".$estado."' where matricula = '".$matricula."'";
   		
   		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;
@@ -68,7 +64,7 @@
 		}else{
 			echo "Ocurrio un Error";
 		}
-	}
+  	}
 
 
  ?>

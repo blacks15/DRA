@@ -10,13 +10,9 @@
 			grabar_usuario();
 		break;
 
-		// case 'buscausuario':
-		// 	buscausuario();
-		// break;
 	}
 
-	function inicio_sesion()
-	{
+	function inicio_sesion(){
 		$usuario = trim($_POST['usuario']);
 		$clave = trim($_POST['clave']);
 		$response = true;
@@ -40,8 +36,7 @@
 	}
 
 	
-	function grabar_usuario()
-	{
+	function grabar_usuario(){
 		$conecta = mysql_connect("localhost","root","")or die(mysql_error());
 
 		if (!is_resource($conecta)) {

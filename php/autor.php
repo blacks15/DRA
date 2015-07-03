@@ -6,8 +6,7 @@
 	conectarse();
 
 	$opc = $_POST["opc"];
-	switch ($opc) 
-	{
+	switch ($opc) {
 		case 'guardar_autor':
 			guardar_autor();
 		break;

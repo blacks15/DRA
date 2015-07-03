@@ -46,40 +46,23 @@
               </div>
             </div>
         <label for="textfield">Cuenta de Usuario: </label>
-       	<input type="text" class="input-medium" name="usuario" id="usuario" value="" autocomplete="off" >
+       	<input type="text" class="input-medium" name="usuario" id="usuario" value="" autocomplete="off" maxlength="15">
         		<a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal" id="vc">Ver Contraseña</a>
         <label for="textfield">Contraseña: </label>
-        <input type="text" class="input-medium" name="pass" id="pass" value="" autocomplete="off" >
+        <input type="text" class="input-medium" name="pass" id="pass" value="" autocomplete="off" maxlength="15">
         <label for="textfield">Repite Contraseña: </label>
-        <input type="text" class="input-medium" name="rpass" id="rpass" value="" autocomplete="off" >
- 	    	<br><br>
+        <input type="text" class="input-medium" name="rpass" id="rpass" value="" autocomplete="off" maxlength="15">
+ 	    	<br>
        			<button class="btn  btn-primary" type="button" id="alta" name="alta">Enviar</button>
-                <a href="CrearUsuarios.html" class="btn">Cancelar</a>
+            <a href="CrearUsuarios.html" class="btn">Cancelar</a>
 				</td>
 				<td>
-        <label for="textfield">Estado:</label>
-        <input type="text" class="input-medium" name="edo" id="edo" value="" autocomplete="off" required>     <div class="ui-widget" id="erroredo">
-              <div class="ui-corner-all" style="padding: 0 .2em;">
-                <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN ESTADO.
-                </p>
-              </div>
-            </div>
-        <label for="textfield">Ciudad:</label>
-        <input type="text" class="input-medium" name="ciudad" id="ciudad" value="" autocomplete="off" required>
-        <div class="ui-widget" id="errorcity">
-              <div class="ui-corner-all" style="padding: 0 .2em;">
-                <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN CIUDAD.
-                </p>
-              </div>
-            </div>
 				<label for="textfield">Calle: </label>
-        <input type="text" class="input-medium" name="calle" id="calle" value="" autocomplete="off" required>
+        <input type="text" class="input-medium" name="calle" id="calle" value="" autocomplete="off" required maxlength="20">
         <div class="ui-widget" id="errorcalle">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN CALLE.
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CALLE.
                 </p>
               </div>
             </div>
@@ -93,11 +76,28 @@
               </div>
             </div>
    			<label for="textfield">Colonia: </label>
-   			<input type="text"class="input-medium" name="colonia" id="colonia" value="" autocomplete="off">
+   			<input type="text"class="input-medium" name="colonia" id="colonia" value="" autocomplete="off" maxlength="30">
         <div class="ui-widget" id="errorcol">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN COLONIA.
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA COLONIA.
+                </p>
+              </div>
+            </div>
+        <label for="textfield">Ciudad:</label>
+        <input type="text" class="input-medium" name="ciudad" id="ciudad" value="" autocomplete="off" required maxlength="30">
+        <div class="ui-widget" id="errorcity">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CIUDAD.
+                </p>
+              </div>
+            </div>
+        <label for="textfield">Estado:</label>
+        <input type="text" class="input-medium" name="edo" id="edo" value="" autocomplete="off" required maxlength="20">     <div class="ui-widget" id="erroredo">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN ESTADO.
                 </p>
               </div>
             </div>
@@ -119,10 +119,13 @@
                 </p>
               </div>
             </div><br>
-        <div class="input-prepend input-append">
-          <label for="textfield">Sueldo: </label>
-          <span class="add-on"> $ </span><input type="text" name="sueldo" id="sueldo" value="" size="5" autocomplete="off" class="input-small" required maxlength="5"><span class="add-on">.00</span>
-          </div><div class="ui-widget" id="errorsueldo">
+            <label for="textfield">Sueldo: </label>
+              <div class="input-prepend input-append">
+                <span class="add-on">$</span>
+                <input type="text" name="sueldo" id="sueldo" value="" autocomplete="off" class="input-small" required maxlength="5">
+                <span class="add-on">.00</span>
+              </div>
+          <div class="ui-widget" id="errorsueldo">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
                   <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN SUELDO.
@@ -146,6 +149,10 @@
       <div class="" id="error" title="Advertencia">
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Debe Llenar Todos los Campos.</strong></center>
+      </div>
+      <div class="" id="errorpass" title="Advertencia">
+        <span class="ui-icon ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Las Contraseñas no Coinciden.</strong></center>
       </div>
 			</form>
 		</div>
