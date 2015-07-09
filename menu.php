@@ -48,8 +48,10 @@
               <li class="dropdown">
               <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Editorial/Género<b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarGenero.html" target="admin">Buscar Género</a></li>
                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearGenero.html" target="admin"> Crear Género</a></li>
                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarEditorial.html" target="admin">Buscar Editorial</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearEditorial.html" target="admin">Crear Editorial</a></li>
               </ul>
             </li>
@@ -61,10 +63,13 @@
               </ul>
             </li>
              <li class="dropdown">
-              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Usuarios<b class="caret"></b></a>
+              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Usuarios/Empleados<b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarUsuarios.html" target="admin">Buscar Usuarios</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearUsuarios.html" target="admin">Crear Usuarios</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarEmpleado.html" target="admin">Buscar Empleados</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearEmpleado.html" target="admin">Crear Empleados</a></li>
+               <li role="presentation" class="divider"></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarUsuario.html" target="admin">Buscar Usuarios</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearUsuario.html" target="admin">Crear Usuarios</a></li>
               </ul>
             </li>
             <li class="dropdown">

@@ -4,52 +4,52 @@ $(document).ready(function(){
        $("#delete").hide();
 
 		jQuery("#usuarios").jqGrid({
-						url:'../php/buscar_usuarios.php',
-						datatype: 'json',
-						mtype: 'POST',
-						colNames:['ID','NOMBRE','APELLIDO PATERNO','APELLIDO MATERNO','USUARIO','CALLE','NÚMERO','COLONIA','CIUDAD','ESTADO','TELÉFONO','CELULAR','SUELDO','TIPO'],
-						colModel:[
-							{name:'clave_usuario', index:'clave_usuario', width:80, resizable:false, align:"center",search:false,key:true},
-							{name:'nombre', index:'nombre', width:190,resizable:false},
-                        	{name:'apellido_paterno', index:'apellido_paterno', width:330,search:true},
-                        	{name:'apellido_materno', index:'apellido_materno',search:true,width:330},
-                            {name:'usuario', index:'usuario',search:false, width:190},
-                        	{name:'calle', index:'calle',search:false, width:190,},
-                            {name:'numero', index:'numero',search:false, width:150},
-                        	{name:'colonia', index:'colonia',search:false, width:180},
-                            {name:'ciudad', index:'ciudad',search:true, width:180},
-                            {name:'estado', index:'estado',search:true, width:190},
-                        	{name:'telefono', index:'telefono',search:false, width:200},
-                        	{name:'celular', index:'celular',search:false, width:200},
-                        	{name:'sueldo', index:'sueldo',search:false, width:150},
-                            {name:'tipo', index:'tipo',search:false, width:100}
-						],
-						height: "100%",
-						autowidth: true,
-						pager: '#pager2',
-        	            rowNum:10,
-            	        rowList:[10,20],
-                	    sortname: 'clave_usuario',
-                        sortorder: 'desc',
-                        viewrecords: true,
-                        caption: 'EMPLEADOS',
-                        altRows: true,
-                        onSelectRow: function(ids) {
-                        var selr = jQuery('#usuarios').jqGrid('getGridParam','selrow'); 
-                            if(!selr){
-                                 $("#war").dialog({
-                                        modal: true,
-                                        width: 270,
-                                        height: 170,
-                                        show: {effect : "fold" ,duration: 300},
-                                        hide: {effect : "explode", duration: 300},
-                                        resizable: "false",
-                                        buttons: { "OK": function () { $(this).dialog("close"); } },   
-                                    });
-                            }  
-                            return false; 
-                           }
-                });
+			url:'../php/buscar_usuarios.php',
+			datatype: 'json',
+			mtype: 'POST',
+			colNames:['ID','NOMBRE','APELLIDO PATERNO','APELLIDO MATERNO','USUARIO','CALLE','NÚMERO','COLONIA','CIUDAD','ESTADO','TELÉFONO','CELULAR','SUELDO','TIPO'],
+			colModel:[
+				{name:'clave_usuario', index:'clave_usuario', width:80, resizable:false, align:"center",search:false,key:true},
+				{name:'nombre', index:'nombre', width:190,resizable:false},
+            	{name:'apellido_paterno', index:'apellido_paterno', width:330,search:true},
+            	{name:'apellido_materno', index:'apellido_materno',search:true,width:330},
+                {name:'usuario', index:'usuario',search:false, width:190},
+            	{name:'calle', index:'calle',search:false, width:190,},
+                {name:'numero', index:'numero',search:false, width:150},
+            	{name:'colonia', index:'colonia',search:false, width:180},
+                {name:'ciudad', index:'ciudad',search:true, width:180},
+                {name:'estado', index:'estado',search:true, width:190},
+            	{name:'telefono', index:'telefono',search:false, width:200},
+            	{name:'celular', index:'celular',search:false, width:200},
+            	{name:'sueldo', index:'sueldo',search:false, width:150},
+                {name:'tipo', index:'tipo',search:false, width:100}
+			],
+			height: "100%",
+			autowidth: true,
+			pager: '#pager2',
+            rowNum:10,
+	        rowList:[10,20],
+    	    sortname: 'clave_usuario',
+            sortorder: 'desc',
+            viewrecords: true,
+            caption: 'EMPLEADOS',
+            altRows: true,
+            onSelectRow: function(ids) {
+            var selr = jQuery('#usuarios').jqGrid('getGridParam','selrow'); 
+                if(!selr){
+                     $("#war").dialog({
+                            modal: true,
+                            width: 270,
+                            height: 170,
+                            show: {effect : "fold" ,duration: 300},
+                            hide: {effect : "explode", duration: 300},
+                            resizable: "false",
+                            buttons: { "OK": function () { $(this).dialog("close"); } },   
+                        });
+                }  
+                return false; 
+               }
+    });
 	jQuery("#usuarios").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
          {},//opciones edit
          {}, //opciones add
@@ -70,6 +70,12 @@ $(document).ready(function(){
                         borrar();
                 } 
         }); 
+
+        $(window).on("resize", function () {
+            var $grid = $("#usuarios"),
+                newWidth = $grid.closest(".ui-jqgrid").parent().width();
+            $grid.jqGrid("setGridWidth", newWidth, true);
+             });
         jQuery("#usuarios").jqGrid("filterToolbar");
 
             function modificar(){

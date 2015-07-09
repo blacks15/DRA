@@ -34,6 +34,23 @@
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
+  if (!$se) {
+    $query = mysql_query("select count(*) as t from autores where estado ='Activo' ");
+  if(!$query)
+    echo mysql_error();
+  $count = mysql_result($query,0);
+  if( $count > 0 && $post['limit'] > 0) {
+    //Calculamos el numero de paginas que tiene el sistema
+    $total_pages = ceil($count/$post['limit']);
+    if ($post['page'] > $total_pages) $post['page'] = $total_pages;
+    //calculamos el offset para la consulta mysql.
+    $post['offset'] = $post['limit'] * $post['page'] - $post['limit'];
+  } else {
+    $total_pages = 0;
+    $post['page'] = 0;
+    $post['offset'] = 0;
+  }
+  }
   $query = mysql_query("select count(*) as t from autores".$se);
   if(!$query)
     echo mysql_error();

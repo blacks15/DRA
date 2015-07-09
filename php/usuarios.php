@@ -15,9 +15,9 @@
 	function inicio_sesion(){
 		$usuario = trim($_POST['usuario']);
 		$clave = trim($_POST['clave']);
-		$response = true;
+		$response = false;
 
-		$conecta   = mysql_connect("localhost","root","123");
+		$conecta   = mysql_connect("localhost","root","");
 		mysql_select_db("venta_libros")or die(mysql_error());
 		
 		$consulta = "select nombre_usuario from usuarios WHERE nombre_usuario = '".$usuario."' and password = '".$clave."'";

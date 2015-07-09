@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Crear Empleados</title>
 
 		<link rel="stylesheet" href="../css/bootstrap.css">
 		<link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../jqueryui/jquery-ui.css">
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
 	</head>
 	<body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -18,8 +20,10 @@
 				</tr>
 				<tr>
 				<td>
+        <label for="textfield">Matricula:</label>
+        <input type="text" class="input-medium" id="codigo" autocomplete="off" maxlength="20" readonly="true">
 				<label for="textfield">Nombre:</label>
-				<input type="text"class="input-medium" name="nombre" id="nombre" value="" autocomplete="off" required maxlength="20">
+				<input type="text" class="input-medium letras" name="nombre" id="nombre" autocomplete="off" required maxlength="20">
         <div class="ui-widget" id="errornom">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -28,7 +32,7 @@
               </div>
             </div>
 				<label for="textfield">Apellido Paterno:</label>
-				<input type="text" class="input-medium" name="apaterno" id="apaterno" value="" autocomplete="off" requiredmaxlength="30">
+				<input type="text" class="input-medium letras" name="apaterno" id="apaterno" autocomplete="off" requiredmaxlength="30">
         <div class="ui-widget" id="errorapp">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -37,7 +41,7 @@
               </div>
             </div>
         <label for="textfield">Apellido Materno:</label>
-        <input type="text" class="input-medium" name="amaterno" id="amaterno" value="" autocomplete="off" required maxlength="30">   
+        <input type="text" class="input-medium letras" name="amaterno" id="amaterno" value="" autocomplete="off" required maxlength="30">   
         <div class="ui-widget" id="errorapm">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -45,20 +49,14 @@
                 </p>
               </div>
             </div>
-        <label for="textfield">Cuenta de Usuario: </label>
-       	<input type="text" class="input-medium" name="usuario" id="usuario" value="" autocomplete="off" maxlength="15">
-        		<a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal" id="vc">Ver Contraseña</a>
-        <label for="textfield">Contraseña: </label>
-        <input type="text" class="input-medium" name="pass" id="pass" value="" autocomplete="off" maxlength="15">
-        <label for="textfield">Repite Contraseña: </label>
-        <input type="text" class="input-medium" name="rpass" id="rpass" value="" autocomplete="off" maxlength="15">
- 	    	<br>
-       			<button class="btn  btn-primary" type="button" id="alta" name="alta">Enviar</button>
+              <br>
+       			<button class="btn btn-primary" type="button" id="btnSave" name="btnSave">Agregar</button>
+            <button class="btn btn-primary" type="button" id="btnUpdate">Modificar</button>
             <a href="CrearUsuarios.html" class="btn">Cancelar</a>
 				</td>
 				<td>
-				<label for="textfield">Calle: </label>
-        <input type="text" class="input-medium" name="calle" id="calle" value="" autocomplete="off" required maxlength="20">
+        <label for="textfield">Calle: </label>
+        <input type="text" class="input-medium letras" name="calle" id="calle" value="" autocomplete="off" required maxlength="20">
         <div class="ui-widget" id="errorcalle">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -76,7 +74,7 @@
               </div>
             </div>
    			<label for="textfield">Colonia: </label>
-   			<input type="text"class="input-medium" name="colonia" id="colonia" value="" autocomplete="off" maxlength="30">
+   			<input type="text"class="input-medium letras" name="colonia" id="colonia" value="" autocomplete="off" maxlength="30">
         <div class="ui-widget" id="errorcol">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -85,7 +83,7 @@
               </div>
             </div>
         <label for="textfield">Ciudad:</label>
-        <input type="text" class="input-medium" name="ciudad" id="ciudad" value="" autocomplete="off" required maxlength="30">
+        <input type="text" class="input-medium letras" name="ciudad" id="ciudad" value="" autocomplete="off" required maxlength="30">
         <div class="ui-widget" id="errorcity">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -94,14 +92,18 @@
               </div>
             </div>
         <label for="textfield">Estado:</label>
-        <input type="text" class="input-medium" name="edo" id="edo" value="" autocomplete="off" required maxlength="20">     <div class="ui-widget" id="erroredo">
+        <input type="text" class="input-medium letras" name="edo" id="edo" value="" autocomplete="off" required maxlength="20">    
+         <div class="ui-widget" id="erroredo">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
                   <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN ESTADO.
                 </p>
               </div>
             </div>
-   			<label for="textfield">Teléfono: </label><input type="text" name="telefono" id="telefono" value="" autocomplete="off"class="input-medium" required maxlength="10">
+				</td>
+        <td>
+        <label for="textfield">Teléfono: </label>
+        <input type="tel" name="telefono" id="telefono" value="" autocomplete="off" class="input-medium" required maxlength="10">
         <div class="ui-widget" id="errortel">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -109,29 +111,29 @@
                 </p>
               </div>
             </div>
-				</td>
-        <td>
-        <label for="textfield">Celular: </label><input type="text" name="celular" id="celular" value="" autocomplete="off"class="input-medium" maxlength="10">
+        <label for="textfield">Celular: </label>
+        <input type="text" name="celular" id="celular" autocomplete="off" class="input-medium" maxlength="10">
         <div class="ui-widget" id="errorcel">
-              <div class="ui-corner-all" style="padding: 0 .2em;">
-                <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN CELULAR.
-                </p>
-              </div>
-            </div><br>
-            <label for="textfield">Sueldo: </label>
-              <div class="input-prepend input-append">
-                <label class="add-on">$</label>
-                <input type="text" name="sueldo" id="sueldo" value="" autocomplete="off" class="input-small" required maxlength="5">
-                <label class="add-on">.00</label>
-              </div>
-          <div class="ui-widget" id="errorsueldo">
-              <div class="ui-corner-all" style="padding: 0 .2em;">
-                <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN SUELDO.
-                </p>
-              </div>
-            </div><br>
+          <div class="ui-corner-all" style="padding: 0 .2em;">
+            <p>
+              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN CELULAR.
+            </p>
+          </div>
+        </div>
+        <label for="textfield">Sueldo: </label>
+          <div class="input-prepend input-append">
+            <label class="add-on">$</label>
+            <input type="number" name="sueldo" id="sueldo" autocomplete="off" class="input-small" required maxlength="5">
+            <label class="add-on">.00</label>
+          </div>
+        <div class="ui-widget" id="errorsueldo">
+          <div class="ui-corner-all" style="padding: 0 .2em;">
+            <p>
+              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN SUELDO.
+            </p>
+          </div>
+        </div>
+        <br>
         <label for="radio">Tipo de Usuario</label>
         <label class="radio">
         <input type="radio" name="tipo" id="optionsRadios1" value="admin">Administrador</label>
@@ -153,15 +155,15 @@
         <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
           <center> <strong>Empleado Guardado con Exito</strong></center>
       </div>
+      <div class="" id="upd" title="Información Guardada">
+        <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+          <center> <strong>Empleado Modificado con Exito</strong></center>
+      </div>
       <div class="" id="error" title="Advertencia">
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Debe Llenar Todos los Campos.</strong></center>
       </div>
-      <div class="" id="errorpass" title="Advertencia">
-        <span class="ui-icon ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Las Contraseñas no Coinciden.</strong></center>
-      </div>
-            <div class="" id="letras" title="Advertencia">
+      <div class="" id="letras" title="Advertencia">
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Solo se Permiten Letras.</strong></center>
       </div>
@@ -169,23 +171,18 @@
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Solo se Permiten Números.</strong></center>
       </div>
+      <div class="" id="existe" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>El Empleado ya Existe.</strong></center>
+      </div>
+      <div class="" id="ng" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Error al Guardar Empleado.</strong></center>
+      </div>
 			</form>
 		</div>
-		    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Recordar Contraseña</h3>
-            </div>
-            <div class="modal-body">
-            <p></p>
-            <p>Contraseña:<strong> </strong></p>
-            </div>
-            <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        </div>
-    </div>
       <script src="../js/jquery.js"></script>
-      <script src="../js/usuario.js"></script>
+      <script src="../js/empleado.js"></script>
       <script src="../jqueryui/jquery-ui.min.js"></script>
 	</body>
 </html>

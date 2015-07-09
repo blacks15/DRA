@@ -50,7 +50,7 @@
     $post['offset'] = 0;
   }
   if (!$se) {
-    $sql = "select matricula,empresa,nombre_contacto,concat(apellido_paterno,' ',apellido_materno)as apellidos,calle,numero,colonia,ciudad,estado,telefono,celular,email from clientes  where  status = 'ACTIVO'";
+    $sql = "select matricula,empresa,nombre_contacto,apellido_paterno,apellido_materno,calle,numero,colonia,ciudad,estado,telefono,celular,email,status from clientes  where  status = 'ACTIVO'";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -63,7 +63,7 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-  $sql = "select matricula,empresa,nombre_contacto,concat(apellido_paterno,' ',apellido_materno)as apellidos,calle,numero,colonia,ciudad,estado,telefono,celular,email from clientes".$se;
+  $sql = "select matricula,empresa,nombre_contacto,apellido_paterno,apellido_materno,calle,numero,colonia,ciudad,estado,telefono,celular,email,status from clientes".$se;
    if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -78,8 +78,10 @@
   $i = 0;
 
      while($row = mysql_fetch_object($query)){
-       $result[$i]['matricula'] = $row->matricula;
-       $result[$i]['cell'] = array($row->matricula,$row->empresa,$row->nombre_contacto,$row->apellidos,$row->calle,$row->numero,$row->colonia,$row->ciudad,$row->estado,$row->telefono,$row->celular,$row->email);
+      $result[$i]['matricula'] = $row->matricula;
+      $result[$i]['cell'] = array($row->matricula,$row->empresa,$row->nombre_contacto,$row->apellido_paterno,
+      $row->apellido_materno,$row->calle,$row->numero,$row->colonia,$row->ciudad,$row->estado,
+      $row->telefono,$row->celular,$row->email,$row->status);
      $i++;
     }     
   //Asignamos todo esto en variables de json, para enviarlo al navegador.

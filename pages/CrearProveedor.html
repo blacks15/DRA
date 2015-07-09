@@ -10,17 +10,17 @@
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 	<div class="control-group info" align="center">
-	 <form  metod ="post" name="form1" action="">
+	 <form  metod ="post" id="form1" action="">
 		<table width="80%" class="table" border="0">
 			<tr class="info"> 
-				<td colspan="2"> <center><strong>Crear Proveedor</strong></td>
+				<td colspan="3"> <center><strong>Crear Proveedor</strong></td>
 			</tr>
 			<tr>
 				<td>
 			    <label for="textfield">Código: </label>
-			    <input type="text" name="codigo" id="codigo" value="" autocomplete="off" readonly="true" required>
+			    <input type="text" name="codigo" id="codigo" value="" autocomplete="off" readonly="true">
   				<label for="textfield">Empresa: </label>
-	   			<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>	
+	   			<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required class="letras" maxlength="30">	
           <div class="ui-widget" id="errornom">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -28,7 +28,7 @@
               </div>
             </div>		
 		  		<label for="textfield">Contacto: </label>
-			   	<input type="text" name="c_name" id="c_name" value="" autocomplete="off" required>
+			   	<input type="text" name="c_name" id="c_name" value="" autocomplete="off" required class="letras" maxlength="30">
           <div class="ui-widget" id="errorcon">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -36,21 +36,36 @@
               </div>
             </div>
       			<label for="textfield">Observaciones: </label>
-     		  	<label for="textarea"></label><textarea name="obs" id="obs" cols="45" rows="5"></textarea><br>
-     			<button class="btn btn-large btn-primary" id="btnsave" name="btnsave" type="submit"></button>
+     		  	<label for="textarea"></label>
+            <textarea name="obs" id="obs" cols="45" rows="5" maxlenth="100"></textarea>
+            <br>
+     			<button class="btn btn-primary" id="btnsave" name="btnsave" type="button">Agregar</button>
+          <button class="btn btn-primary" id="btnUpdate" name="btnUpdate" type="button">Modificar</button>
         		<a href="CrearProveedor.html" class="btn">Cancelar</a>
 				</td>
 				<td>
-				<label for="textfield">Direccion: </label><input type="text" name="direccion" id="direccion" value="" autocomplete="off" required>
-        <div class="ui-widget" id="errordir">
+				<label for="textfield">Calle: </label>
+        <input type="text" name="calle" id="calle" value="" autocomplete="off" required class="letras input-medium" maxlength="15">
+        <div class="ui-widget" id="errorcalle">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA DIRECCIÓN.
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CALLE.
                 </p>
               </div>
             </div>
-       			<label for="textfield">Colonia: </label>
-       			<input type="text" name="colonia" id="colonia" value="" autocomplete="off">
+        <label for="textfield">Número Exterior: </label>
+        <input type="text" name="nume" id="nume" value="" autocomplete="off" required class="input-small" maxlength="5">
+        <div class="ui-widget" id="errorni">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN NÚMERO.
+                </p>
+              </div>
+            </div>
+        <label for="textfield">Número Interior: </label>
+        <input type="text" name="numi" id="numi" value="" autocomplete="off" required class="input-small" maxlength="5">
+       	<label for="textfield">Colonia: </label>
+       	<input type="text" name="colonia" id="colonia" value="" autocomplete="off" maxlength="30" class="letras input-medium">
             <div class="ui-widget" id="errorcol">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -58,7 +73,28 @@
                 </p>
               </div>
             </div>
-       			<label for="textfield">Teléfono: </label><input type="text" name="telefono" id="telefono" value="" autocomplete="off" required>
+        <label for="textfield">Ciudad: </label>
+        <input type="text" name="city" id="city" value="" autocomplete="off" maxlength="30" class="letras input-medium">
+            <div class="ui-widget" id="errorcity">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CIUDAD.
+                </p>
+              </div>
+            </div>
+            </td>
+            <td>
+        <label for="textfield">Estado: </label>
+        <input type="text" name="edo" id="edo" value="" autocomplete="off" maxlength="30" class="letras input-medium">
+            <div class="ui-widget" id="erroredo">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN ESTADO.
+                </p>
+              </div>
+            </div>
+       			<label for="textfield">Teléfono: </label>
+            <input type="text" name="telefono" id="telefono" autocomplete="off" required maxlength="10" class="input-medium">
             <div class="ui-widget" id="errortel">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -66,7 +102,8 @@
                 </p>
               </div>
             </div>
-        		<label for="textfield">Celular: </label><input type="text" name="celular" id="celular" value="" autocomplete="off">
+        		<label for="textfield">Celular: </label>
+            <input type="text" name="celular" id="celular" autocomplete="off" maxlength="10" class="input-medium">
             <div class="ui-widget" id="errorcel">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -75,7 +112,7 @@
               </div>
             </div>
         		<label for="textfield">Correo Electronico: </label>
-          	<input type="text" name="correo" id="correo" value="" autocmplete="off">
+          	<input type="text" name="correo" id="correo" autocmplete="off">
             <div class="ui-widget" id="erroremail">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -83,6 +120,14 @@
                 </p>
               </div>
             </div>
+            <div class="ui-widget" id="valemail">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>E-MAIL NO VALIDO.
+                </p>
+              </div>
+            </div>
+            <input type="hidden" id="status" name="status">
 			</td>
 			</tr>
 		</table>
@@ -90,30 +135,26 @@
         <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
           <center> <strong>Proveedor Guardado con Exito</strong></center>
       </div>
+      <div class="" id="upd" title="Información Guardada">
+        <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+          <center> <strong>Proveedor Modificado con Exito</strong></center>
+      </div>
       <div class="" id="error" title="Advertencia">
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Debe Llenar Todos los Campos.</strong></center>
+      </div>
+      <div class="" id="numeros" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Solo se Permiten Números.</strong></center>
+      </div>
+      <div class="" id="letras" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Solo se Permiten Letras.</strong></center>
       </div>
 	</form>
    </div>
    	<script src="../js/jquery.js"></script>
     <script src="../js/proveedor.js"></script>
     <script src="../jqueryui/jquery-ui.min.js"></script>
-	  <script src="../js/bootstrap/bootstrap-transition.js"></script>
-    <script src="../js/bootstrap/bootstrap-alert.js"></script>
-    <script src="../js/bootstrap/bootstrap-modal.js"></script>
-    <script src="../js/bootstrap/bootstrap-dropdown.js"></script>
-    <script src="../js/bootstrap/bootstrap-scrollspy.js"></script>
-    <script src="../js/bootstrap/bootstrap-tab.js"></script>
-    <script src="../js/bootstrap/bootstrap-tooltip.js"></script>
-    <script src="../js/bootstrap/bootstrap-popover.js"></script>
-    <script src="../js/bootstrap/bootstrap-button.js"></script>
-    <script src="../js/bootstrap/bootstrap-collapse.js"></script>
-    <script src="../js/bootstrap/bootstrap-carousel.js"></script>
-    <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
-    <script src="../js/bootstrap/bootstrap-affix.js"></script>
-    <script src="../js/holder/holder.js"></script>
-    <script src="../js/google-code-prettify/prettify.js"></script>
-    <script src="../js/application.js"></script>
 </body>
 </html>

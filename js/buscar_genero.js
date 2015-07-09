@@ -3,15 +3,14 @@ $(document).ready(function(){
     $("#war").hide();
     $("#mensajealta").hide();
     $("#delete").hide();
-		jQuery("#autores").jqGrid({
-                    url:'../php/buscar_Autor.php',
+		jQuery("#generos").jqGrid({
+                    url:'../php/buscar_genero.php',
                     datatype: 'json',
                     mtype: 'POST',
-                    colNames:['ID','NOMBRE', 'APELLIDO','ESTADO'],
+                    colNames:['ID','NOMBRE','STATUS'],
                     colModel:[
-                        {name:'clave_autor', index:'clave_autor',search:false,width:80,resizable:false, align:"center",key:true},
-                        {name:'firstname_autor', index:'firstname_autor', width:190,resizable:true,search:true},
-                        {name:'lastname_autor', index:'lastname_autor', width:200,search:true},
+                        {name:'clave_genero', index:'clave_genero',search:false,width:80,resizable:false, align:"center",key:true},
+                        {name:'nombre', index:'nombre', width:190,resizable:true,search:true},
                         {name:'estado', index:'estado', search:false, width:100, align:"center" }
                     ],
                     height: "100%",
@@ -19,14 +18,14 @@ $(document).ready(function(){
                     pager: '#pager2',
                     rowNum:10,
                     rowList:[10,20],
-                    sortname: 'clave_autor',
+                    sortname: 'clave_genero',
                     sortorder: 'desc',
                     viewrecords: true,
-                    caption: 'AUTORES',
+                    caption: 'GÉNEROS LITERARIOS',
                     altRows: true,
                     pagination: true,
                     onSelectRow: function(ids) {
-                        var selr = jQuery('#autores').jqGrid('getGridParam','selrow'); 
+                        var selr = jQuery('#generos').jqGrid('getGridParam','selrow'); 
                             if(!selr){
                                  $("#war").dialog({
                                         modal: true,
@@ -41,13 +40,13 @@ $(document).ready(function(){
                             return false; 
                            }
                 });
-	jQuery("#autores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false},
+	jQuery("#generos").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false},
          {height:280,reloadAfterSubmit:true},//opciones edit
          {}, //opciones add
          {}, //opciones del
          {closeAfterSearch: true, closeOnEscape: true}//opciones search
          );
-                $("#autores").jqGrid('navButtonAdd','#pager2',{
+                $("#generos").jqGrid('navButtonAdd','#pager2',{
                 caption: "Modificar", 
                 autowidth: true,
                 buttonicon :'ui-icon-pencil',
@@ -55,7 +54,7 @@ $(document).ready(function(){
                         modificar();
                 } 
         }); 
-        $("#autores").jqGrid('navButtonAdd','#pager2',{
+        $("#generos").jqGrid('navButtonAdd','#pager2',{
                 caption: "Borrar", 
                 autowidth: true,
                 buttonicon :'ui-icon-trash',
@@ -65,15 +64,15 @@ $(document).ready(function(){
         }); 
 
         $(window).on("resize", function () {
-            var $grid = $("#autores"),
+            var $grid = $("#generos"),
                 newWidth = $grid.closest(".ui-jqgrid").parent().width();
             $grid.jqGrid("setGridWidth", newWidth, true);
              });
 
-    jQuery("#autores").jqGrid("filterToolbar");
+    jQuery("#generos").jqGrid("filterToolbar");
 
             function modificar(){
-                var id_tipo = $("#autores").jqGrid('getGridParam','selrow'); 
+                var id_tipo = $("#generos").jqGrid('getGridParam','selrow'); 
 
                 if( id_tipo == null ){
                         $("#war").dialog({
@@ -89,19 +88,19 @@ $(document).ready(function(){
                 //LIMPIAMOS LA SESSION
                     sessionStorage.clear();
                 //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE
-                    var data = $("#autores").getRowData(id_tipo);
+                    var data = $("#generos").getRowData(id_tipo);
                 //CONVERTIMOS A JSON 
-                    sessionStorage.autor = JSON.stringify(data);
+                    sessionStorage.genero = JSON.stringify(data);
                 //ENVIAMOS LA INFORMACION 
-                    window.location.href = "CrearAutor.html";
+                    window.location.href = "CrearGenero.html";
                 }
                 return false;
         }
 
         function borrar(){
-            var clave_autor = $("#autores").jqGrid('getGridParam','selrow'); 
+            var clave_genero = $("#generos").jqGrid('getGridParam','selrow'); 
 
-            if( clave_autor == null ){
+            if( clave_genero == null ){
                 $("#war").dialog({
                     modal: true,
                     width: 270,
@@ -124,13 +123,12 @@ $(document).ready(function(){
                             cache: false,
                             type: "POST",
                             datatype: "json",
-                            url: "../php/autor.php",
-                            data: {opc:"baja_autor", clave_autor:clave_autor},
+                            url: "../php/genero.php",
+                            data: {opc:"baja_genero", clave_genero: clave_genero},
                             success: function(response)  {
                                 if(response.respuesta == false)  {
-                                    alert("Autor No Eliminado");
-                                }
-                                else{
+                                    alert("Género No Eliminado");
+                                } else {
                                    $("#mensajealta").dialog({
                                         modal: true,
                                         width: 270,
@@ -147,7 +145,7 @@ $(document).ready(function(){
                                 }
                             });
                             $( this ).dialog( "close" );
-                            $("#autores").trigger("reloadGrid");
+                            $("#generos").trigger("reloadGrid");
                         },
                         Cancelar: function() {
                           $( this ).dialog( "close" );
@@ -159,5 +157,3 @@ $(document).ready(function(){
 }
 
 });
-
-      

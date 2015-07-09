@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="style.css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="style.css" href="css/style.css">
 	<link rel="stylesheet" type="style.css" href="css/animate-custom.css">
+	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
  	<title>Inicio Sesión</title>
 </head>
 <body>
@@ -53,7 +54,7 @@
        </form>
      </div>
      </div>
-     <script src="js/jquery-2.1.3.min.js"></script>
+     <script src="js/jquery.js"></script>
      <script src="js/event.js"></script>
 </body>
 </html>

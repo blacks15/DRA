@@ -8,22 +8,27 @@ $(document).ready(function(){
 						url:'../php/buscar_proveedores.php',
 						datatype: 'json',
 						mtype: 'POST',
-						colNames:['ID','NOMBRE','CONTACTO','OBSERVACIONES','DIRECCION','COLONIA','TELEFONO','CELULAR','EMAIL'],
+						colNames:['ID','NOMBRE','CONTACTO','OBSERVACIONES','CALLE','NÚM INT','NÚM EXT','COLONIA','CIUDAD','ESTADO','TELEFONO','CELULAR','EMAIL','STATUS'],
 						colModel:[
 							{name:'clave_proveedor', index:'clave_proveedor', width:80, resizable:false, align:"center",search:false,key:true},
 							{name:'nombre', index:'nombre', width:190,resizable:false,search:true},
                         	{name:'contacto', index:'contacto', width:200,search:true},
                         	{name:'observaciones', index:'observaciones', width:150,search:false},
-                        	{name:'direccion', index:'direccion', width:190,search:false},
+                        	{name:'calle', index:'calle', width:190,search:false},
+                            {name:'numi', index:'numi', width:100,search:false},
+                            {name:'nume', index:'nume', width:100,search:false},
                         	{name:'colonia', index:'colonia', width:200,search:false},
+                            {name:'city', index:'city', width:190,search:true},
+                            {name:'edo', index:'edo', width:190,search:true},
                         	{name:'telefono', index:'telefono', width:100,search:false},
                         	{name:'celular', index:'celular', width:190,search:false},
-                        	{name:'email', index:'email', width:200,search:false}
+                        	{name:'email', index:'email', width:200,search:false},
+                            {name:'status', index:'status', width:200,search:false}
 						],
 						height: "100%",
 						autowidth: true,
 						pager: '#pager2',
-        	            rowNum:12,
+        	            rowNum:10,
             	        rowList:[10,20],
                 	    sortname: 'clave_proveedor',
                         sortorder: 'desc',
@@ -68,7 +73,14 @@ $(document).ready(function(){
                         borrar();
                 } 
         }); 
-     jQuery("#proveedores").jqGrid("filterToolbar");
+
+        $(window).on("resize", function () {
+        var $grid = $("#proveedores"),
+            newWidth = $grid.closest(".ui-jqgrid").parent().width();
+        $grid.jqGrid("setGridWidth", newWidth, true);
+         });
+
+        jQuery("#proveedores").jqGrid("filterToolbar");
 
             function modificar(){
                 var id_tipo = $("#proveedores").jqGrid('getGridParam','selrow'); 
@@ -83,10 +95,15 @@ $(document).ready(function(){
                             resizable: "false",
                             buttons: { "OK": function () { $(this).dialog("close"); } },   
                         });
-                }else{
-                        $.get("../php/autor.php?opc=modificar_autor&id="+id_tipo, function(data){
-                                crear_modal(300,250,data);
-                        });
+                } else {
+                //LIMPIAMOS LA SESSION
+                    sessionStorage.clear();
+                //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE
+                    var data = $("#proveedores").getRowData(id_tipo);
+                //CONVERTIMOS A JSON 
+                    sessionStorage.proveedor = JSON.stringify(data);
+                //ENVIAMOS LA INFORMACION 
+                    window.location.href = "CrearProveedor.html";
                 }
                 return false;
         }

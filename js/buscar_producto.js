@@ -4,69 +4,63 @@ $(document).ready(function(){
        $("#mensajealta").hide();
        $("#delete").hide();
 
-		jQuery("#clientes").jqGrid({
-			url:'../php/buscar_clientes.php',
-			datatype: 'json',
-			mtype: 'POST',
-			colNames:['ID','EMPRESA','NOMBRE CONTACTO','APELLIDO PATERNO','APELLIDO MATERNO','CALLE','NÚMERO','COLONIA','CIUDAD','ESTADO','TELÉFONO','CELULAR','EMAIL','STATUS'],
-			colModel:[
-				{name:'matricula', index:'matricula', width:90, resizable:false, align:"center",search:false,key:true},
-				{name:'empresa', index:'empresa', width:200,resizable:false,search:true},
-            	{name:'nombre_contacto', index:'nombre_contacto', width:300,search:true},
-            	{name:'apellido_paterno', index:'apellido_paterno', width:250,search:false},
-                {name:'apellido_materno', index:'apellido_materno', width:250,search:false},
-                {name:'calle', index:'calle',search:false, width:190,},
-                {name:'numero', index:'numero',search:false, width:150},
-                {name:'colonia', index:'colonia',search:false, width:180},
-                {name:'ciudad', index:'ciudad',search:true, width:180},
-                {name:'estado', index:'estado',search:true, width:190},
-                {name:'telefono', index:'telefono',search:false, width:200},
-                {name:'celular', index:'celular',search:false, width:200},
-            	{name:'email', index:'email', width:200,search:false},
-                {name:'status', index:'status', width:200,search:false}
-			],
-			height: "100%",
-			autowidth: true,
-			pager: '#pager2',
-            rowNum:12,
-	        rowList:[10,20],
-    	    sortname: 'matricula',
-            sortorder: 'desc',
-            viewrecords: true,
-            caption: 'CLIENTES',
-            altRows: true,
-            pagination:true,
-            onSelectRow: function(ids) {
-            var selr = jQuery('#clientes').jqGrid('getGridParam','selrow'); 
-                if(!selr){
-                     $("#war").dialog({
-                            modal: true,
-                            width: 270,
-                            height: 170,
-                            show: {effect : "fold" ,duration: 300},
-                            hide: {effect : "explode", duration: 300},
-                            resizable: "false",
-                            buttons: { "OK": function () { $(this).dialog("close"); } },   
-                        });
-                }  
-                return false; 
-               }
-    });
-	jQuery("#clientes").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
+		jQuery("#productos").jqGrid({
+				url:'../php/buscar_producto.php',
+				datatype: 'json',
+				mtype: 'POST',
+				colNames:['ID','NOMBRE','PROVEEDOR','CÓDIGO DEL PROVEEDOR','CANTIDAD ACTUAL','CANTIDAD MINIMA','PRECIO COMPRA','PRECIO VENTA'],
+				colModel:[
+					{name:'clave_producto', index:'clave_producto', width:90, resizable:false, align:"center",search:false,key:true},
+					{name:'nombre', index:'nombre', width:200,resizable:false,search:true},
+                    {name:'proveedor', index:'proveedor', width:200,search:true},
+                	{name:'codigo_proveedor', index:'codigo_proveedor', width:320,search:true},
+                	{name:'cantidad_actual', index:'cantidad_actual', width:250,search:false},
+                    {name:'cantidad_minima', index:'cantidad_minima',search:false, width:250,},
+                    {name:'precio_compra', index:'precio_compra',search:false, width:180},
+                    {name:'precio_venta', index:'precio_venta',search:false, width:180}
+				],
+				height: "100%",
+				autowidth: true,
+				pager: '#pager2',
+	            rowNum:10,
+    	        rowList:[10,20],
+        	    sortname: 'clave_producto',
+                sortorder: 'desc',
+                viewrecords: true,
+                caption: 'PRODUCTOS',
+                altRows: true,
+                pagination:true,
+                onSelectRow: function(ids) {
+                var selr = jQuery('#productos').jqGrid('getGridParam','selrow'); 
+                    if(!selr){
+                         $("#war").dialog({
+                                modal: true,
+                                width: 270,
+                                height: 170,
+                                show: {effect : "fold" ,duration: 300},
+                                hide: {effect : "explode", duration: 300},
+                                resizable: "false",
+                                buttons: { "OK": function () { $(this).dialog("close"); } },   
+                            });
+                    }  
+                    return false; 
+                   }
+        });
+	jQuery("#productos").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
          {height:280,reloadAfterSubmit:true},//opciones edit
          {}, //opciones add
          {}, //opciones del
          {multipleSearch:true,closeAfterSearch: true, closeOnEscape: true}//opciones search
          );
 
-     $("#clientes").jqGrid('navButtonAdd','#pager2',{
+     $("#productos").jqGrid('navButtonAdd','#pager2',{
                 caption: "Modificar", 
                 buttonicon :'ui-icon-pencil',
                 onClickButton : function (){ 
                         modificar();
                 } 
         }); 
-    $("#clientes").jqGrid('navButtonAdd','#pager2',{
+        $("#productos").jqGrid('navButtonAdd','#pager2',{
                 caption: "Borrar", 
                 buttonicon :'ui-icon-trash',
                 onClickButton : function (){ 
@@ -75,14 +69,14 @@ $(document).ready(function(){
         }); 
 
     $(window).on("resize", function () {
-        var $grid = $("#clientes"),
+        var $grid = $("#productos"),
             newWidth = $grid.closest(".ui-jqgrid").parent().width();
         $grid.jqGrid("setGridWidth", newWidth, true);
          });
-     jQuery("#clientes").jqGrid("filterToolbar");
+     jQuery("#productos").jqGrid("filterToolbar");
 
             function modificar(){
-                var id_tipo = $("#clientes").jqGrid('getGridParam','selrow'); 
+                var id_tipo = $("#productos").jqGrid('getGridParam','selrow'); 
 
                 if( id_tipo == null ){
                         $("#war").dialog({
@@ -94,21 +88,16 @@ $(document).ready(function(){
                             resizable: "false",
                             buttons: { "OK": function () { $(this).dialog("close"); } },   
                         });
-                } else {
-                //LIMPIAMOS LA SESSION
-                    sessionStorage.clear();
-                //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE
-                    var data = $("#clientes").getRowData(id_tipo);
-                //CONVERTIMOS A JSON 
-                    sessionStorage.cliente = JSON.stringify(data);
-                //ENVIAMOS LA INFORMACION 
-                    window.location.href = "CrearClientes.html";
+                }else{
+                        $.get("../php/autor.php?opc=modificar_autor&id="+id_tipo, function(data){
+                                crear_modal(300,250,data);
+                        });
                 }
                 return false;
         }
 
         function borrar(){
-            var matricula = $("#clientes").jqGrid('getGridParam','selrow'); 
+            var matricula = $("#productos").jqGrid('getGridParam','selrow'); 
  
             if( matricula == null ){
                 $("#war").dialog({
@@ -133,11 +122,11 @@ $(document).ready(function(){
                             cache: false,
                             type: "POST",
                             datatype: "json",
-                            url: "../php/cliente.php",
-                            data: {opc:"baja_clientes", matricula:matricula},
+                            url: "../php/producto.php",
+                            data: {opc:"baja_producto", clave_producto:clave_producto},
                             success: function(response)  {
                                 if(response.respuesta == false)  {
-                                    alert("Proveedor No Eliminado");
+                                    alert("Productos No Eliminado");
                                 }
                                 else{
                                     $("#mensajealta").dialog({
@@ -156,7 +145,7 @@ $(document).ready(function(){
                             }
                          });
                             $( this ).dialog( "close" );
-                            $("#clientes").trigger("reloadGrid");
+                            $("#productos").trigger("reloadGrid");
                         },
                         Cancelar: function() {
                           $( this ).dialog( "close" );

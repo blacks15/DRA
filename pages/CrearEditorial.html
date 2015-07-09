@@ -20,9 +20,10 @@
 				<tr>
 					<td>
 						<label for="textfield">Código: </label>
-						<input type="text" readonly="true" name="codigo" id="codigo" value="" autocomplete="off" required>
+						<input type="text" readonly="true" name="codigo" id="codigo" autocomplete="off" >
 						<label for="textfield">Nombre Editorial: </label>
-						<input type="text" name="nombre" id="nombre" value="" autocomplete="off" required>
+						<input type="text" name="nombre" id="nombre" class="letras" autocomplete="off" required>
+						<input type="hidden" id="status">
 						<div class="ui-widget" id="errornom">
 							<div class="ui-corner-all" style="padding: 0 .2em;">
 								<p>
@@ -31,7 +32,8 @@
 							</div>
 						</div>
  	    				<br><br>
-       					<button class="btn btn-primary" type="button" id="altaeditorial" name="altaeditorial">Enviar</button>
+       			<button class="btn btn-primary" type="button" id="btnSave" name="btnSave">Agregar</button>
+       			<button class="btn btn-primary" type="button" id="btnUpdate" name="btnUpdate">Modificar</button>
                 <a href="CrearEditorial.html" class="btn">Cancelar</a>
 				</td>
 				</tr>
@@ -48,6 +50,19 @@
 				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
 				<center><strong>Solo se Permiten Letras.</strong></center>
 			</div>
+			<div class="" id="upd" title="Información Guardada">
+				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+				<center><strong>Editorial Modificado con Exito.</strong></center>
+			</div>
+			<div class="" id="existe" title="Advertencia">
+				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+				<center><strong>La Editorial ya Existe.</strong></center>
+			</div>
+			<div class="" id="ng" title="Advertencia">
+				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+				<center><strong>Error al Guardar Editorial.</strong></center>
+			</div>
+
 			</form>
 		</div>
 	<script src="../js/jquery.js"></script>
