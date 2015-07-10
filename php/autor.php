@@ -32,8 +32,8 @@
 		
 		if (mysql_num_rows($res) > 0 ) {
 			$existe = true;
-	 		$existeJson = array('existe' => $existe);
-	 		print (json_encode($existeJson));
+	 		$existeJSON = array('existe' => $existe);
+	 		print (json_encode($existeJSON));
 		} else {
 			$consulta = "insert into autores (firstname_autor,lastname_autor,estado) values('".$first_name."','".$last_name."','".$estado."')";
 			//ejecutar consulta
@@ -44,7 +44,9 @@
 				$salidaJSON = array('respuesta' => $respuesta );
 				print json_encode($salidaJSON);
 			}else{
-				echo "Ocurrio un Error";
+				$fallo = true;
+				$falloJSON = array('fallo' => $fallo);
+				print(json_encode($falloJSON));
 			}
 	 	}
   	}
@@ -63,7 +65,9 @@
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);
 		} else {
-			echo "Ocurrio un Error";
+			$fallo = true;
+			$falloJSON = array('fallo' => $fallo);
+			print(json_encode($falloJSON));
 		}
   	}
 
@@ -84,7 +88,9 @@
 			$salidaJSON = array('respuesta' => $respuesta );
 			print json_encode($salidaJSON);
 		}else{
-			echo "Ocurrio un Error";
+			$fallo = true;
+			$falloJSON = array('fallo' => $fallo);
+			print(json_encode($falloJSON));
 		}
   	}
  

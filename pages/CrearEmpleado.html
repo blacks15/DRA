@@ -21,7 +21,7 @@
 				<tr>
 				<td>
         <label for="textfield">Matricula:</label>
-        <input type="text" class="input-medium" id="codigo" autocomplete="off" maxlength="20" readonly="true">
+        <input type="text" class="input-medium" id="codigo" name="codigo" autocomplete="off" maxlength="20" readonly="true">
 				<label for="textfield">Nombre:</label>
 				<input type="text" class="input-medium letras" name="nombre" id="nombre" autocomplete="off" required maxlength="20">
         <div class="ui-widget" id="errornom">
@@ -136,11 +136,11 @@
         <br>
         <label for="radio">Tipo de Usuario</label>
         <label class="radio">
-        <input type="radio" name="tipo" id="optionsRadios1" value="admin">Administrador</label>
+        <input type="radio" name="tipo" id="admin" value="admin">Administrador</label>
         <label class="radio">
-        <input type="radio" name="tipo" id="optionsRadios2" value="vent">Vendedor</label>
+        <input type="radio" name="tipo" id="venta" value="vent">Vendedor</label>
         <label class="radio">
-        <input type="radio" name="tipo" id="optionsRadios3" value="caj">Cajera</label>
+        <input type="radio" name="tipo" id="cajero" value="caj">Cajero</label>
          <div class="ui-widget" id="errortipo">
               <div class="ui-corner-all" style="padding: 0 .2em;">
                 <p>
@@ -148,6 +148,7 @@
                 </p>
               </div>
             </div>
+            <input type="hidden" id="status" name="status">
         </td>
 				</tr>
 			</table>

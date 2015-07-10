@@ -7,13 +7,12 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="style.css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="style.css" href="css/style.css">
-	<link rel="stylesheet" type="style.css" href="css/animate-custom.css">
-	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="jqueryui/jquery-ui.css">
+
  	<title>Inicio Sesión</title>
 </head>
 <body>
-<a class="hiddenanchor" id="toregister"></a>
-<a class="hiddenanchor" id="tologin"></a>
 <div id="wrapper">
 	<div id="login" class="animate form">
 	 <form action=""method="post">
@@ -21,40 +20,40 @@
 		<figure>
 			<img src="css/img/user.jpg" width="100" height="100">
 		</figure>
-		<input type="text" class="input-text" id = "user_name" name="user_name" placeholder="Usuario" required="required">
-		<input type="password" class="input-text" id="pass" name="pass" placeholder="Contraseña" required = "required"><br>
-		<button type="button" class="btn btn-large btn-primary" name="inicio" id="inicio">Iniciar</button></br>
-		<p class="change_link">
-		<a href="#toregister">Registrarse</a>
-		</p>
+		<input type="text" class="input-text" id="user" name="user" placeholder="Usuario" required>
+		<div class="ui-widget" id="errornom">
+	    	<div class="ui-corner-all" style="padding: 0 .2em;">
+	        	<p>
+	             <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN NOMBRE DE USUARIO.
+	            </p>
+	        </div>
+     	</div>
+		<input type="password" class="input-text" id="pass" name="pass" placeholder="Contraseña" required>
+		<div class="ui-widget" id="errorpass">
+	      <div class="ui-corner-all" style="padding: 0 .2em;">
+	        <p>
+	          <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CONTRASEÑA.
+	        </p>
+	      </div>
+		</div>
+		<br>
+		<button type="button" class="btn btn-large btn-primary" name="inicio" id="inicio">Iniciar</button>
+		<div class="ui-widget" id="error">
+	      <div class="ui-corner-all" style="padding: 0 .2em;">
+	        <p>
+	          <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>USUARIO O CONTRASEÑA INCORRECTOS.
+	        </p>
+	      </div>
+		</div>
+	<div class="" id="errorval" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Debe Llenar Todos los Campos.</strong></center>
+    </div>
 	 </form>
 	</div>
-	<div id="register" class="animate form">
-        <form  action="" method="POST">
-           <h1>Registrarse </h1> 
-           <p> 
-           <label for="usernamesignup" class="uname">Usuario</label>
-           <input id="name" name="name" required="required" type="text"/>
-           </p>
-           <p>
-           <p> 
-            <label>Contraseña: </label>
-            <input id="pw" name="pw" required="required" type="password"/>
-           </p>
-           <p> 
-            <label>Confirmar Contraseña: </label>
-            <input id="c_pass" name="c_pass" required="required" type="password"/>
-           </p>
-           <p class="signin button"> 
-			<input type="button" class="btn btn-primary btn-large" value="Registrarse" name ="registrarse" id="registrarse"/> 
-		   </p>
-           <p class="change_link">  
-			<a href="#tologin">Iniciar Sesión</a>
-		   </p>
-       </form>
-     </div>
-     </div>
+    </div>
      <script src="js/jquery.js"></script>
      <script src="js/event.js"></script>
+     <script src="jqueryui/jquery-ui.min.js"></script>
 </body>
 </html>
