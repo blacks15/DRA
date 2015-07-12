@@ -53,8 +53,20 @@ table{
 input{
 	text-transform: capitalize;
 }
+#pass{
+	text-transform: none;
+}
+#usuario {
+	text-transform: none;
+}
 #correo{
 	text-transform: none;
+}
+.ui-icon-alert{
+	background-image: url("../jqueryui/images/icons_red.png");
+}
+.ui-icon-circle-check .ui-icon-info{
+	background-image: url("../jqueryui/images/icons_blue.png");
 }
 .bs-docs-example-submenus .dropup > .dropdown-menu,
 .bs-docs-example-submenus .dropdown > .dropdown-menu {

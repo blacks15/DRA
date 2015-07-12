@@ -16,7 +16,7 @@
 
 	function mostrar_autor(){
 			global $opciones;
-			$consulta = "select clave_autor,concat(firstname_autor,' ',lastname_autor) as nombre from autores where estado = 'Activo'";
+			$consulta = "select clave_autor,concat(firstname_autor,' ',lastname_autor) as nombre from autores where estado = 'ACTIVO'";
 			$opciones_aut = '<option value="0">SELECCIONE </option>';
 			$resultado = mysql_query($consulta) or die(mysql_error());
 			 while ($fila = mysql_fetch_array($resultado)) {
@@ -27,7 +27,7 @@
 	}
 	function mostrar_editorial(){
 			global $opciones;
-			$consulta = "select clave_editorial, nombre from editoriales where estado = 'Activo'";
+			$consulta = "select clave_editorial, nombre from editoriales where status = 'ACTIVO'";
 			$opcion_ed = '<option value="0">SELECCIONE</option>';
 			$resultado = mysql_query($consulta) or die(mysql_error());
 			 while ($fila = mysql_fetch_array($resultado)) {
@@ -39,7 +39,7 @@
 	
 	function mostrar_genero(){
 			global $opciones;
-			$consulta = "select clave_genero,nombre from generos  where estado = 'Activo'";
+			$consulta = "select clave_genero,nombre from generos  where status = 'ACTIVO'";
 			$opcion_genero = '<option value="0">SELECCIONE </option>';
 			$resultado = mysql_query($consulta) or die(mysql_error());
 			 while ($fila = mysql_fetch_array($resultado)) {

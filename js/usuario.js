@@ -70,6 +70,28 @@ $(document).ready(function(){
 			}
     });
 
+	$("#usuario").focusout(function(){
+		var user = $("#usuario").val();
+		if (user != "") {
+			$.ajax({
+				cache: false,
+				type: "POST",
+				datatype: "json",
+				url: "../php/usuarios.php",
+				data: {opc:"buscar_usuario", user: user },
+				success: function(response){
+					if (response.respuesta == true) {
+						$("#nodisp").show("slow");
+					} else {
+						$("#disp").show("slow");
+					}
+				},
+				error: function(xhr,ajaxOptions,throwError){
+						console.log("Ocurrio un Error");
+					}
+			});
+		}
+	});
 
 	function ocultar(){
 		$("#mensajealta").hide();
@@ -79,11 +101,10 @@ $(document).ready(function(){
 		$("#errorrpass").hide();
 		$("#errornom").hide();
 		$("#errorcod").hide();
-		$("#vc").hide();
 		$("#btnUpdate").hide();
 		$("#numeros").hide();
-		$("#existe").hide();
-		$("#upd").hide();
+		$("#disp").hide();
+		$("#nodisp").hide();
 		$("#ng").hide();
 	}
 

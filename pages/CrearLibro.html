@@ -12,66 +12,59 @@
 
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-	<div align="center">
+<form action="post">
+		<div align="center">
 		<table width="80%" border="0" class="table">
 			<tr class="info">
 				<td colspan="4"><center><strong>Crear Libro</strong></center></td>
 			</tr>
 			<tr>
-				<td colspan="3">
-					<div class="control-group info">
-						<form name="form1" method="post" action="">
-							<div class="input-append">
-								<input type="text" class="span2" id="codigo" name="codigo" placeholder="Código del Producto">
-								<button class="btn" type="submit">Confirmar Código</button>
-							</div>
-						</form>
-					</div>
-				</td>
-				<div class="control-group info">
-					<form action="" name="form2" method="post" enctype="multipart/form.data"></form>
-					<tr>
-						<td width="24%">
-							<label>Código Libro: </label>
-							<input type="text" name="codigo" id="codigo" readonly="true">
-							<label>Nombre Libro: </label>
-							<input type="text" name="nombre" id="nombre" required>
-							<label>ISBN: </label>
-							<input type="text" name="isbn" id="isbn" required>
-							<label>Género: </label>
-							<select name="genero" id="genero">
-								<option value="0">SELECCIONE</option>
-							</select>
-							<label>Autor: </label>
-							<select name="autor" id="autor">
-							</select>
-						</td>
-						<td>
-							<label>Editorial: </label>
-							<select name="editorial" id="editorial">
-								<option value="0">SELECCIONE</option>
-							</select>
-							<label>Núm. de Páginas: </label>
-							<input type="text" name="pag" id="pag" required>
-							<label>Descripción: </label>
-							<label for="textarea"></label><textarea name="obs" id="obs" cols="45" rows="5"></textarea><br>
-							<button type="submit" name="btnsave" id="btnsave" class="btn btn-primary">Enviar</button>
-						</td>
-						<td width="45%">
-							<center><label>Imagen del Producto: </label></center>
-							<center></center><br>
-							<center><input type="file" name="files[]" id="files_upload"></center>
-							<div id="files">
-                <h2>Vista Previa</h2>
-                <ul id="filePreview"></ul>
-                <a id="remove" href="#" title="Remove file">Borrar Archivos</a>
-            </div>
-						</td>
-					</tr>
-				</div>
-			</tr>
+			<div class="control-group info">
+				<form action="" name="form2" method="post" enctype="multipart/form.data"></form>
+				<tr>
+					<td width="24%">
+						<label>Código Libro: </label>
+						<input type="text" name="codigo" id="codigo">
+						<label>Nombre Libro: </label>
+						<input type="text" name="nombre" id="nombre" required>
+						<label>ISBN: </label>
+						<input type="text" name="isbn" id="isbn" required>
+						<label>Género: </label>
+						<select name="genero" id="genero">
+							<option value="0">SELECCIONE</option>
+						</select>
+						<label>Autor: </label>
+						<select name="autor" id="autor">
+						</select>
+					</td>
+					<td>
+						<label>Editorial: </label>
+						<select name="editorial" id="editorial">
+							<option value="0">SELECCIONE</option>
+						</select>
+						<label>Núm. de Páginas: </label>
+						<input type="text" name="pag" id="pag" required>
+						<label>Descripción: </label>
+						<label for="textarea"></label><textarea name="obs" id="obs" cols="45" rows="5"></textarea><br>
+						<button type="button" name="btnsave" id="btnsave" class="btn btn-primary">Agregar</button>
+						<button type="reset" value="reset" class="btn">Cancelar</button>
+					</td>
+					<td width="45%">
+						<center><label>Imagen del Producto: </label></center>
+						<center></center><br>
+						<center><input type="file" name="files[]" id="files_upload"></center>
+						<div id="files">
+            <h2>Vista Previa</h2>
+            <ul id="filePreview"></ul>
+            <a id="remove" href="#" title="Remove file">Borrar Archivos</a>
+        </div>
+		</td>
+		</tr>
+	 </div>
+	</tr>
 		</table>
 	</div>
+</form>
 	<script src="../js/jquery.js"></script>
 	<script src="../jqueryui/jquery-ui.min.js"></script>
 	<script src="../js/libros.js"></script>
@@ -80,24 +73,7 @@
     <script src="../js/jquery.fileupload-process.js"></script>
 <!-- The File Upload image preview & resize plugin -->
 <script src="../js/jquery.fileupload-image.js"></script>
-<!-- The File Upload validation plugin -->
-<script src="../js/jquery.fileupload-validate.js"></script>
 <!-- The main application script -->
 <script src="../js/main.js"></script>
-	<script src="../js/bootstrap/bootstrap-transition.js"></script>
-    <script src="../js/bootstrap/bootstrap-alert.js"></script>
-    <script src="../js/bootstrap/bootstrap-modal.js"></script>
-    <script src="../js/bootstrap/bootstrap-dropdown.js"></script>
-    <script src="../js/bootstrap/bootstrap-scrollspy.js"></script>
-    <script src="../js/bootstrap/bootstrap-tab.js"></script>
-    <script src="../js/bootstrap/bootstrap-tooltip.js"></script>
-    <script src="../js/bootstrap/bootstrap-popover.js"></script>
-    <script src="../js/bootstrap/bootstrap-button.js"></script>
-    <script src="../js/bootstrap/bootstrap-collapse.js"></script>
-    <script src="../js/bootstrap/bootstrap-carousel.js"></script>
-    <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
-    <script src="../js/bootstrap/bootstrap-affix.js"></script>
-    <script src="../js/holder/holder.js"></script>
-    <script src="../js/application.js"></script>
 </body>
 </html>

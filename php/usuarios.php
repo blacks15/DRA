@@ -15,6 +15,10 @@
 			guardar_usuario();
 		break;
 
+		case 'buscar_usuario':
+			buscar_usuario();
+		break;
+
 	}
 
 	function inicio_sesion(){
@@ -57,9 +61,11 @@
 		$usuario = trim($_POST['usuario']);
 		$pass = trim($_POST['pass']);
 		$estado = 'ACTIVO';
+			//DAMOS FORMATO A LA FECHA
 		$hoy = date("F j, Y, g:i ");   
 		$fecha = date('Y-m-d H:i:s',strtotime($hoy));
 		$respuesta = false;
+			//HACEMOS UN HASH A LA CONTRASEÑA
 		$clave = password_hash($pass, PASSWORD_DEFAULT);
 
 			//VALIDAMOS SI EXISTE EL USUARIO
@@ -70,7 +76,7 @@
 			$existeJSON = array('existe' => $existe);
 			print(json_encode($existeJSON));
 		} else {
-			$consulta = "insert into usuarios (matricula,nombre_usuario,password,status,fecha_actualizacion)
+			$consulta = "insert into usuarios (matricula,nombre_usuario,password,status,fecha_creacion)
 			 values('".$matricula."','".$usuario."','".$clave."','".$estado."','".$fecha."')";
 				//EJECUTAR CONSULTA
 			$resultado = mysql_query($consulta) or die(mysql_error());
@@ -87,39 +93,22 @@
 		}
 }
 
-	// function buscausuario()
-	// {
-	// 	$respuesta = false;
-	// 	$usuario   = $_POST["usuario"];
-	// 	$conecta   = mysql_connect("localhost","root","");
-	// 	mysql_select_db("venta_libros");
-	// 	$clave   = "";
-	// 	$nombre  = "";
-	// 	$status = "";
-	// 	$e="";
-	// 	$consulta = "select * from usuarios where usuario='".$usuario."'";
-	// 	$resultado = mysql_query($consulta);
-	// 	if($registro = mysql_fetch_array($resultado))
-	// 	{
-	// 		$respuesta = true;
-	// 		$clave = $registro["id_usuario"];
-	// 		$nombre   = $registro["nombre_usuario"];
-	// 		$status      = $registro["estado"];
-	// 		switch ($status) 
-	// 		{
-	// 			case 'Activo':
-	// 				$e = "Activo";
-	// 				break;
-	// 			case 'Baja':
-	// 				$e = "Baja";
-	// 				break;
-	// 		}
-	// 	}
-	// 	$salidaJSON = array('respuesta' => $respuesta,
-	// 						'id_usuario'     => $clave,
-	// 						'nombre_usuario'   => $nombre,
-	// 						'estado'      => $e);
-	// 	print json_encode($salidaJSON);
-	// }
+	function buscar_usuario(){
+		$respuesta = false;
+		$usuario   = $_POST['user'];
+
+		$consulta = "select * from usuarios where nombre_usuario = '".$usuario."'";
+		$resultado = mysql_query($consulta) or die(mysql_error());
+		if(mysql_num_rows($resultado) > 0){
+			$respuesta = true;
+			$salidaJSON = array('respuesta' => $respuesta);
+			print (json_encode($salidaJSON));
+		} else {
+			$respuesta = false;
+			$salidaJSON = array('respuesta' => $respuesta);
+			print(json_encode($salidaJSON));
+		}
+		
+	}
 	
 ?>

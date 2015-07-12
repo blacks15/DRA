@@ -8,6 +8,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ok.css">
 
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -74,26 +75,35 @@
             </li>
             <li class="dropdown">
               <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFclientes.php" target="admin"><i class="icon-th-list"></i> 
-                Listado de Usuarios</a></li>
+              <ul class="dropdown-menu">
+              <li>
+                <a href="#" class="trigger right-caret"><i class="icon-user"></i> Usuarios</a>
+                  <ul class="dropdown-menu sub-menu">
+                    <li><a href="#"><i class="icon-th-list"></i> Lista de Usurios</a></li>
+                  </ul>
+              </li>
+              <li>
+                <a href="#" class="trigger right-caret"><i class="icon-old-man"></i> Proveedores</a>
+                  <ul class="dropdown-menu sub-menu">
+                    <li><a href="#"><i class="icon-th-list"></i> Lista de Proveedores</a></li>
+                  </ul>
+              </li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFproveedores.php" target="admin"><i class="icon-th-list"></i> 
                 Listados de Proveedores</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFproducto.php" target="admin"><i class="icon-th-list"></i> 
                 Listado de Productos</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFestado_inventario.php" target="admin"><i class="icon-th-list"></i> 
                 Estado de Inventario</a></li>
-
               </ul>
             </li>
           </ul>
           <ul class="nav pull-right">
             <li id="fat-menu" class="dropdown">
-              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Hola!<b class="caret"></b></a>
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Hola! <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="cambiar_clave.php" target="admin"><i class="icon-refresh"></i> Cambiar Contraseña</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="cambiar_clave.php" target="admin"><i class="icon-refresh"></i>Cambiar Contraseña</a></li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="php_cerrar.php"><i class="icon-off"></i> Salir</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="php_cerrar.php"><i class="icon-off"></i>Salir</a></li>
               </ul>
             </li>
           </ul>
@@ -112,19 +122,7 @@
   </tr>
 </table>
     <script src="js/jquery.js"></script>
-    <script src="js/bootstrap/bootstrap-transition.js"></script>
-    <script src="js/bootstrap/bootstrap-alert.js"></script>
-    <script src="js/bootstrap/bootstrap-modal.js"></script>
-    <script src="js/bootstrap/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap/bootstrap-tab.js"></script>
-    <script src="js/bootstrap/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap/bootstrap-popover.js"></script>
-    <script src="js/bootstrap/bootstrap-button.js"></script>
-    <script src="js/bootstrap/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap/bootstrap-carousel.js"></script>
-    <script src="js/bootstrap/bootstrap-typeahead.js"></script>
-    <script src="js/bootstrap/bootstrap-affix.js"></script>
-    <script src="js/holder/holder.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/menu.js"></script>
 </body>
 </html>

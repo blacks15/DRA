@@ -20,7 +20,7 @@
 		<figure>
 			<img src="css/img/user.jpg" width="100" height="100">
 		</figure>
-		<input type="text" class="input-text" id="user" name="user" placeholder="Usuario" required>
+		<input type="text" class="input-text" id="usuario" name="usuario" placeholder="Usuario" required>
 		<div class="ui-widget" id="errornom">
 	    	<div class="ui-corner-all" style="padding: 0 .2em;">
 	        	<p>
@@ -53,7 +53,7 @@
 	</div>
     </div>
      <script src="js/jquery.js"></script>
-     <script src="js/event.js"></script>
+     <script src="js/login.js"></script>
      <script src="jqueryui/jquery-ui.min.js"></script>
 </body>
 </html>

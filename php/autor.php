@@ -23,7 +23,7 @@
 	function guardar_autor(){
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
-		$estado = 'Activo';
+		$estado = 'ACTIVO';
 		$respuesta = false;
 		
 		$sql = "select * from autores where firstname_autor ='".$first_name."' and 
