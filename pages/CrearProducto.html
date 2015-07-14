@@ -28,13 +28,13 @@
      </div>
    	</td>    
     <div class="control-group info">
-    <form name="form2" method="post" enctype="multipart/form-data" action="">
+    <form id ="form1" method="post" enctype="multipart/form-data" action="">
   	<tr>
     	<td width="24%">
         	<label>Codigo: </label>
             <input type="text" name="codigo" id="codigo" value="" readonly class="input-medium">
             <label>Nombre: </label>
-            <select name="nom" id="nom" class="input-medium">
+            <select name="libro" id="libro" class="input-medium">
                 <option value="0">SELECCIONE</option>
             </select>
              <div class="ui-widget" id="errornom">
@@ -56,7 +56,7 @@
                   </div>
                 </div>
             <label>Cod. Producto del Proveedor: </label>
-            <input type="text" class="input-medium" name="cprov" id="cprov" value="" required maxlength="20"><br>
+            <input type="text" class="input-medium" name="cprov" id="cprov" value="" required maxlength="50"><br>
             <div class="ui-widget" id="errorcpp">
                   <div class="ui-corner-all" style="padding: 0 .2em;">
                     <p>
@@ -64,7 +64,9 @@
                     </p>
                   </div>
                 </div> 
-            <button type="button" id="btnenviar" class="btn btn-primary">Enviar</button>
+            <button type="button" id="btnSave" class="btn btn-primary">Agregar</button>
+            <button type="button" id="btnUpdate" class="btn btn-primary">Modificar</button>
+            <button type="reset" class="btn">Cancelar</button>
         </td>
     	<td width="28%">            
             <label>Cantidad Actual: </label>
@@ -88,7 +90,7 @@
              <label>Precio Compra: </label>
             <div class="input-prepend input-append">
                 <label class="add-on">$</label>
-                <input type="number" class="input-small" name="costo" id="costo" value="" required> 
+                <input type="number" class="input-small" name="compra" id="compra" value="" required> 
                 <label class="add-on">.00</label>
             </div>
              <div class="ui-widget" id="errorpcompra">
@@ -111,24 +113,32 @@
                     </p>
                   </div>
                 </div>
-        </td>   
-        <div class="" id="mensajealta" title="Información Guardada">
+      <div class="" id="mensajealta" title="Información Guardada">
         <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
           <center> <strong>Producto Guardado con Exito</strong></center>
+      </div>
+      <div class="" id="upd" title="Información Guardada">
+        <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+          <center> <strong>Producto Modificado con Exito</strong></center>
       </div>
       <div class="" id="error" title="Advertencia">
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Debe Llenar Todos los Campos.</strong></center>
       </div>
-      <div class="" id="letras" title="Advertencia">
-        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Solo se Permiten Letras.</strong></center>
-      </div>
       <div class="" id="numeros" title="Advertencia">
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Solo se Permiten Números.</strong></center>
       </div>
-	</tr>
+            <div class="" id="existe" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>El Producto ya Existe.</strong></center>
+      </div>
+      <div class="" id="ng" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Error al Guardar Producto.</strong></center>
+      </div>
+           </td> 
+        </tr>
     </form>
     </div>
   </table>

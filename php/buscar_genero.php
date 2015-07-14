@@ -18,13 +18,13 @@
   if($post['search'] == 'true'){
     $b = array();
     //Usamos la funci{on elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['like']=elements(array('nombre'),$_REQUEST);
+    $search['like']=elements(array('nombre_genero'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando la consulta.
     foreach($search['like'] as $key => $value){
       if($value != false) $b[]="$key like '%$value%'";
     }
     //Usamos la funcion elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['where'] = elements(array('nombre'),$_REQUEST);
+    $search['where'] = elements(array('nombre_genero'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando al consulta.
     foreach($search['where'] as $key => $value){
       if($value != false) $b[]="$key = '$value'";
@@ -67,7 +67,7 @@
     $post['offset'] = 0;
   }
   if (!$se) {
-    $sql = "select clave_genero,nombre,status from generos where status = 'ACTIVO'";
+    $sql = "select clave_genero,nombre_genero,status from generos where status = 'ACTIVO'";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -80,7 +80,7 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-   $sql = "select clave_genero,nombre,status from generos ".$se;
+   $sql = "select clave_genero,nombre_genero,status from generos ".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -96,7 +96,7 @@
 
     while($row = mysql_fetch_object($query)){
       $result[$i]['clave_genero']=$row->clave_genero;
-      $result[$i]['cell']=array($row->clave_genero,$row->nombre,$row->status);
+      $result[$i]['cell']=array($row->clave_genero,$row->nombre_genero,$row->status);
       $i++;    
   }   
   //Asignamos todo esto en variables de json, para enviarlo al navegador.

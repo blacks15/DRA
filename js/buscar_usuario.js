@@ -12,10 +12,11 @@ $(document).ready(function(){
 		colModel:[
 			{name:'matricula', index:'matricula', width:80, resizable:false, align:"center",search:false,key:true},
 			{name:'nombre', index:'nombre', width:190,resizable:false,search:true},
-            {name:'apellidos', index:'apellidos', width:200,search:true},
-        	{name:'username', index:'username', width:200,search:true},
-            {name:'fecha_creacion', index:'fecha_creacion', width:200,search:false},
-            {name:'status', index:'status', width:200,search:false}
+      {name:'apellidos', index:'apellidos', width:200,search:true},
+      {name:'username', index:'username', width:200,search:true},
+      {name:'fecha_creacion', index:'fecha_creacion', width:200,search:false,formatter:'date',
+             formatoptions: { srcformat: 'ISO8601Long',newformat: 'm/d/Y H:i',defaultValue:null}},
+      {name:'status', index:'status', width:200,search:false}
 		],
 		height: "100%",
 		autowidth: true,

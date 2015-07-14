@@ -6,13 +6,12 @@
 
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/jquery.fileupload.css">
-	<link rel="stylesheet" href="../css/jquery.fileupload-ui.css">
-
+	<link rel="stylesheet" href="../jqueryui/jquery-ui.css">
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-<form action="post">
+<form action="post" id="form1">
 		<div align="center">
 		<table width="80%" border="0" class="table">
 			<tr class="info">
@@ -20,60 +19,115 @@
 			</tr>
 			<tr>
 			<div class="control-group info">
-				<form action="" name="form2" method="post" enctype="multipart/form.data"></form>
 				<tr>
 					<td width="24%">
 						<label>Código Libro: </label>
-						<input type="text" name="codigo" id="codigo">
+						<input type="text" name="codigo" id="codigo" readonly="true">
 						<label>Nombre Libro: </label>
-						<input type="text" name="nombre" id="nombre" required>
+						<input type="text" name="nombre" id="nombre" required class="letras">
+						<div class="ui-widget" id="errornom">
+				          <div class="ui-corner-all" style="padding: 0 .2em;">
+				             <p>
+				              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN NOMBRE DE LIBRO.
+				               </p>
+				             </div>
+				          </div>
 						<label>ISBN: </label>
 						<input type="text" name="isbn" id="isbn" required>
+						<div class="ui-widget" id="errorisbn">
+				          <div class="ui-corner-all" style="padding: 0 .2em;">
+				             <p>
+				              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR EL ISBN.
+				               </p>
+				             </div>
+				          </div>
 						<label>Género: </label>
-						<select name="genero" id="genero">
+						<select name="genero" id="genero" class="input-medium">
 							<option value="0">SELECCIONE</option>
 						</select>
+						<div class="ui-widget" id="errorgen">
+				          <div class="ui-corner-all" style="padding: 0 .2em;">
+				             <p>
+				              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN GÉNERO.
+				               </p>
+				             </div>
+				          </div>
 						<label>Autor: </label>
 						<select name="autor" id="autor">
 						</select>
+						<div class="ui-widget" id="errorautor">
+				          <div class="ui-corner-all" style="padding: 0 .2em;">
+				             <p>
+				              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN AUTOR.
+				               </p>
+				             </div>
+				          </div>
 					</td>
 					<td>
 						<label>Editorial: </label>
-						<select name="editorial" id="editorial">
+						<select name="editorial" id="editorial" class="input-medium">
 							<option value="0">SELECCIONE</option>
 						</select>
+						<div class="ui-widget" id="erroredit">
+				          <div class="ui-corner-all" style="padding: 0 .2em;">
+				             <p>
+				              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UNA EDITORIAL.
+				               </p>
+				             </div>
+				          </div>
 						<label>Núm. de Páginas: </label>
-						<input type="text" name="pag" id="pag" required>
+						<input type="number" name="pag" id="pag" required class="input-small" maxlength="4">
 						<label>Descripción: </label>
-						<label for="textarea"></label><textarea name="obs" id="obs" cols="45" rows="5"></textarea><br>
+						<label for="textarea"></label>
+						<textarea class="form-control" name="obs" id="obs" cols="50" rows="7"></textarea><br>
+						<div class="ui-widget" id="errordes">
+				          <div class="ui-corner-all" style="padding: 0 .2em;">
+				             <p>
+				              <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA DESCRIPCIÓN.
+				               </p>
+				             </div>
+				          </div>
 						<button type="button" name="btnsave" id="btnsave" class="btn btn-primary">Agregar</button>
+						<button type="button" name="btnUpdate" id="btnUpdate" class="btn btn-primary">Modificar</button>
 						<button type="reset" value="reset" class="btn">Cancelar</button>
 					</td>
-					<td width="45%">
-						<center><label>Imagen del Producto: </label></center>
-						<center></center><br>
-						<center><input type="file" name="files[]" id="files_upload"></center>
-						<div id="files">
-            <h2>Vista Previa</h2>
-            <ul id="filePreview"></ul>
-            <a id="remove" href="#" title="Remove file">Borrar Archivos</a>
-        </div>
-		</td>
-		</tr>
-	 </div>
-	</tr>
+				</tr>
+			 </div>
+			</tr>
 		</table>
+		      <div class="" id="mensajealta" title="Información Guardada">
+        <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+          <center> <strong>Libro Guardado con Exito</strong></center>
+      </div>
+      <div class="" id="upd" title="Información Guardada">
+        <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+          <center> <strong>Libro Modificado con Exito</strong></center>
+      </div>
+      <div class="" id="error" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Debe Llenar Todos los Campos.</strong></center>
+      </div>
+      <div class="" id="letras" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Solo se Permiten Letras.</strong></center>
+      </div>
+      <div class="" id="numeros" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Solo se Permiten Números.</strong></center>
+      </div>
+      <div class="" id="existe" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>El Libro ya Existe.</strong></center>
+      </div>
+      <div class="" id="ng" title="Advertencia">
+        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Error al Guardar el Libro.</strong></center>
+      </div>
 	</div>
 </form>
 	<script src="../js/jquery.js"></script>
 	<script src="../jqueryui/jquery-ui.min.js"></script>
 	<script src="../js/libros.js"></script>
-	<script src="../js/jquery.fileupload.js"></script>
-    <script src="../js/jquery.iframe-transport.js"></script>
-    <script src="../js/jquery.fileupload-process.js"></script>
-<!-- The File Upload image preview & resize plugin -->
-<script src="../js/jquery.fileupload-image.js"></script>
-<!-- The main application script -->
-<script src="../js/main.js"></script>
+	<script src="../js/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

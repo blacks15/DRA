@@ -2,11 +2,73 @@ $(document).ready(function(){
 	
 	ocultar();
 	$("#nom").focus();
-
+	$("#btnUpdate").hide();
 	$("#cantidad").keypress(validatenum);
 	$("#minimo").keypress(validatenum);
 	$("#costo").keypress(validatenum);
 	$("#venta").keypress(validatenum);
+
+	$("#btnSave").click(function(){
+		if (validar()) {
+			var cadena = $("#form1").serialize();
+
+			$.ajax({
+				cache: false,
+				type: "post",
+				datatype: "json",
+				url: "../php/producto.php",
+				data: {opc:"guardar_producto",cadena },
+				success: function(response) {
+					if(response.respuesta == true) {
+						$("#mensajealta").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold" ,duration: 350},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+						limpiar();	
+					} else if (response.existe == true) {
+						$("#existe").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold" ,duration: 350},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+					} else if (response.fallo == true) {
+						$("#ng").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold" ,duration: 350},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+						limpiar();
+					}
+				},	
+					error: function(xhr,ajaxOptions,throwError){
+						console.log(throwError);
+					}
+			});
+				} else {
+					$("#error").dialog({
+						modal: true,
+			            width: 270,
+			            height: 170,
+			            show: {effect : "fold" ,duration: 350},
+			            hide: {effect : "explode", duration: 300},
+			            resizable: "false",
+			            buttons: { "OK": function () { $(this).dialog("close"); } },   
+			        });
+				}
+    });
 
 	$.ajax({
 		cache: false,
@@ -15,42 +77,17 @@ $(document).ready(function(){
 		url: "../php/combo_producto.php",
 		success: function(opciones){
 			$("#prov").html(opciones.opcion_proveedor);
-			//$("#autor").html(opciones.opcion_aut);
+			$("#libro").html(opciones.opcion_libro);
 		},
 		error: function(xhr,ajaxOptions,throwError){
 			console.log(xhr);
 		} 
 	});
 
-	$("#btnenviar").click(function(){
-		if (validar()) {
-			$("#mensajealta").dialog({
-				modal: true,
-	            width: 270,
-	            height: 170,
-	            show: {effect : "fold" ,duration: 350},
-	            hide: {effect : "explode", duration: 300},
-	            resizable: "false",
-	            buttons: { "OK": function () { $(this).dialog("close"); } },   
-	        });
-	        limpiar();
-		} else {
-			$("#error").dialog({
-				modal: true,
-	            width: 270,
-	            height: 170,
-	            show: {effect : "fold" ,duration: 350},
-	            hide: {effect : "explode", duration: 300},
-	            resizable: "false",
-	            buttons: { "OK": function () { $(this).dialog("close"); } },   
-	        });
-		}
-
-	});
-
 	function limpiar(){
-		$("#nom").length == 0;
-		$("#prov").length == 0;
+		$("#codigo").val("");
+		$("#libro").prop('selectedIndex', 0);
+		$("#prov").prop('selectedIndex', 0);
 		$("#cprov").val("");
 		$("#cantidad").val("");
 		$("#minimo").val("");
@@ -61,7 +98,9 @@ $(document).ready(function(){
 	function ocultar(){
 		$("#mensajealta").hide();
 		$("#error").hide();
-		$("#letras").hide();
+		$("#upd").hide();
+		$("#existe").hide();
+		$("#ng").hide();
 		$("#numeros").hide();
 		$("#errornom").hide();
 		$("#errorprov").hide();
@@ -74,21 +113,21 @@ $(document).ready(function(){
 
 	function validar(){
 		var prov = $("#prov").val();
-		var name = $("#nom").val("");
-		var cprov = $("#cprov").val("");
-		var cant = $("#cantidad").val("");
-		var min = $("#minimo").val("");
-		var cost = $("#costo").val("");
-		var sell = $("#venta").val("");
+		var name = $("#libro").val();
+		var cprov = $("#cprov").val();
+		var cant = $("#cantidad").val();
+		var min = $("#minimo").val();
+		var cost = $("#costo").val();
+		var sell = $("#venta").val();
 		if (name == 0 || name == null) {
-			$("#nom").focus();
+			$("#libro").focus();
 			$("#errornom").show();
 			return false;
 		}else if (prov == 0 || prov == null ) {
 			$("#prov").focus();
 			$("#errorprov").show();
 			return false
-		} else if (cprov == "" || cprov.length > 3){
+		} else if (cprov == "" ){
 			$("#cprov").focus();
 			$("#errorcpp").show();
 			return false;
@@ -101,7 +140,7 @@ $(document).ready(function(){
 			$("#errorcmin").show();
 			return false;
 		} else if (cost == "" || cost == 0){
-			$("#costo").focus();
+			$("#compra").focus();
 			$("#errorpcompra").show();
 			return false;
 		} else if (sell == "" || sell == 0) {
@@ -113,29 +152,10 @@ $(document).ready(function(){
 		return true;
 	}
 
-	function validatetext(event) {
-		var key = window.event ? event.keyCode : event.which;
-		//alert(key);
-		if ((event.keyCode > 65) && (event.keyCode < 90)|| (event.keyCode > 97) && (event.keyCode < 122)){
-			return true;
-			} else {
-				$("#letras").dialog({
-				modal: true,
-	            width: 270,
-	            height: 170,
-	            show: {effect : "fold" ,duration: 300},
-	            hide: {effect : "explode", duration: 300},
-	            resizable: "false",
-	            buttons: { "OK": function () { $(this).dialog("close"); } },   
-	        });
-			return false;
-			}
-		}
-
 	function validatenum(event) {
 		var key = window.event ? event.keyCode : event.which;
 	
-		if(event.keyCode > 47 && event.keyCode < 58){
+		if((event.keyCode > 47 && event.keyCode < 58) || event.keyCode == 46){
 			return true;
 			} else {
 				$("#numeros").dialog({

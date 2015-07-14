@@ -35,7 +35,7 @@
 	 		print (json_encode($existeJson));
 	 	} else {
 			//ejecutar consulta
-			$consulta = "insert into generos (nombre,status) values('".$name."','".$estado."')";
+			$consulta = "insert into generos (nombre_genero,status) values('".$name."','".$estado."')";
 	 	
 			$resultado = mysql_query($consulta) or die(mysql_error());
 
@@ -72,7 +72,7 @@
   	$name = trim($_POST['name']);
   	$status = trim($_POST['status']);
 
-  	$consulta = "update generos set clave_genero = '".$codigo."',nombre = '".$name."',
+  	$consulta = "update generos set clave_genero = '".$codigo."',nombre_genero = '".$name."',
   	status = '".$status."' where clave_genero = '".$codigo."' ";
   		//EJECUTAMOS LA CONSULTA
   	$resultado = mysql_query($consulta) or die(mysql_error());

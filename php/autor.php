@@ -26,8 +26,8 @@
 		$estado = 'ACTIVO';
 		$respuesta = false;
 		
-		$sql = "select * from autores where firstname_autor ='".$first_name."' and 
-				lastname_autor = '".$lastname."' ";
+		$sql = "select * from autores where nombre_autor ='".$first_name."' and 
+				apellido_autor = '".$lastname."' ";
 		$res = mysql_query($sql) or die(mysql_error());
 		
 		if (mysql_num_rows($res) > 0 ) {
@@ -35,7 +35,7 @@
 	 		$existeJSON = array('existe' => $existe);
 	 		print (json_encode($existeJSON));
 		} else {
-			$consulta = "insert into autores (firstname_autor,lastname_autor,estado) values('".$first_name."','".$last_name."','".$estado."')";
+			$consulta = "insert into autores (nombre_autor,apellido_autor,estado) values('".$first_name."','".$last_name."','".$estado."')";
 			//ejecutar consulta
 			$resultado = mysql_query($consulta) or die(mysql_error());
 
@@ -77,8 +77,8 @@
   		$lastname = trim($_POST['last_name']);
   		$status = trim($_POST['status']);
 
-  		$consulta = "update autores set clave_autor = '".$codigo."', firstname_autor = '".$first_name."',
-  		lastname_autor = '".$lastname."',estado = '".$status."' where clave_autor = '".$codigo."' ";
+  		$consulta = "update autores set clave_autor = '".$codigo."', nombre_autor = '".$first_name."',
+  		apellido_autor = '".$lastname."',estado = '".$status."' where clave_autor = '".$codigo."' ";
 
   		$resultado = mysql_query($consulta) or die(mysql_error());
 		$respuesta = false;

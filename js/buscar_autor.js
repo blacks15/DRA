@@ -10,8 +10,8 @@ $(document).ready(function(){
                     colNames:['ID','NOMBRE', 'APELLIDO','ESTADO'],
                     colModel:[
                         {name:'clave_autor', index:'clave_autor',search:false,width:80,resizable:false, align:"center",key:true},
-                        {name:'firstname_autor', index:'firstname_autor', width:190,resizable:true,search:true},
-                        {name:'lastname_autor', index:'lastname_autor', width:200,search:true},
+                        {name:'nombre_autor', index:'nombre_autor', width:190,resizable:true,search:true},
+                        {name:'apellido_autor', index:'apellido_autor', width:200,search:true},
                         {name:'estado', index:'estado', search:false, width:100, align:"center" }
                     ],
                     height: "100%",

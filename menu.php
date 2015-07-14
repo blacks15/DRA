@@ -20,7 +20,7 @@
       <div class="navbar-inner">
         <div class="container" style="width: auto;">
           <a class="brand" href="empresa.php" target="admin">Administrador</a>
-          <a class="brand" href="caja.php?ddes=0" target="admin">Ventas</a>
+          <a class="brand" href="pages/Ventas.html" target="admin">Ventas</a>
           <ul class="nav" role="navigation">
             <li class="dropdown">
               <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
