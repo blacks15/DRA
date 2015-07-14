@@ -18,22 +18,39 @@
   if($post['search'] == 'true'){
     $b = array();
     //Usamos la funci{on elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['like']=elements(array('firstname_autor','lastname_autor'),$_REQUEST);
+    $search['like']=elements(array('nombre_autor','apellido_autor'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando la consulta.
     foreach($search['like'] as $key => $value){
       if($value != false) $b[]="$key like '%$value%'";
     }
     //Usamos la funcion elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['where'] = elements(array('firstname_autor','lastname_autor'),$_REQUEST);
+    $search['where'] = elements(array('nombre_autor','apellido_autor'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando al consulta.
     foreach($search['where'] as $key => $value){
       if($value != false) $b[]="$key = '$value'";
     }
     //Creamos la consulta where
-    $se=" where estado = 'Activo' and ".implode(' and ',$b );   
+    $se=" where estado = 'ACTIVO' and ".implode(' and ',$b );   
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
+  if (!$se) {
+    $query = mysql_query("select count(*) as t from autores where estado ='ACTIVO' ");
+  if(!$query)
+    echo mysql_error();
+  $count = mysql_result($query,0);
+  if( $count > 0 && $post['limit'] > 0) {
+    //Calculamos el numero de paginas que tiene el sistema
+    $total_pages = ceil($count/$post['limit']);
+    if ($post['page'] > $total_pages) $post['page'] = $total_pages;
+    //calculamos el offset para la consulta mysql.
+    $post['offset'] = $post['limit'] * $post['page'] - $post['limit'];
+  } else {
+    $total_pages = 0;
+    $post['page'] = 0;
+    $post['offset'] = 0;
+  }
+  }
   $query = mysql_query("select count(*) as t from autores".$se);
   if(!$query)
     echo mysql_error();
@@ -51,15 +68,26 @@
   }
   if (!$se) {
     $estado = 'activo';
-    $sql = "select clave_autor,firstname_autor,lastname_autor,estado from autores where  estado = 'Activo'";
+    $sql = "select clave_autor,nombre_autor,apellido_autor,estado from autores where  estado = 'ACTIVO'";
+    if( !empty($post['orden']) && !empty($post['orderby']))
+    //Añadimos de una ves la parte de la consulta para ordenar el resultado
+    $sql .= " ORDER BY $post[orderby] $post[orden] ";
+  if($post['limit'] && $post['offset']) $sql.=" limit $post[offset], $post[limit]";
+    //añadimos el limite para solamente sacar las filas de la apgina actual que el sistema esta consultando
+    elseif($post['limit']) $sql .=" limit 0,$post[limit]";
     $query = mysql_query($sql);
     
     if(!$query)
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-  $sql = "select clave_autor,firstname_autor,lastname_autor,estado from autores".$se;
-    
+  $sql = "select clave_autor,nombre_autor,apellido_autor,estado from autores".$se;
+    if( !empty($post['orden']) && !empty($post['orderby']))
+    //Añadimos de una ves la parte de la consulta para ordenar el resultado
+    $sql .= " ORDER BY $post[orderby] $post[orden] ";
+  if($post['limit'] && $post['offset']) $sql.=" limit $post[offset], $post[limit]";
+    //añadimos el limite para solamente sacar las filas de la apgina actual que el sistema esta consultando
+    elseif($post['limit']) $sql .=" limit 0,$post[limit]";
   $query = mysql_query($sql);
   if(!$query)
     echo mysql_error();
@@ -69,7 +97,7 @@
 
     while($row = mysql_fetch_object($query)){
       $result[$i]['clave_autor']=$row->clave_autor;
-      $result[$i]['cell']=array($row->clave_autor,$row->firstname_autor,$row->lastname_autor,$row->estado);
+      $result[$i]['cell']=array($row->clave_autor,$row->nombre_autor,$row->apellido_autor,$row->estado);
       $i++;    
   }   
   //Asignamos todo esto en variables de json, para enviarlo al navegador.

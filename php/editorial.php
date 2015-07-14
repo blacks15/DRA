@@ -1,57 +1,88 @@
 <?php
+	require_once('conexion.php');
 	header('Content-Type: application/json');
 	error_reporting(0);
-	
+
+	conectarse();
+
 	$opc = $_POST['opc'];
-	switch ($opc) 
-	{
+	switch ($opc) {
 		case 'guardar_editorial':
 			guardar_editorial();
 		break;
-		
+
 		case 'baja_editorial':
 			baja_editorial();
 		break;
 
-		case 'consultar_editorial':
-			consultar_editorial();
-		break;
-
 		case 'modificar_editorial':
-			modificar_editorial();
+			modificar_editorial();	
 		break;
 	}
 
-	function guardar_editorial()
-	{
-		$conecta = mysql_connect("localhost","root","123") or die(mysql_error());
+	function guardar_editorial(){
+	    $name = trim($_POST['name']);
+	 	$estado = 'ACTIVO';
+	 	$respuesta = false;
 
-		if (!is_resource($conecta)) {
-			echo "Fallo la Conexion al Servidor";
+	 	$sql = "select * from editoriales where nombre_editorial = '".$name."' ";
+	 	$res = mysql_query($sql) or die(mysql_error());
+	 	if (mysql_num_rows($res) > 0){
+	 		$existe = true;
+	 		$existeJson = array('existe' => $existe);
+	 		print json_encode($existeJson);
+	 	} else {
+ 		$consulta = "insert into editoriales(nombre_editorial,status) values('".$name."','".$estado."')";
+	 		 //ejecutar consulta
+		$resultado = mysql_query($consulta)or die(mysql_error());
+ 		
+		if ($resultado == true){
+			$respuesta = true;
+			$salidaJSON = array('respuesta' => $respuesta );
+			print json_encode($salidaJSON);
 		} else {
-			$db = mysql_select_db("venta_libros",$conecta);
-			if ($db == 0) {
-				echo "Error al Conectar a la Base de Datos";
-			 } else {
-			    $name = trim($_POST['name']);
-			 	$estado = 'Activo';
-			 	
-			 		$consulta = "insert into editoriales(nombre,estado) values('".$name."','".$estado."')";
-				  //ejecutar consulta
-					 $resultado = mysql_query($consulta)or die(mysql_error());
-					 $respuesta = false;
-					 $total = mysql_num_rows($resultado);
-					 echo $total;
-			 		
-				if ($resultado){
-					$respuesta = true;
-					$salidaJSON = array('respuesta' => $respuesta );
-					print json_encode($salidaJSON);
-					mysql_close($conecta);
-				} else{
-					echo "Ocurrio un Error";
-					}
-	   			}
-		    }
+			$respuesta = false;
+			$salidaJSON = array('respuesta' => $respuesta );
+			print json_encode($salidaJSON);
 		}
+		}
+	}
+
+	function baja_editorial(){
+		$clave_editorial = trim($_POST['clave_editorial']);
+	  	$status = 'BAJA';
+
+	  	$consulta = "update editoriales set status ='".$status."'where clave_editorial = '".$clave_editorial."'";
+	  		
+	  	$resultado = mysql_query($consulta) or die(mysql_error());
+		$respuesta = false;
+
+			if ($resultado == true){
+				$respuesta = true;
+				$salidaJSON = array('respuesta' => $respuesta );
+				print json_encode($salidaJSON);
+			} else {
+				echo "Ocurrio un Error";
+			}
+	}
+
+	function modificar_editorial(){
+		$codigo = trim($_POST['codigo']);
+	  	$name = trim($_POST['name']);
+	  	$status = trim($_POST['status']);
+
+	  	$consulta = "update editoriales set clave_editorial = '".$codigo."',nombre_editorial = '".$name."',
+	  	status = '".$status."' where clave_editorial = '".$codigo."' ";
+	  		//EJECUTAMOS LA CONSULTA
+	  	$resultado = mysql_query($consulta) or die(mysql_error());
+		$respuesta = false;
+
+		if ($resultado == true){
+			$respuesta = true;
+			$salidaJSON = array('respuesta' => $respuesta );
+			print json_encode($salidaJSON);
+		} else {
+			echo "Ocurrio un Error";
+		}
+	}
 ?>

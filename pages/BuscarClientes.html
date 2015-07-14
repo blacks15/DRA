@@ -3,28 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Buscar Clientes</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/bootstrap.css">
-		<link rel="stylesheet" href="../js/google-code-prettify/prettify.css">
+		<link rel="stylesheet" href="../jqueryui/jquery-ui.css">
 		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" media="screen" href="../jqgrid/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../css/bootstrap-responsive.css">
 
-	    <script src="../js/jquery.js"></script>
-	    <script src="../js/bootstrap-transition.js"></script>
-    	<script src="../js/bootstrap-alert.js"></script>
-    	<script src="../js/bootstrap-modal.js"></script>
-    	<script src="../js/bootstrap-dropdown.js"></script>
-    	<script src="../js/bootstrap-scrollspy.js"></script>
-    	<script src="../js/bootstrap-tab.js"></script>
-    	<script src="../js/bootstrap-tooltip.js"></script>
-    	<script src="../js/bootstrap-popover.js"></script>
-    	<script src="../js/bootstrap-button.js"></script>
-    	<script src="../js/bootstrap-collapse.js"></script>
-    	<script src="../js/bootstrap-carousel.js"></script>
-    	<script src="../js/bootstrap-typeahead.js"></script>
-    	<script src="../js/bootstrap-affix.js"></script>
-    	<script src="../js/holder/holder.js"></script>
-    	<script src="../js/google-code-prettify/prettify.js"></script>
-    	<script src="../js/application.js"></script>
 	</head>
 	<body data-spy="scroll" data-target=".bs-docs-sidebar">
 		<table width="100%" border="0" class="table">
@@ -35,34 +20,26 @@
 						<button type="button" class="btn btn-primary" onclick="window.location='CrearCliente.html'">Ingresar Nuevo</button>
 					</div>
 				</td>
-				<td>
-					<div align="right">
-						<form  method="post" action="" enctype="multipart/form.data" name="form1" id="form1">
-							<div class="input-append">
-								<input  name="bus" type="text" class="span2" size="60" list="characters" placeholder="Buscar" autocomplete="off">
-								<button class="btn" type="submit">Buscar por Nombre</button>
-							</div>
-						</form>
-					</div>
-				</td>
 			</tr>
 		</table>
-		<div align="center">
-			<table width="80%" border="0" class="table">
-				<tr class="info">
-					<td colspan="8"><center><strong>Listado de Clientes</strong></center></td>
-				</tr>
-				<tr>
-					<td width="5%"><strong>Código</strong></td>
-					<td width="25%"><strong>Nombre Empresa</strong></td>
-					<td width="10%"><strong>Contacto</strong></td>
-					<td width="7%"><strong>Estado</strong></td>
-					<td width="20%"><strong>Dirección</strong></td>
-					<td width="10%"><strong>Teléfono</strong></td>
-					<td width="11%"><strong>Celular</strong></td>
-					<td width="12%"><strong>Correo</strong></td>
-				</tr>
-			</table>
+		<table id="clientes">
+		</table>
+		<div id="pager2"></div>
+		<div id="delete" title="Advertencia">
+		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Está seguro de que desea eliminar el registro seleccionado?</p>
 		</div>
+		<div class="" id="war" title="Advertencia">
+				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+			    <center> <strong>No Selecciono una Fila.</strong></center>
+		</div>
+		<div class="" id="mensajealta" title="Información Eliminada">
+				<span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+			    <center> <strong>Cliente Eliminado con Exito.</strong></center>
+		</div>
+		<script src="../js/jquery.js"></script>
+	    <script src="../jqueryui/jquery-ui.min.js"></script>
+		<script src="../jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+		<script src="../jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+		<script src="../js/buscar_cliente.js" type="text/javascript"></script>
 	</body>
 </html>

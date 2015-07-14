@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="UTF-8">
+	<title>Ventas</title>
+
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../jqueryui/jquery-ui.css">
+	<link rel="stylesheet" media="screen" href="../jqgrid/css/ui.jqgrid.css" />
+	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
+</head>
+<body>
+<form action="post">
+	<table class="table" border="0">
+	<tr>
+		<td>
+			<label for="textfield">Folio:</label><br>
+			<label for="textfield">Atiende:</label><br>
+			<label for="textfield">Producto:</label>
+		</td>
+		<td >
+			<input type="text" readonly="true" id="folio" name="folio"><br>
+			<select name="usuario" id="usuario">
+				<option value="0">SELECCIONE</option>
+			</select><br>
+			<input type="text" name="prod" id="prod" class="form-control input-xlarge">
+			<input type="hidden" id="clave" name="clave">
+			<input type="hidden" id="precio" name="precio">
+			<button id="mas" class="btn-primary"></button>
+			<button id="menos" class="btn-primary"></button>
+			<button id="bus" class="btn-primary"></button>
+		</td>
+		<td>
+			<label for="textfield">Fecha :</label><br>
+			<label for="textfield">Cliente :</label><br>
+			<label for="textfield">Cantidad :</label>
+		</td>
+		<td>
+			<input type="text" id="date" name="date"><br>
+			<select name="cliente" id="cliente">
+				<option value="0">SELECCIONE</option>
+			</select><br>
+			<input type="number" id="cant" name="cant" class="input-small">
+		</td>
+	</tr>	
+</table>
+</form>
+<table name="ventas" id="ventas">
+</table>
+<div id="pager2"></div>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/venta.js" type="text/javascript"></script>
+	<script src="../jqueryui/jquery-ui.min.js"></script>
+	<script src="../jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="../jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+</body>
+</html>
