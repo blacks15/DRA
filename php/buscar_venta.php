@@ -11,7 +11,7 @@
       	$sql = "select nombre_libro
                 	from productos p
 			    inner join libros l on l.clave_libro = p.nombre_producto
-        	WHERE nombre_libro LIKE '%".$buscar."%' ";
+        	WHERE nombre_libro LIKE '%".$buscar."%' and p.status = 'DISPONIBLE' ";
         $resultado = mysql_query($sql) or die(mysql_error());
         $contar = mysql_num_rows($resultado);
 

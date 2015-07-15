@@ -85,7 +85,7 @@ $(document).ready(function(){
                             resizable: "false",
                             buttons: { "OK": function () { $(this).dialog("close"); } },   
                         });
-                }else {
+                } else {
                 //LIMPIAMOS LA SESSION
                     sessionStorage.clear();
                 //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE

@@ -1,12 +1,7 @@
 $(document).ready(function(){
-
+	limpiar_grid();
+	ocultar();
 	$("#prod").focus();
-
-	$( "#prod" ).autocomplete({
-		minLength: 3,
-        source: "../php/buscar_venta.php",
-        autoFocus: true
-    });
 
 	$("#prod").focusout(function(){
 		var prod = $("#prod").val();
@@ -18,8 +13,22 @@ $(document).ready(function(){
 			url: "../php/venta.php",
 			data: {opc: "buscar_producto", prod:prod},
 			success: function(respuesta){
-				$("#clave").val(respuesta.clave_producto);
-				$("#precio").val(respuesta.precio);
+				if (respuesta.noexiste == true) {
+					$("#errornoex").show();
+				} else if (respuesta.vacio == true) {
+					$("#vacio").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold", duration: 300},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+				} else {
+					$("#clave").val(respuesta.clave_producto);
+					$("#precio").val(respuesta.precio);
+				}
 			},
 			error: function(xhr,ajaxOptions,throwError){
 				console.log(throwError);
@@ -48,33 +57,24 @@ $(document).ready(function(){
         colNames:['CÓDIGO','DESCRIPCIÓN DEL PRODUCTO', 'CANTIDAD','PRECO','SUBTOTAL'],
         colModel:[
             {name:'codigo', index:'codigo',search:false,width:80,resizable:false, align:"center",key:true},
-            {name:'descripcion_del_producto', index:'descripcion_del_producto', width:250,resizable:true,search:false},
-            {name:'cantidad', index:'cantidad', width:150,search:false},
+            {name:'producto', index:'producto', width:250,resizable:true,search:false},
+            {name:'cantidad', index:'cantidad', width:150,search:false,align:"center",editable:true},
             {name:'precio', index:'precio', search:false, width:80, align:"center",formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','} },
-            {name:'subtotal', index:'subtotal', width:100,search:false, align:"center",formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','}}
+            {name:'subtotal', index:'subtotal', width:100,search:false, align:"center",formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','} , sorttype: 'number'}
         ],
-        height: "100%",
+        height: "auto",
         autowidth: true,
         pager: '#pager2',
         sortname: 'codigo',
         sortorder: 'desc',
-        caption: 'Productos',
+        caption: 'Detalle Venta',
+        rownumbers: true,
         altRows: true,
-        onSelectRow: function(ids) {
-            var selr = jQuery('#ventas').jqGrid('getGridParam','selrow'); 
-                if(!selr){
-                     $("#war").dialog({
-                            modal: true,
-                            width: 270,
-                            height: 170,
-                            show: {effect : "fold" ,duration: 300},
-                            hide: {effect : "explode", duration: 300},
-                            resizable: "false",
-                            buttons: { "OK": function () { $(this).dialog("close"); } },   
-                        });
-                }  
-                return false; 
-               }
+        footerrow: true,
+        gridComplete: function(){
+            var sum =   $("#ventas").jqGrid('getCol', 'subtotal', false, 'sum');
+             jQuery("#ventas").jqGrid('footerData', 'set', {codigo:'Total :', subtotal: sum} );
+          }
     });
 	jQuery("#ventas").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false,refresh:false},
          {height:280,reloadAfterSubmit:true},//opciones edit
@@ -99,26 +99,89 @@ $(document).ready(function(){
 	$("#date").datepicker({
 			dateFormat: "dd-mm-yy"
 		});
+	$("#date").datepicker('setDate', '+0');
 
-	 $('#mas').button({ 
-        icons: { 
-           primary: 'ui-icon-circle-plus' 
-	    }, 
-	    text: false
-	 }); 
+	 $('#mas').click(function(){
+ 		var producto = $("#prod").val();
+ 		var codigo = $("#clave").val();
+ 		var cantidad = $("#cant").val();
+ 		var precio = $("#precio").val();
+ 		var subtotal = precio * cantidad;
+	 		if (validar_grid()) {
+		 		var data = {codigo,producto,cantidad,precio,subtotal};
+		 		$("#ventas").jqGrid('addRowData',codigo,data,"last");
+		 		limpiar_grid();
+		 	} else {}
+	 });
 
- 	 $('#bus').button({ 
-	    icons: { 
-	       primary: 'ui-icon-search' 
-	    }, 
-	    text: false
-	 }); 
+ 	 $('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarProducto.html";
+ 	 });
 
-  	 $('#menos').button({ 
-	    icons: { 
-	       primary: 'ui-icon-circle-minus' 
-	    }, 
-	    text: false
-	 }); 
+  	 $('#menos').click(function(){
+  	 	var id = $("#ventas").jqGrid('getGridParam','selrow'); 
+  	 	jQuery("#ventas").jqGrid('editRow',id,true);
+  	 });
 	 
+	 function limpiar_grid(){
+	 	$("#prod").val("");
+	 	$("#clave").val("");
+	 	$("#cant").val("");
+	 	$("#precio").val("");
+	 }
+	 function validar_grid(){
+	 	var producto = $("#prod").val();
+	 	var codigo = $("#clave").val();
+	 	var cantidad = $("#cant").val();
+	 	var precio = $("#precio").val();
+	 	var subtotal = $("#precio").val();
+
+	 	if (producto == "") {
+	 		return false;
+	 	}else if (codigo == "") {
+	 		return false;
+	 	} else if (cantidad <= 0 || cantidad == "") {
+	 		return false;
+	 	} else if (precio == "") {
+	 		return false;
+	 	} else if (subtotal == "") {
+	 		return false;
+	 	} 
+	 	return true;
+	 }
+
+	$("#prod").autocomplete({
+		minLength: 3,
+        source: "../php/buscar_venta.php",
+        autoFocus: true
+    });
+
+	 function ocultar(){
+	 	$("#errornoex").hide();
+	 	$("#mensajealta").hide();
+	 	$("#vacio").hide();
+	 	$("#erroruser").hide();
+	 	$("#errordate").hide();
+	 	$("#ng").hide();
+	 }
+
+	 function validar_venta(){
+	 	var user = $("#usuario").val();
+	 	var date = $("#date").val();
+	 	var cliente = $("#cliente").val();
+
+	 	if (user == null || user == 0) {
+	 		$("#usuario").focus();
+	 		$("#erroruser").show();
+	 		return false;
+	 	} else if (date == null) {
+	 		$("#date").focus();
+	 		$("#errordate").show();
+	 		return false;
+	 	} else if (cliente == null || cliente == 0) {
+	 		$("#cliente").focus();
+	 		return false;
+	 	}
+	 	return true;
+	 }
 });
