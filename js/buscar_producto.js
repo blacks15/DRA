@@ -89,9 +89,7 @@ $(document).ready(function(){
                             buttons: { "OK": function () { $(this).dialog("close"); } },   
                         });
                 }else{
-                        $.get("../php/autor.php?opc=modificar_autor&id="+id_tipo, function(data){
-                                crear_modal(300,250,data);
-                        });
+                        
                 }
                 return false;
         }

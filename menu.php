@@ -101,7 +101,6 @@
             <li id="fat-menu" class="dropdown">
               <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Hola! <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="cambiar_clave.php" target="admin"><i class="icon-refresh"></i>Cambiar Contraseña</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="php_cerrar.php"><i class="icon-off"></i>Salir</a></li>
               </ul>
@@ -113,7 +112,7 @@
     </td>
   </tr>
   <tr>
-    <td><iframe src="" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
+    <td><iframe src="pages/ventas.html" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
   </tr>
     <tr>
     <td>

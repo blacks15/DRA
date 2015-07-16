@@ -3,6 +3,63 @@ $(document).ready(function(){
 	ocultar();
 	$("#prod").focus();
 
+	$("#btnSave").click(function(){
+	 	var user = $("#usuario").val();
+	 	var date = $("#date").val();
+	 	var cliente = $("#cliente").val();
+ 		var id = $("#ventas").jqGrid('getGridParam','selrow'); 
+ 		var data = $("#ventas").getRowData(id);
+ 		var detalle = JSON.stringify(data);
+
+		if (validar_venta() || id == null ) {
+			$.ajax({
+				cache: false,
+				type: "POST",
+				datatype: "json",
+				url: "../php/venta.php",
+				data: {opc:"guardar_venta", user: user, date: date,cliente: cliente,detalle  },
+				success: function(response){
+					if(response.respuesta == true){				
+						$("#mensajealta").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold", duration: 300},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+				        $("#ventas").jqGrid("clearGridData", true).trigger("reloadGrid");
+						limpiar();
+					} else if (response.fallo == true){ 
+						$("#ng").dialog({
+							modal: true,
+				            width: 270,
+				            height: 170,
+				            show: {effect : "fold" ,duration: 300},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+					}
+				},	
+					error: function(xhr,ajaxOptions,throwError){
+						console.log(throwError);
+					}
+			});
+		} else {
+			$("#error").dialog({
+				modal: true,
+	            width: 270,
+	            height: 170,
+	            show: {effect : "fold" ,duration: 300},
+	            hide: {effect : "explode", duration: 300},
+	            resizable: "false",
+	            buttons: { "OK": function () { $(this).dialog("close"); } },   
+	        });
+			}
+    });
+
 	$("#prod").focusout(function(){
 		var prod = $("#prod").val();
 
@@ -25,9 +82,11 @@ $(document).ready(function(){
 				            resizable: "false",
 				            buttons: { "OK": function () { $(this).dialog("close"); } },   
 				        });
+					$("#prod").val("");
 				} else {
 					$("#clave").val(respuesta.clave_producto);
 					$("#precio").val(respuesta.precio);
+					$("#errornoex").hide();
 				}
 			},
 			error: function(xhr,ajaxOptions,throwError){
@@ -90,6 +149,10 @@ $(document).ready(function(){
                 borrar();
         } 
     }); 
+    function borrar(){
+    	var id = $("#ventas").jqGrid('getGridParam','selrow'); 
+    	jQuery("#ventas").jqGrid('delRowData',id);
+    }
 
     $(window).on("resize", function () {
         var $grid = $("#ventas"),
@@ -121,6 +184,8 @@ $(document).ready(function(){
   	 $('#menos').click(function(){
   	 	var id = $("#ventas").jqGrid('getGridParam','selrow'); 
   	 	jQuery("#ventas").jqGrid('editRow',id,true);
+  	 	 jQuery("ventas").saveRow("id", false, 'clientArray');
+  	 	 //jQuery("#list").setRowData( "1", { tax:"5", total:"205" });
   	 });
 	 
 	 function limpiar_grid(){
@@ -129,6 +194,13 @@ $(document).ready(function(){
 	 	$("#cant").val("");
 	 	$("#precio").val("");
 	 }
+
+	 function limpiar(){
+	 	$("#usuario").val("");
+	 	$("#date").val("");
+	 	$("#cliente").val("");
+	 }
+
 	 function validar_grid(){
 	 	var producto = $("#prod").val();
 	 	var codigo = $("#clave").val();
@@ -163,9 +235,11 @@ $(document).ready(function(){
 	 	$("#erroruser").hide();
 	 	$("#errordate").hide();
 	 	$("#ng").hide();
+	 	$("#error").hide();
 	 }
 
 	 function validar_venta(){
+	 	ocultar();
 	 	var user = $("#usuario").val();
 	 	var date = $("#date").val();
 	 	var cliente = $("#cliente").val();
