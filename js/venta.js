@@ -35,6 +35,17 @@ $(document).ready(function(){
 						$("#ng").dialog({
 							modal: true,
 				            width: 270,
+				            height: 200,
+				            show: {effect : "fold" ,duration: 300},
+				            hide: {effect : "explode", duration: 300},
+				            resizable: "false",
+				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				        });
+					} else if (response.ins == true) {
+						$("#ins").append(response.name);
+						$("#ins").dialog({
+							modal: true,
+				            width: 270,
 				            height: 170,
 				            show: {effect : "fold" ,duration: 300},
 				            hide: {effect : "explode", duration: 300},
@@ -110,7 +121,6 @@ $(document).ready(function(){
 	});
 
 	jQuery("#ventas").jqGrid({
-        //url:'../php/buscar_Autor.php',
         datatype: 'json',
         mtype: 'POST',
         colNames:['CÓDIGO','DESCRIPCIÓN DEL PRODUCTO', 'CANTIDAD','PRECO','SUBTOTAL'],
@@ -160,7 +170,7 @@ $(document).ready(function(){
         $grid.jqGrid("setGridWidth", newWidth, true);
          });
 	$("#date").datepicker({
-			dateFormat: "dd-mm-yy"
+			dateFormat: "dd-M-yy"
 		});
 	$("#date").datepicker('setDate', '+0');
 
@@ -183,9 +193,18 @@ $(document).ready(function(){
 
   	 $('#menos').click(function(){
   	 	var id = $("#ventas").jqGrid('getGridParam','selrow'); 
+  	 	var col = $('#ventas').jqGrid('getCol', 'cantidad', false);
+		var val = col-1;
+		 var data = $("#ventas").getRowData(id);
+                //CONVERTIMOS A JSON 
+                    sessionStorage.autor = JSON.stringify(data);
+  	 	res = sessionStorage.getItem('autor');
+			//CONVERTIMOS EL JSON A UN OBJETO
+				ob = JSON.parse(res);
+				alert(sessionStorage.autor);
   	 	jQuery("#ventas").jqGrid('editRow',id,true);
-  	 	 jQuery("ventas").saveRow("id", false, 'clientArray');
-  	 	 //jQuery("#list").setRowData( "1", { tax:"5", total:"205" });
+  	 	jQuery("#ventas").setRowData( "id", { cantidad:col });
+
   	 });
 	 
 	 function limpiar_grid(){
@@ -236,6 +255,7 @@ $(document).ready(function(){
 	 	$("#errordate").hide();
 	 	$("#ng").hide();
 	 	$("#error").hide();
+	 	$("#ins").hide();
 	 }
 
 	 function validar_venta(){

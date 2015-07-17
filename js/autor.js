@@ -196,7 +196,7 @@ $(document).ready(function(){
 
 		function entrar(){
 			var id;
-			if (sessionStorage.genero == undefined){
+			if (sessionStorage.autor == undefined){
 				
 			} else {
 				//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 

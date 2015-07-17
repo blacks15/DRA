@@ -17,6 +17,7 @@
 	}
 
 	function guardar_venta(){
+			//creamos folio apartir del año actual
 		$anio = date('Y-m');
 		$anio = str_replace("-","",$anio);
 		$folio = $anio * 1000;
@@ -26,7 +27,21 @@
 			//RECIBIMOS LAS VARIABLES PARA EL DETALLE DE VENTA
 		$json = trim($_POST['detalle']);
 		$detalle = json_decode($json,true);
-
+			//CONSULTAR SI HAY PRODUCTOS SUFICIENTES PARA REALIZAR LA VENTA LA VENTA
+		 foreach ($detalle as $key => $value) {
+				$p = "select cantidad_actual from productos where clave_producto = '".$value['codigo']."' ";
+				$ca = mysql_query($p) or die(mysql_error());
+				while ($row = mysql_fetch_array($ca)) {
+					if ($row['cantidad_actual'] - $value['cantidad'] <= 0) {
+						$name = $value['producto'];
+						$ins = true;
+						$salidaJSON = array('ins' => $ins,
+											'name' => $name);
+		       	 		print(json_encode($salidaJSON));
+					}
+				}
+			}
+			//CREAMOS EL CONSECUTIVO SINO EXISTE Y SI EXISTE SE LE INCREMENTA UNO
 		$tfolio = "select * from folios where nombre = 'ventas' and anio = '".date('Y')."' ";
 		$r = mysql_query($tfolio) or die(mysql_errno());
 		if (mysql_num_rows($r) == 0) {
@@ -48,6 +63,7 @@
               	$folio.= $respuesta;
               }
 		}
+			//SE RECIBE LA FECHA Y SE DA FORMATO MYSQL Y SE HACE LA INSERCION DE VENTA
 		$date = trim($_POST['date']);
 		$fecha = date('Y-m-d',strtotime($date));
       	$insventa = "insert into ventas (folio,fecha,empleado,cliente,total) values ('".$folio."',
@@ -60,11 +76,13 @@
                     $vfolio = $rows['folio'];
               }
           } 
+          //SE INSERTA EL DETALLE DE LA VENTA Y SE CALCULA EL TOTAL
               foreach ($detalle as $key => $value) {
 				$total = $total + $value['subtotal'];
 				$sql = "insert into detalle_venta (folio,clave_producto,cantidad,precio,subtotal)
 				values('".$vfolio."','".$value['codigo']."','".$value['cantidad']."',
 					'".$value['precio']."','".$value['subtotal']."' )  ";
+
 				$resultado = mysql_query($sql) or die(mysql_error());
 				}
 				$t = "update ventas set total = '".$total."' where folio = '".$vfolio."' ";

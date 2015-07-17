@@ -19,9 +19,16 @@
     <div id="navbar-example" class="navbar navbar-static">
       <div class="navbar-inner">
         <div class="container" style="width: auto;">
-          <a class="brand" href="empresa.php" target="admin">Administrador</a>
-          <a class="brand" href="pages/Ventas.html" target="admin">Ventas</a>
+          <a class="brand" href="" target="admin">Administrador</a>
+          <a class="brand" href="pages/CrearVentas.html" target="admin">Ventas</a>
           <ul class="nav" role="navigation">
+          <li class="dropdown">
+           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Ventas <b class="caret"></b></a>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarVentas.html" target="admin">Ver Ventas</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearVentas.html" target="admin">Crear Venta</a></li>
+          </ul>
+          </li>
             <li class="dropdown">
               <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
@@ -112,7 +119,7 @@
     </td>
   </tr>
   <tr>
-    <td><iframe src="pages/ventas.html" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
+    <td><iframe src="pages/CrearVentas.html" frameborder="0" scrolling="auto" name="admin" width="100%" height="500"></iframe></td>
   </tr>
     <tr>
     <td>
