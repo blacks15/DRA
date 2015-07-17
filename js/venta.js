@@ -192,19 +192,19 @@ $(document).ready(function(){
  	 });
 
   	 $('#menos').click(function(){
-  	 	var id = $("#ventas").jqGrid('getGridParam','selrow'); 
+  	 	var codigo = $("#ventas").jqGrid('getGridParam','selrow'); 
+  	 	var producto = $('#ventas').jqGrid('getCol', 'producto', false);
   	 	var col = $('#ventas').jqGrid('getCol', 'cantidad', false);
-		var val = col-1;
-		 var data = $("#ventas").getRowData(id);
-                //CONVERTIMOS A JSON 
-                    sessionStorage.autor = JSON.stringify(data);
-  	 	res = sessionStorage.getItem('autor');
-			//CONVERTIMOS EL JSON A UN OBJETO
-				ob = JSON.parse(res);
-				alert(sessionStorage.autor);
-  	 	jQuery("#ventas").jqGrid('editRow',id,true);
-  	 	jQuery("#ventas").setRowData( "id", { cantidad:col });
-
+  	 	var precio = $('#ventas').jqGrid('getCol', 'precio', false);
+  	 	var cantidad = col - 1;
+  	 	var subtotal = cantidad * precio;
+  	 	var data = {codigo,producto,cantidad,precio,subtotal};
+  	 	jQuery("#ventas").jqGrid('delRowData',codigo);
+  	 	if (cantidad == 0) {
+  	 		jQuery("#ventas").jqGrid('delRowData',codigo);
+  	 	} else {
+			$("#ventas").jqGrid('addRowData',codigo,data,"last");
+		}
   	 });
 	 
 	 function limpiar_grid(){

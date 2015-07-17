@@ -82,7 +82,7 @@
 				$sql = "insert into detalle_venta (folio,clave_producto,cantidad,precio,subtotal)
 				values('".$vfolio."','".$value['codigo']."','".$value['cantidad']."',
 					'".$value['precio']."','".$value['subtotal']."' )  ";
-
+				echo $sql;
 				$resultado = mysql_query($sql) or die(mysql_error());
 				}
 				$t = "update ventas set total = '".$total."' where folio = '".$vfolio."' ";
