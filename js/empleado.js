@@ -127,6 +127,14 @@ $(document).ready(function(){
 				}
     });
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarEmpleado.html";
+ 	});
+
+	$("#ref").click(function(){
+	 	window.location.reload();
+	 });
+
 	function entrar(){
 		var id;
 		if (sessionStorage.empleado == undefined){

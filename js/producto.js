@@ -84,6 +84,10 @@ $(document).ready(function(){
 		} 
 	});
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarProducto.html";
+ 	});
+
 	function limpiar(){
 		$("#codigo").val("");
 		$("#libro").prop('selectedIndex', 0);

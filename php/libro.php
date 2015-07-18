@@ -24,7 +24,7 @@
 		$status = 'DISPONIBLE';
 
 			//COMPROBAMOS SI EXISTE EL LIBRO
-		$sql = "select * from libros where nombre = '".$name."' or isbn = '".$isbn."' ";
+		$sql = "select * from libros where nombre_libro = '".$name."' or isbn = '".$isbn."' ";
 		$res = mysql_query($sql) or die(mysql_error());
 		if (mysql_num_rows($res) > 0) {
 			$existe = true;

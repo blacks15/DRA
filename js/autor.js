@@ -120,6 +120,9 @@ $(document).ready(function(){
 		}
 	});
 
+ 	 $('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarAutor.html";
+ 	 });
 
     function validar(){
 

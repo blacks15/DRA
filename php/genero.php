@@ -26,7 +26,7 @@
 		$estado = 'ACTIVO';
 		$respuesta = false;
 		
-		$sql = "select * from generos where nombre = '".$name."' ";
+		$sql = "select * from generos where nombre_genero = '".$name."' ";
 	 	$res = mysql_query($sql) or die(mysql_error());
 	 	
 	 	if (mysql_num_rows($res) > 0){

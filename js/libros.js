@@ -82,6 +82,10 @@ $(document).ready(function (){
 		}
 	});
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarLibro.html";
+ 	});
+
 	function validar(){
 		ocultar();
 		var name = $("#nombre").val();

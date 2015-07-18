@@ -119,6 +119,10 @@ $(document).ready(function(){
 		}
 	});
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarClientes.html";
+ 	});
+
 	function entrar(){
 		var id;
 		if (sessionStorage.cliente == undefined){
