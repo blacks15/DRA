@@ -11,7 +11,7 @@ $(document).ready(function(){
  		var data = $("#ventas").getRowData(id);
  		var detalle = JSON.stringify(data);
 
-		if (validar_venta() || id == null ) {
+		if (validar_venta() && id == null ) {
 			$.ajax({
 				cache: false,
 				type: "POST",
@@ -193,11 +193,15 @@ $(document).ready(function(){
 
   	 $('#menos').click(function(){
   	 	var codigo = $("#ventas").jqGrid('getGridParam','selrow'); 
-  	 	var producto = $('#ventas').jqGrid('getCol', 'producto', false);
-  	 	var col = $('#ventas').jqGrid('getCol', 'cantidad', false);
-  	 	var precio = $('#ventas').jqGrid('getCol', 'precio', false);
+  	 	var p = $("#ventas").getRowData(codigo);
+  	 	data = JSON.stringify(p);
+  	 	ob = JSON.parse(data);
+  	 	var producto = ob.producto;
+  	 	var col = ob.cantidad
+  	 	var precio = ob.precio
   	 	var cantidad = col - 1;
   	 	var subtotal = cantidad * precio;
+
   	 	var data = {codigo,producto,cantidad,precio,subtotal};
   	 	jQuery("#ventas").jqGrid('delRowData',codigo);
   	 	if (cantidad == 0) {
@@ -240,6 +244,10 @@ $(document).ready(function(){
 	 	} 
 	 	return true;
 	 }
+
+	 $("#ref").click(function(){
+	 	window.location.reload();
+	 });
 
 	$("#prod").autocomplete({
 		minLength: 3,

@@ -32,7 +32,7 @@
 				$p = "select cantidad_actual from productos where clave_producto = '".$value['codigo']."' ";
 				$ca = mysql_query($p) or die(mysql_error());
 				while ($row = mysql_fetch_array($ca)) {
-					if ($row['cantidad_actual'] - $value['cantidad'] <= 0) {
+					if ($row['cantidad_actual'] - $value['cantidad'] < 0) {
 						$name = $value['producto'];
 						$ins = true;
 						$salidaJSON = array('ins' => $ins,
@@ -45,7 +45,7 @@
 		$tfolio = "select * from folios where nombre = 'ventas' and anio = '".date('Y')."' ";
 		$r = mysql_query($tfolio) or die(mysql_errno());
 		if (mysql_num_rows($r) == 0) {
-			$folios = "insert into folios (id,nombre,anio,consecutivo) values(1,'ventas','".date('Y')."',1) ";
+			$folios = "insert into folios (nombre,anio,consecutivo) values('ventas','".date('Y')."',1) ";
 			$rf = mysql_query($folios) or die(mysql_error());
 			$r = mysql_query($tfolio) or die(mysql_errno());
 			while($rows = mysql_fetch_array($r)){
@@ -82,7 +82,6 @@
 				$sql = "insert into detalle_venta (folio,clave_producto,cantidad,precio,subtotal)
 				values('".$vfolio."','".$value['codigo']."','".$value['cantidad']."',
 					'".$value['precio']."','".$value['subtotal']."' )  ";
-				echo $sql;
 				$resultado = mysql_query($sql) or die(mysql_error());
 				}
 				$t = "update ventas set total = '".$total."' where folio = '".$vfolio."' ";

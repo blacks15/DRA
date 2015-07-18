@@ -16,4 +16,19 @@ $(function(){
 		root.find('.sub-menu:visible').hide();
 	});
 
+	$.ajax({
+		cache: false,
+		type: "POST",
+		datatype: "json",
+		url: "../php/login.php",
+		success: function(opciones){
+			$("#editorial").html(opciones.opcion_ed);
+			$("#autor").html(opciones.opcion_aut);
+			$("#genero").html(opciones.opcion_genero);
+		},
+		error: function(xhr,ajaxOptions,throwError){
+			console.log(xhr);
+		} 
+	});
+
 });
