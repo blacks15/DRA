@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2015 a las 18:13:05
+-- Tiempo de generación: 25-07-2015 a las 01:09:18
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -25,19 +25,13 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `autores`
 --
--- Creación: 13-07-2015 a las 08:58:03
---
 
 CREATE TABLE IF NOT EXISTS `autores` (
   `clave_autor` bigint(20) NOT NULL,
   `nombre_autor` varchar(30) COLLATE utf8_bin NOT NULL,
   `apellido_autor` varchar(30) COLLATE utf8_bin NOT NULL,
   `estado` varchar(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `autores`:
---
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `autores`
@@ -46,36 +40,31 @@ CREATE TABLE IF NOT EXISTS `autores` (
 INSERT INTO `autores` (`clave_autor`, `nombre_autor`, `apellido_autor`, `estado`) VALUES
 (1, 'jorge', 'bucay', 'ACTIVO'),
 (2, 'carlos Cuahuctemoc', 'sanchez', 'ACTIVO'),
-(3, 'vina', 'jackson', 'ACTIVO');
+(3, 'vina', 'jackson', 'ACTIVO'),
+(4, 'dante ', 'alighieri', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `clientes`
 --
--- Creación: 09-07-2015 a las 01:11:15
---
 
 CREATE TABLE IF NOT EXISTS `clientes` (
   `matricula` bigint(20) NOT NULL,
-  `empresa` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `nombre_contacto` varchar(20) COLLATE utf8_bin NOT NULL,
-  `apellido_paterno` varchar(30) COLLATE utf8_bin NOT NULL,
-  `apellido_materno` varchar(30) COLLATE utf8_bin NOT NULL,
-  `calle` varchar(15) COLLATE utf8_bin NOT NULL,
+  `empresa` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nombre_contacto` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `apellido_paterno` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `apellido_materno` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `calle` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `numero` int(11) NOT NULL,
-  `colonia` varchar(20) COLLATE utf8_bin NOT NULL,
-  `ciudad` varchar(30) COLLATE utf8_bin NOT NULL,
-  `estado` varchar(20) COLLATE utf8_bin NOT NULL,
+  `colonia` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ciudad` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `estado` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `telefono` int(11) NOT NULL,
   `celular` int(11) NOT NULL,
-  `email` varchar(30) COLLATE utf8_bin NOT NULL,
-  `status` char(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `clientes`:
---
+  `email` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `status` char(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -85,14 +74,14 @@ INSERT INTO `clientes` (`matricula`, `empresa`, `nombre_contacto`, `apellido_pat
 (1, '', 'cliente general', '', '', 'xx', 0, 'xx', 'xx', 'xx', 0, 0, 'null@null.com', 'ACTIVO'),
 (2, 'ed', 'de', 'de', 'de', 'ed', 3, 'de', 'ed', 'BAJA', 3, 3, 'swswsw', 'BAJA'),
 (3, 'fr', 'vfr', 'vr', 'vr', 'vr', 44444, 'frf', 'fffr', 'frfr', 2147483647, 2147483647, 'ejemplo@yo.com', 'ACTIVO'),
-(5, 'librerÃ­a del sol', 'luis', 'perez', 'oso', 'lejana', 22, 'de', 'culiacan', 'sinaloa', 2222, 222, 'ejemplo@yo.com', 'ACTIVO');
+(5, 'librerÃ­a del sol', 'luis', 'perez', 'oso', 'lejana', 22, 'de', 'culiacan', 'sinaloa', 2222, 222, 'ejemplo@yo.com', 'ACTIVO'),
+(6, 'libreria caracol', 'jorge', 'mendoza', 'lopez', 'muy lejana', 4040, 'mazatlan', 'mazatlan', 'sinaloa', 657154875, 657859545, 'caracol@gmail.com', 'ACTIVO'),
+(7, 'librerÃ­a mÃ©xico', 'rosa', 'osuna', 'lopez', 'grande', 1515, 'centro', 'los mochis', 'sinaloa', 2147483647, 2147483647, 'yo@gmail.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `compras`
---
--- Creación: 17-07-2015 a las 09:59:04
 --
 
 CREATE TABLE IF NOT EXISTS `compras` (
@@ -101,14 +90,6 @@ CREATE TABLE IF NOT EXISTS `compras` (
   `proveedor` bigint(20) NOT NULL,
   `total` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `compras`:
---   `proveedor`
---       `proveedores` -> `clave_proveedor`
---   `proveedor`
---       `proveedores` -> `clave_proveedor`
---
 
 --
 -- Volcado de datos para la tabla `compras`
@@ -122,8 +103,6 @@ INSERT INTO `compras` (`folio`, `fecha`, `proveedor`, `total`) VALUES
 --
 -- Estructura de tabla para la tabla `detalle_compra`
 --
--- Creación: 17-07-2015 a las 10:07:21
---
 
 CREATE TABLE IF NOT EXISTS `detalle_compra` (
   `folio` bigint(20) NOT NULL,
@@ -132,18 +111,6 @@ CREATE TABLE IF NOT EXISTS `detalle_compra` (
   `precio` decimal(10,2) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `detalle_compra`:
---   `clave_producto`
---       `productos` -> `clave_producto`
---   `folio`
---       `compras` -> `folio`
---   `folio`
---       `compras` -> `folio`
---   `clave_producto`
---       `productos` -> `clave_producto`
---
 
 --
 -- Volcado de datos para la tabla `detalle_compra`
@@ -168,8 +135,6 @@ DELIMITER ;
 --
 -- Estructura de tabla para la tabla `detalle_venta`
 --
--- Creación: 16-07-2015 a las 04:46:00
---
 
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
   `folio` bigint(20) NOT NULL,
@@ -180,18 +145,6 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- RELACIONES PARA LA TABLA `detalle_venta`:
---   `clave_producto`
---       `productos` -> `clave_producto`
---   `folio`
---       `ventas` -> `folio`
---   `folio`
---       `ventas` -> `folio`
---   `clave_producto`
---       `productos` -> `clave_producto`
---
-
---
 -- Volcado de datos para la tabla `detalle_venta`
 --
 
@@ -200,7 +153,9 @@ INSERT INTO `detalle_venta` (`folio`, `clave_producto`, `cantidad`, `precio`, `s
 (2015070001, 4, 2, '251.00', '502.00'),
 (2015070002, 3, 1, '200.00', '200.00'),
 (2015070002, 4, 2, '251.00', '502.00'),
-(2015070003, 3, 3, '200.00', '600.00');
+(2015070003, 3, 3, '200.00', '600.00'),
+(2015070007, 3, 1, '200.00', '200.00'),
+(2015070007, 5, 2, '50.00', '100.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -217,18 +172,12 @@ DELIMITER ;
 --
 -- Estructura de tabla para la tabla `editoriales`
 --
--- Creación: 13-07-2015 a las 08:53:16
---
 
 CREATE TABLE IF NOT EXISTS `editoriales` (
   `clave_editorial` bigint(20) NOT NULL,
   `nombre_editorial` varchar(30) COLLATE utf8_bin NOT NULL,
   `status` varchar(10) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `editoriales`:
---
 
 --
 -- Volcado de datos para la tabla `editoriales`
@@ -245,8 +194,6 @@ INSERT INTO `editoriales` (`clave_editorial`, `nombre_editorial`, `status`) VALU
 
 --
 -- Estructura de tabla para la tabla `empleados`
---
--- Creación: 09-07-2015 a las 09:48:40
 --
 
 CREATE TABLE IF NOT EXISTS `empleados` (
@@ -267,10 +214,6 @@ CREATE TABLE IF NOT EXISTS `empleados` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- RELACIONES PARA LA TABLA `empleados`:
---
-
---
 -- Volcado de datos para la tabla `empleados`
 --
 
@@ -284,8 +227,6 @@ INSERT INTO `empleados` (`matricula`, `nombre`, `apellido_paterno`, `apellido_ma
 --
 -- Estructura de tabla para la tabla `folios`
 --
--- Creación: 15-07-2015 a las 22:15:26
---
 
 CREATE TABLE IF NOT EXISTS `folios` (
   `id` bigint(20) NOT NULL,
@@ -295,15 +236,11 @@ CREATE TABLE IF NOT EXISTS `folios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- RELACIONES PARA LA TABLA `folios`:
---
-
---
 -- Volcado de datos para la tabla `folios`
 --
 
 INSERT INTO `folios` (`id`, `nombre`, `anio`, `consecutivo`) VALUES
-(1, 'ventas', 2015, 5),
+(1, 'ventas', 2015, 7),
 (4, 'compras', 2015, 1);
 
 -- --------------------------------------------------------
@@ -311,18 +248,12 @@ INSERT INTO `folios` (`id`, `nombre`, `anio`, `consecutivo`) VALUES
 --
 -- Estructura de tabla para la tabla `generos`
 --
--- Creación: 13-07-2015 a las 08:29:27
---
 
 CREATE TABLE IF NOT EXISTS `generos` (
   `clave_genero` bigint(20) NOT NULL,
   `nombre_genero` varchar(20) COLLATE utf8_bin NOT NULL,
   `status` char(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `generos`:
---
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `generos`
@@ -330,14 +261,14 @@ CREATE TABLE IF NOT EXISTS `generos` (
 
 INSERT INTO `generos` (`clave_genero`, `nombre_genero`, `status`) VALUES
 (1, 'romance', 'ACTIVO'),
-(2, 'terror', 'ACTIVO');
+(2, 'terror', 'ACTIVO'),
+(3, 'ClÃ¡sico literario', 'ACTIVO'),
+(4, 'comedia', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `libros`
---
--- Creación: 16-07-2015 a las 06:52:52
 --
 
 CREATE TABLE IF NOT EXISTS `libros` (
@@ -350,38 +281,23 @@ CREATE TABLE IF NOT EXISTS `libros` (
   `pag` int(11) NOT NULL,
   `descripcion` varchar(500) COLLATE utf8_bin DEFAULT NULL,
   `status` char(15) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `libros`:
---   `autor`
---       `autores` -> `clave_autor`
---   `editorial`
---       `editoriales` -> `clave_editorial`
---   `genero`
---       `generos` -> `clave_genero`
---   `autor`
---       `autores` -> `clave_autor`
---   `editorial`
---       `editoriales` -> `clave_editorial`
---   `genero`
---       `generos` -> `clave_genero`
---
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `libros`
 --
 
 INSERT INTO `libros` (`clave_libro`, `nombre_libro`, `isbn`, `genero`, `autor`, `editorial`, `pag`, `descripcion`, `status`) VALUES
-(1, 'dvv', 'vdv', 2, 1, 1, 33, 'corto', 'DISPONIBLE'),
-(2, 'ochenta melodÃ­as de pasiÃ³n en amarillo', '9786074009811', 1, 3, 2, 335, 'Summer es una joven violinista que ansia vivir emociones fuertes y se aburre en una relaciÃ³n que no la satisface. Entonces aparece Dominik, una atractivo y enigmÃ¡tico profesor de literatura que, fascinado por el talento  musical de Summer, se ofrece a regalarle un nuevo violÃ­n a cambio de que ella toque en privado para Ã©l', 'DISPONIBLE');
+(1, 'el camino largo', '15141545', 3, 2, 2, 33, 'vida diaria de un poeta', 'DISPONIBLE'),
+(2, 'ochenta melodÃ­as de pasiÃ³n en amarillo', '9786074009811', 1, 3, 2, 335, 'Summer es una joven violinista que ansia vivir emociones fuertes y se aburre en una relaciÃ³n que no la satisface. Entonces aparece Dominik, una atractivo y enigmÃ¡tico profesor de literatura que, fascinado por el talento  musical de Summer, se ofrece a regalarle un nuevo violÃ­n a cambio de que ella toque en privado para Ã©l', 'DISPONIBLE'),
+(3, 'la divina comedia infierno', '9706667253', 3, 4, 1, 272, 'la divina comedia una gran obra de la literatura medieval', 'DISPONIBLE'),
+(4, 'la divina comedia purgatorio', '98758154871', 3, 4, 1, 280, 'continuaciÃ³n de la divina comedia infierno', 'DISPONIBLE'),
+(6, 'la divina comedia paraiso', '15148725666', 3, 4, 1, 300, 'ultimo libro de la saga', 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `productos`
---
--- Creación: 13-07-2015 a las 09:59:47
 --
 
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -394,45 +310,21 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `compra` decimal(10,0) NOT NULL,
   `venta` decimal(10,0) NOT NULL,
   `status` varchar(15) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `productos`:
---   `nombre_producto`
---       `libros` -> `clave_libro`
---   `proveedor`
---       `proveedores` -> `clave_proveedor`
---   `nombre_producto`
---       `libros` -> `clave_libro`
---   `proveedor`
---       `proveedores` -> `clave_proveedor`
---
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`clave_producto`, `nombre_producto`, `proveedor`, `codigo_proveedor`, `cantidad_actual`, `cantidad_minima`, `compra`, `venta`, `status`) VALUES
-(3, 1, 2, 1515, 2, 1, '150', '200', 'DISPONIBLE'),
-(4, 2, 3, 151515, 2, 1, '200', '251', 'DISPONIBLE');
-
---
--- Disparadores `productos`
---
-DELIMITER $$
-CREATE TRIGGER `pro_baja` AFTER UPDATE ON `productos`
- FOR EACH ROW UPDATE productos set new.status = 'AGOTADO' 
-WHERE clave_producto = new.clave_producto and 
-	  cantidad_Actual = 0
-$$
-DELIMITER ;
+(3, 1, 2, 1515, 4, 1, '150', '200', 'DISPONIBLE'),
+(4, 2, 3, 151515, 6, 1, '200', '251', 'DISPONIBLE'),
+(5, 3, 5, 302530, 2, 1, '30', '50', 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `proveedores`
---
--- Creación: 08-07-2015 a las 07:45:47
 --
 
 CREATE TABLE IF NOT EXISTS `proveedores` (
@@ -450,11 +342,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `celular` char(10) COLLATE utf8_bin NOT NULL,
   `email` varchar(20) COLLATE utf8_bin NOT NULL,
   `status` char(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `proveedores`:
---
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -462,15 +350,14 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
 
 INSERT INTO `proveedores` (`clave_proveedor`, `nombre`, `contacto`, `observaciones`, `calle`, `num_ext`, `num_int`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `email`, `status`) VALUES
 (2, 'rsoft', 'hector lopez', 'ventas', 'lejana', 44444, 44, 'muy lejos', 'grande', 'sinaloa', '4333434343', '4343434343', 'ejemplo@yo.com', 'ACTIVO'),
-(3, 'oceano', 'cewe', 'eccewec', 'ceceec', 33333, 33333, 'cecece', 'cececeec', 'ceecec', '3333333333', '3333333333', 'ejemplo@yo.com', 'ACTIVO'),
-(4, 'ecwewccew', 'cececeecw', 'cewceecwecwecw', 'ecceece', 33, 3333, 'ceceecec', 'ceceececw', 'ecwecc', '3333333333', '3323223332', 'ejemplo@yo.com', 'ACTIVO');
+(3, 'oceano', 'juan perez', 'eccewec', 'ceceec', 33333, 33333, 'cecece', 'cececeec', 'ceecec', '3333333333', '3333333333', 'ejemplo@yo.com', 'ACTIVO'),
+(4, 'ecwewccew', 'cececeecw', 'cewceecwecwecw', 'ecceece', 33, 3333, 'ceceecec', 'ceceececw', 'ecwecc', '3333333333', '3323223332', 'ejemplo@yo.com', 'ACTIVO'),
+(5, 'tomo sa de cv', 'jorge lopez', 'editorial tomo', 'nicolÃ¡s san ju', 1043, 1043, 'del valle', 'd f', 'd f', '55756615', '55750186', 'tomo@gmail.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
---
--- Creación: 10-07-2015 a las 21:52:01
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -480,14 +367,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `status` varchar(10) COLLATE utf8_bin NOT NULL,
   `fecha_creacion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `usuarios`:
---   `matricula`
---       `empleados` -> `matricula`
---   `matricula`
---       `empleados` -> `matricula`
---
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -501,37 +380,25 @@ INSERT INTO `usuarios` (`matricula`, `nombre_usuario`, `password`, `status`, `fe
 --
 -- Estructura de tabla para la tabla `ventas`
 --
--- Creación: 16-07-2015 a las 04:45:12
---
 
 CREATE TABLE IF NOT EXISTS `ventas` (
   `folio` bigint(20) NOT NULL,
   `fecha` date NOT NULL,
   `empleado` bigint(20) NOT NULL,
   `cliente` bigint(20) NOT NULL,
-  `total` decimal(10,2) NOT NULL
+  `total` decimal(10,2) NOT NULL,
+  `status` char(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- RELACIONES PARA LA TABLA `ventas`:
---   `cliente`
---       `clientes` -> `matricula`
---   `empleado`
---       `empleados` -> `matricula`
---   `cliente`
---       `clientes` -> `matricula`
---   `empleado`
---       `empleados` -> `matricula`
---
 
 --
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`folio`, `fecha`, `empleado`, `cliente`, `total`) VALUES
-(2015070001, '2015-07-16', 1, 1, '702.00'),
-(2015070002, '2015-07-16', 1, 1, '702.00'),
-(2015070003, '2015-07-16', 2, 1, '600.00');
+INSERT INTO `ventas` (`folio`, `fecha`, `empleado`, `cliente`, `total`, `status`) VALUES
+(2015070001, '2015-07-16', 1, 1, '702.00', 'CANCELADA'),
+(2015070002, '2015-07-16', 1, 1, '702.00', 'CANCELADA'),
+(2015070003, '2015-07-16', 2, 1, '600.00', 'PAGADO'),
+(2015070007, '2015-07-22', 1, 1, '300.00', 'CANCELADA');
 
 --
 -- Índices para tablas volcadas
@@ -629,12 +496,12 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `clave_autor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `clave_autor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `editoriales`
 --
@@ -654,22 +521,22 @@ ALTER TABLE `folios`
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `clave_genero` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `clave_genero` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `clave_libro` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `clave_libro` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `clave_proveedor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `clave_proveedor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
