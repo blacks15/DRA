@@ -12,12 +12,12 @@ $(document).ready(function(){
 				colModel:[
 					{name:'clave_producto', index:'clave_producto', width:90, resizable:false, align:"center",search:false,key:true},
 					{name:'nombre_libro', index:'nombre_libro', width:370,resizable:false,search:true},
-                    {name:'proveedor', index:'proveedor', width:200,search:true},
-                	{name:'codigo_proveedor', index:'codigo_proveedor', width:250,search:true},
-                	{name:'cantidad_actual', index:'cantidad_actual', width:250,search:false, align:"center"},
-                    {name:'cantidad_minima', index:'cantidad_minima',search:false, width:230, align:"center"},
-                    {name:'precio_venta', index:'precio_venta',formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','},search:false, width:180, align:"center"},
-                    {name:'status', index:'status',search:false, width:180},
+          {name:'nombre', index:'nombre', width:200,search:true},
+          {name:'codigo_proveedor', index:'codigo_proveedor', width:250,search:true},
+          {name:'cantidad_actual', index:'cantidad_actual', width:250,search:false, align:"center"},
+          {name:'cantidad_minima', index:'cantidad_minima',search:false, width:230, align:"center"},
+          {name:'precio_venta', index:'precio_venta',formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','},search:false, width:180, align:"center"},
+          {name:'status', index:'status',search:false, width:180},
 				],
 				height: "100%",
 				autowidth: true,
@@ -66,10 +66,11 @@ $(document).ready(function(){
             newWidth = $grid.closest(".ui-jqgrid").parent().width();
         $grid.jqGrid("setGridWidth", newWidth, true);
          });
+
      jQuery("#productos").jqGrid("filterToolbar");
 
         function borrar(){
-            var matricula = $("#productos").jqGrid('getGridParam','selrow'); 
+            var clave_producto = $("#productos").jqGrid('getGridParam','selrow'); 
  
             if( matricula == null ){
                 $("#war").dialog({

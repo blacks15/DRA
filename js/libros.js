@@ -177,6 +177,11 @@ $(document).ready(function (){
 		});
 	});
 
+	$("#reset").click(function(){
+		$("#btnsave").show();
+		$("#btnUpdate").hide();
+	});
+
 	function validar(){
 		ocultar();
 		var name = $("#nombre").val();

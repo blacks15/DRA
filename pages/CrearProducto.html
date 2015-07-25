@@ -21,8 +21,8 @@
     <div class="control-group info">
     <form name="form1" method="post" action="">
     	<div class="input-append">
-   			 <input class="span2" id="ccodigo" name="ccodigo" type="text" placeholder="Codigo del Articulo">
-    	 	 <button class="btn" type="button">Confirmar Codigo</button>
+   			 <input class="span2" id="bu" name="bu" type="text" placeholder="Codigo del Articulo">
+    	 	 <button class="btn" type="button" id="btnbus">Confirmar Código</button>
    		</div>
      </form>
      </div>
@@ -66,27 +66,19 @@
                 </div> 
             <button type="button" id="btnSave" class="btn btn-primary">Agregar</button>
             <button type="button" id="btnUpdate" class="btn btn-primary">Modificar</button>
-            <button type="reset" class="btn">Cancelar</button>
+            <button type="reset" class="btn" id="reset">Cancelar</button>
             <button id="bus" class="btn" type="button"><span class="ui-icon ui-icon-search "></span></button>
         </td>
     	<td width="28%">            
-            <label>Cantidad Actual: </label>
-            <input type="number" class="input-small" name="cantidad" id="cantidad" value="" required >
-             <div class="ui-widget" id="errorcac">
+            <label>Cantidad Minima: </label>
+            <input type="number" class="input-small" name="minimo" id="minimo" value="" required >
+             <div class="ui-widget" id="errorcmin">
                   <div class="ui-corner-all" style="padding: 0 .2em;">
                     <p>
-                      <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR LA CANTIDAD ACTUAL.
+                      <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR LA CANTIDAD MINIMA.
                     </p>
                   </div>
                 </div>
-            <label>Cantidad Minima: </label>
-            <input type="number" name="minimo" class="input-small" id="minimo" value="" >
-            <div class="ui-widget" id="errorcmin">
-              <div class="ui-corner-all" style="padding: 0 .2em;">
-                <p>
-                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CANTIDAD MINIMA.
-                </p>
-              </div>
             </div>
              <label>Precio Compra: </label>
             <div class="input-prepend input-append">
@@ -138,6 +130,11 @@
         <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Error al Guardar Producto.</strong></center>
       </div>
+      <div class="" id="nu" title="Advertencia">
+        <span class="ui-icon ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Error al Actualizar el Producto.</strong></center>
+      </div>
+  </div>
            </td> 
         </tr>
     </form>
