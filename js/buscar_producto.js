@@ -22,29 +22,24 @@ $(document).ready(function(){
 				height: "100%",
 				autowidth: true,
 				pager: '#pager2',
-	            rowNum:10,
-    	        rowList:[10,20],
-        	    sortname: 'clave_producto',
-                sortorder: 'desc',
-                viewrecords: true,
-                caption: 'PRODUCTOS',
-                altRows: true,
-                pagination:true,
-                loadComplete: function(data){
-                    var ids = $(this).jqGrid("getDataIDs"), l = ids.length, i, rowid, status;
-                    for (i = 0; i < l; i++) {
-                    rowid = ids[i];
-                // get data from some column "ColumnName"
-                    var ColumnName= $(this).jqGrid("getCell", rowid, "cantidad_actual");
-                // or get data from some 
-                //var rowData = $(this).jqGrid("getRowData', rowid);
-
-                // now you can set css on the row with some
-                    if (ColumnName < 2) {
-                         $("#productos").jqGrid('setRowData',rowid,false, {  color:'white',weightfont:'bold',background:'red'});   
-                     }
-                 }
-                },
+	      rowNum:10,
+    	  rowList:[10,20],
+        sortname: 'clave_producto',
+        sortorder: 'desc',
+        viewrecords: true,
+        caption: 'PRODUCTOS',
+        altRows: true,
+        gridview : true,
+        pagination:true,
+        loadComplete: function(data){
+            var rowIds = $('#productos').jqGrid('getDataIDs');
+             for (i = 0; i < rowIds.length; i++) { 
+             rowData = $('#productos').jqGrid('getRowData', rowIds[i]);
+             if (rowData['cantidad_actual']  < 3) {
+               $(this).jqGrid('setRowData', rowIds[i], false, {color:'white','background':'#ff0000',});
+             } 
+          } 
+        },
         });
 	jQuery("#productos").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
          {height:280,reloadAfterSubmit:true},//opciones edit
