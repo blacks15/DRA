@@ -25,7 +25,7 @@
 					<div class="ui-widget" id="errorcod">
 		              <div class="ui-corner-all" style="padding: 0 .2em;">
 		                <p>
-		                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA MATRICULA.
+		                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA MATRICULA.
 		                </p>
 		              </div>
             		</div>
@@ -34,27 +34,26 @@
 		       		<div class="ui-widget" id="nodisp">
 		              <div class="ui-corner-all" style="padding: 0 .2em;">
 		                <p>
-		                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>EL USUARIO NO ESTA DISPONIBLE.
+		                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>EL USUARIO NO ESTA DISPONIBLE.
 		                </p>
 		              </div>
             		</div>
             		<div id="disp" class="ui-widget">
             		   <div class="ui-corner-all" style="padding: 0 .2em;">
 		                <p>
-		                  <span class="ui-icon ui-icon-circle-check"></span>USUARIO DISPONIBLE.
+		                  <span class="ui-icon-blue ui-icon-circle-check"></span>USUARIO DISPONIBLE.
 		                </p>
 		              </div>
             		</div>
 		       		 <div class="ui-widget" id="errornom">
 		              <div class="ui-corner-all" style="padding: 0 .2em;">
 		                <p>
-		                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CUENTA DE USUARIO.
+		                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UNA CUENTA DE USUARIO.
 		                </p>
 		              </div>
             		</div>
             		<br>
             		<button class="btn btn-primary" type="button" id="btnSave">Agregar</button>
-           			<button class="btn btn-primary" type="button" id="btnUpdate">Modificar</button>
            			<button id="bus" class="btn" type="button"><span class="ui-icon ui-icon-search "></span></button>
 					</td>
 					<td>
@@ -72,12 +71,12 @@
 			        <div class="ui-widget" id="errorrpass">
 		              <div class="ui-corner-all" style="padding: 0 .2em;">
 		                <p>
-		                  <span class="ui-icon ui-icon-alert"></span><strong>ERROR: </strong>DEBE REPETIR LA CONTRASEÑA.
+		                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE REPETIR LA CONTRASEÑA.
 		                </p>
 		              </div>
 		            </div>
 		              <div class="" id="errornopass" title="Advertencia">
-				        <span class="ui-icon ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
+				        <span class="ui-icon-red ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
 				        <center><strong>Las Contraseñas no Coinciden.</strong></center>
 				      </div>
 				      <input type="hidden" id="status" name="status">
@@ -88,19 +87,19 @@
 		</fieldset>
 	</div>
 	<div class="" id="mensajealta" title="Información Guardada">
-        <span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+        <span class="ui-icon-blue ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
     	<center> <strong>Usuario Guardado con Exito</strong></center>
     </div>
     <div class="" id="error" title="Advertencia">
-        <span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+        <span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Debe Llenar Todos los Campos.</strong></center>
     </div>
 	<div class="" id="ng" title="Advertencia">
-		<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+		<span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
 		<center><strong>Error al Guardar Usuario.</strong></center>
 	</div>
 	<div class="" id="numeros" title="Advertencia">
-		<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+		<span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
 		<center><strong>Solo se Permiten Números.</strong></center>
 	</div>
     <script src="../js/jquery.js"></script>

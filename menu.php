@@ -13,10 +13,13 @@
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <div align="center">
-<table width="80%" border="0">
+<table width="80%" border="1">
   <tr>
     <td>
     <div id="navbar-example" class="navbar navbar-static">
+        <figure>
+          <img src="img/libro.jpg" width="60" height="74">
+        </figure>
       <div class="navbar-inner">
         <div class="container" style="width: auto;">
           <ul class="nav" role="navigation">
@@ -106,15 +109,6 @@
                 Listado de Productos</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFestado_inventario.php" target="admin"><i class="icon-th-list"></i> 
                 Estado de Inventario</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav pull-right">
-            <li id="fat-menu" class="dropdown">
-              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><label class="input-mini" id="uname"></label> <b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="php_cerrar.php"><i class="icon-off"></i>Salir</a></li>
               </ul>
             </li>
           </ul>
