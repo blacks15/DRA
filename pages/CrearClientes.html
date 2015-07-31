@@ -18,8 +18,16 @@
 				</tr>
 				<tr>
 				<td>
-				<label for="textfield">Código:</label>
-				<input type="text" name="codigo" id="codigo" autocomplete="off" readonly="true">
+				<label for="textfield">RFC:</label>
+				<input type="text" class="input-medium " name="rfc" id="rfc" autocomplete="off" required maxlength="13">
+       			 <div class="ui-widget" id="errorrfc">
+	              <div class="ui-corner-all" style="padding: 0 .2em;">
+	                <p>
+	                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR EL RFC.
+	                </p>
+	              </div>
+	            </div>
+				<input type="hidden" name="codigo" id="codigo" autocomplete="off" readonly="true">
   				<label for="textfield">Empresa:</label>
 	   			<input type="text" class="input-medium letras" name="empresa" id="empresa" autocomplete="off" required maxlength="30">
 				<label for="textfield">Nombre Contacto:</label>

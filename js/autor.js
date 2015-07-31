@@ -209,8 +209,8 @@ $(document).ready(function(){
 				ob = JSON.parse(res);
 			//ASGINAMOS VALORES A LOS INPUTS
 				$("#codigo").val(ob.clave_autor);
-				$("#nombre").val(ob.firstname_autor);
-				$("#apellido").val(ob.lastname_autor);
+				$("#nombre").val(ob.nombre_autor);
+				$("#apellido").val(ob.apellido_autor);
 				$("#status").val(ob.estado);
 			//OCULTAMOS BOTON GUARDAR Y MOSTRAMOS MODIFICAR
 				$("#btnUpdate").show();

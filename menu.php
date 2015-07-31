@@ -92,22 +92,22 @@
               <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
               <ul class="dropdown-menu">
               <li>
-                <a href="#" class="trigger right-caret"><i class="icon-user"></i> Usuarios</a>
+                <a href="#" class="trigger right-caret"><i class="icon-user"></i>Empleados</a>
                   <ul class="dropdown-menu sub-menu">
-                    <li><a href="#"><i class="icon-th-list"></i> Lista de Usurios</a></li>
+                    <li><a role="menuitem" tabindex="-1" target="admin" href="php/rptlistado_empleados.php"><i class="icon-th-list"></i> Lista de Empleados</a></li>
                   </ul>
               </li>
               <li>
-                <a href="#" class="trigger right-caret"><i class="icon-old-man"></i>Clientes</a>
+                <a href="#" class="trigger right-caret"><i class="icon-user"></i>Clientes</a>
                   <ul class="dropdown-menu sub-menu">
-                    <li><a href="php/reporte_cliente.php"><i class="icon-th-list"></i> Lista de Clientes</a></li>
+                    <li><a role="menuitem" tabindex="-1" target="admin" href="php/rptlistado_cliente.php"><i class="icon-th-list"></i>Lista de Clientes</a></li>
                   </ul>
               </li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFproveedores.php" target="admin"><i class="icon-th-list"></i> 
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="php/rptlistado_proveedores.php" target="admin"><i class="icon-th-list"></i> 
                 Listados de Proveedores</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFproducto.php" target="admin"><i class="icon-th-list"></i> 
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="php/rptlistado_productos.php" target="admin"><i class="icon-th-list"></i> 
                 Listado de Productos</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="PDFestado_inventario.php" target="admin"><i class="icon-th-list"></i> 
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="php/rptestado_producto.php" target="admin"><i class="icon-th-list"></i> 
                 Estado de Inventario</a></li>
               </ul>
             </li>

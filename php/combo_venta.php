@@ -24,10 +24,10 @@
 	}
 	function mostrar_cliente(){
 			global $opciones;
-			$consulta = "select matricula,concat(nombre_contacto,' ',apellido_paterno) as nombre from clientes where status = 'ACTIVO'";
+			$consulta = "select matricula,empresa from clientes where status = 'ACTIVO'";
 			$resultado = mysql_query($consulta) or die(mysql_error());
 			 while ($fila = mysql_fetch_array($resultado)) {
-			 	$opcion_cliente .= '<option value = "'.$fila["matricula"].'">'.$fila["nombre"].'</option>';
+			 	$opcion_cliente .= '<option value = "'.$fila["matricula"].'">'.$fila["empresa"].'</option>';
 			 }
 			 mysql_free_result($resultado);
 			 $opciones->opcion_cliente = $opcion_cliente;

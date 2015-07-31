@@ -72,7 +72,7 @@
 				}
 			}
 			//CREAMOS EL CONSECUTIVO SINO EXISTE Y SI EXISTE SE LE INCREMENTA UNO
-		$tfolio = "select * from folios where nombre = 'ventas' and anio = '".date('Y')."' ";
+		$tfolio = "select consecutivo from folios where nombre = 'ventas' and anio = '".date('Y')."' ";
 		$r = mysql_query($tfolio) or die(mysql_errno());
 		if (mysql_num_rows($r) == 0) {
 			$folios = "insert into folios (nombre,anio,consecutivo) values('ventas','".date('Y')."',1) ";
@@ -83,17 +83,15 @@
               }
               $folio.= $con;
 		} else {
-			while($row = mysql_fetch_array($r)){
-                    $respuesta = $row['consecutivo'];
+			while($rows = mysql_fetch_array($r)){
+                    $respuesta = $rows['consecutivo'];
               }
-              if ($respuesta['consecutivo'] > 0) {
-              	$respuesta['consecutivo'] = $respuesta['consecutivo'] + 1;
+              	$respuesta = $respuesta + 1;
               	$uf = "update folios set consecutivo = '".$respuesta."' where nombre = 'ventas' and anio = '".date('Y')."' ";
               	mysql_query($uf) or die(mysql_error());
               	$folio.= $respuesta;
-              }
 		}
-			//SE RECIBE LA FECHA Y SE DA FORMATO MYSQL Y SE HACE LA INSERCION DE VENTA
+		 	//SE RECIBE LA FECHA Y SE DA FORMATO MYSQL Y SE HACE LA INSERCION DE VENTA
 		$date = trim($_POST['date']);
 		$fecha = date('Y-m-d',strtotime($date));
 		$status = 'PAGADA';
@@ -119,7 +117,8 @@
 				mysql_query($t)or die(mysql_error());
 				if ($resultado == true) {
 					$res = true;
-					$salidaJSON = array('respuesta' => $res );
+					$salidaJSON = array('respuesta' => $res, 
+										'folio'=>$vfolio);
 					print json_encode($salidaJSON);
 				} else {
 					$fallo = true;

@@ -17,9 +17,8 @@
 	<div id="login" class="animate form">
 	 <form action=""method="post">
 		<h2>Iniciar Sesión</h2>
-		<figure>
-			<img src="css/img/user.jpg" width="100" height="100">
-		</figure>
+			<img src="css/img/user.jpg" id="logo" width="100" height="100">
+			<br>
 		<input type="text" class="input-text" id="usuario" name="usuario" placeholder="Usuario" required>
 		<div class="ui-widget" id="errornom">
 	    	<div class="ui-corner-all" style="padding: 0 .2em;">

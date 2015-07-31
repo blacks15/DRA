@@ -72,31 +72,31 @@ $(document).ready(function(){
 
     jQuery("#autores").jqGrid("filterToolbar");
 
-            function modificar(){
-                var id_tipo = $("#autores").jqGrid('getGridParam','selrow'); 
+    function modificar(){
+        var id_tipo = $("#autores").jqGrid('getGridParam','selrow'); 
 
-                if( id_tipo == null ){
-                        $("#war").dialog({
-                            modal: true,
-                            width: 270,
-                            height: 170,
-                            show: {effect : "fold" ,duration: 300},
-                            hide: {effect : "explode", duration: 300},
-                            resizable: "false",
-                            buttons: { "OK": function () { $(this).dialog("close"); } },   
-                        });
-                } else {
-                //LIMPIAMOS LA SESSION
-                    sessionStorage.clear();
-                //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE
-                    var data = $("#autores").getRowData(id_tipo);
-                //CONVERTIMOS A JSON 
-                    sessionStorage.autor = JSON.stringify(data);
-                //ENVIAMOS LA INFORMACION 
-                    window.location.href = "CrearAutor.html";
-                }
-                return false;
-        }
+        if( id_tipo == null ){
+            $("#war").dialog({
+                modal: true,
+                width: 270,
+                height: 170,
+                show: {effect : "fold" ,duration: 300},
+                hide: {effect : "explode", duration: 300},
+                resizable: "false",
+                buttons: { "OK": function () { $(this).dialog("close"); } },   
+            });
+            } else {
+            //LIMPIAMOS LA SESSION
+                sessionStorage.clear();
+            //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE
+                var data = $("#autores").getRowData(id_tipo);
+            //CONVERTIMOS A JSON 
+                sessionStorage.autor = JSON.stringify(data);
+            //ENVIAMOS LA INFORMACION 
+                window.location.href = "CrearAutor.html";
+            }
+            return false;
+    }
 
         function borrar(){
             var clave_autor = $("#autores").jqGrid('getGridParam','selrow'); 

@@ -25,6 +25,7 @@
 	function guardar_cliente(){
 		//RECIBIMOS EL SERIALIZE() Y LO ASIGNAMOS A VARIABLES
 		parse_str($_POST["cadena"], $_POST);
+		$rfc = trim($_POST['rfc']);
 		$empresa = trim($_POST['empresa']);
 		$nombre = trim($_POST['nombre']);
 		$apaterno = trim($_POST['apaterno']);
@@ -48,9 +49,9 @@
 	 		print (json_encode($existeJson));
 	 	} else {
 				//GENERAMOS LA CONSULTA
-			$consulta = "insert into clientes (empresa,nombre_contacto,apellido_paterno,apellido_materno,
+			$consulta = "insert into clientes (rfc,empresa,nombre_contacto,apellido_paterno,apellido_materno,
 					calle,numero,colonia,ciudad,estado,telefono,celular,email,status) values 
-					('".$empresa."','".$nombre."','".$apaterno."','".$amaterno."','".$calle."','".$num."',
+					('".$rfc."','".$empresa."','".$nombre."','".$apaterno."','".$amaterno."','".$calle."','".$num."',
 					'".$col."','".$city."','".$edo."','".$tel."','".$cel."','".$email."','".$status."')";
 				//EJECUTAMOS LA CONSULTA
 			$resultado = mysql_query($consulta) or die(mysql_error());
@@ -88,6 +89,7 @@
   		//RECIBIMOS EL SERIALIZE() Y LO ASIGNAMOS A VARIABLES
 		parse_str($_POST["cadena"], $_POST);
 		$codigo = trim($_POST['codigo']);
+		$rfc = trim($_POST['rfc']);
 		$empresa = trim($_POST['empresa']);
 		$nombre = trim($_POST['nombre']);
 		$apaterno = trim($_POST['apaterno']);
@@ -100,9 +102,9 @@
 		$tel = trim($_POST['telefono']);
 		$cel = trim($_POST['celular']);
 		$email = trim($_POST['correo']);
-		$status = trim($_POST['status']);
+		$status = 'ACTIVO';
 			//GENERAMOS LA CONSULTA
-		$consulta = "update clientes set matricula = '".$codigo."',empresa = '".$empresa."',
+		$consulta = "update clientes set matricula = '".$codigo."',rfc = '".$rfc."',empresa = '".$empresa."',
 		nombre_contacto = '".$nombre."',apellido_paterno = '".$apaterno."',apellido_materno = '".$amaterno."',
 		calle = '".$calle."',numero = '".$num."',colonia = '".$col."',ciudad = '".$city."',
 		estado = '".$edo."',telefono = '".$tel."',celular = '".$cel."',email = '".$email."',

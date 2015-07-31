@@ -19,7 +19,8 @@ $(document).ready(function(){
 				url: "../php/venta.php",
 				data: {opc:"guardar_venta", user: user, date: date,cliente: cliente,detalle  },
 				success: function(response){
-					if(response.respuesta == true){				
+					if(response.respuesta == true){		
+						$("#mensajealta").append('¿Desear Imprimir?');
 						$("#mensajealta").dialog({
 							modal: true,
 				            width: 270,
@@ -27,7 +28,11 @@ $(document).ready(function(){
 				            show: {effect : "fold", duration: 300},
 				            hide: {effect : "explode", duration: 300},
 				            resizable: "false",
-				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				            buttons: { "Si": function () {
+				            	window.location.href = "../php/rptventa.php?folio="+response.folio;
+				            },
+				            No: function() {$( this ).dialog( "close" );
+                  } },   
 				        });
 				        $("#ventas").jqGrid("clearGridData", true).trigger("reloadGrid");
 						limpiar();
@@ -168,10 +173,11 @@ $(document).ready(function(){
         var $grid = $("#ventas"),
             newWidth = $grid.closest(".ui-jqgrid").parent().width();
         $grid.jqGrid("setGridWidth", newWidth, true);
-         });
+    });
+
 	$("#date").datepicker({
 			dateFormat: "dd-M-yy"
-		});
+	});
 	$("#date").datepicker('setDate', '+0');
 
 	 $('#mas').click(function(){

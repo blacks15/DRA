@@ -62,6 +62,14 @@ $(document).ready(function(){
                         borrar();
                 } 
         }); 
+        $("#editoriales").jqGrid('navButtonAdd','#pager2',{
+            caption: "", 
+            autowidth: true,
+            buttonicon :'ui-icon-print',
+            onClickButton : function (){ 
+                    printer();
+            } 
+        }); 
 
         $(window).on("resize", function () {
             var $grid = $("#editoriales"),
@@ -96,6 +104,23 @@ $(document).ready(function(){
                 }
                 return false;
         }
+    function printer(){
+      var folio = $("#editoriales").jqGrid('getGridParam','selrow'); 
+      if( folio == null ){
+              $("#war").dialog({
+                  modal: true,
+                  width: 270,
+                  height: 170,
+                  show: {effect : "fold" ,duration: 300},
+                  hide: {effect : "explode", duration: 300},
+                  resizable: "false",
+                  buttons: { "OK": function () { $(this).dialog("close"); } },   
+              });
+      } else {
+          window.location.href = "../php/rpteditorial_libro.php?folio="+folio;
+      }
+      return false;
+  }
 
     function borrar(){
         var clave_editorial = $("#editoriales").jqGrid('getGridParam','selrow'); 

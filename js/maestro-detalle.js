@@ -54,6 +54,15 @@ $(document).ready(function(){
         } 
     }); 
 
+    $("#ventas").jqGrid('navButtonAdd','#pager',{
+        caption: "", 
+        autowidth: true,
+        buttonicon :'ui-icon-print',
+        onClickButton : function (){ 
+                printer();
+        } 
+    }); 
+
    $(window).on("resize", function () {
       var $grid = $("#ventas"),
           newWidth = $grid.closest(".ui-jqgrid").parent().width();
@@ -89,6 +98,24 @@ $(document).ready(function(){
       $grid.jqGrid("setGridWidth", newWidth, true);
     });
 
+    function printer(){
+      var folio = $("#ventas").jqGrid('getGridParam','selrow'); 
+      if( folio == null ){
+              $("#war").dialog({
+                  modal: true,
+                  width: 270,
+                  height: 170,
+                  show: {effect : "fold" ,duration: 300},
+                  hide: {effect : "explode", duration: 300},
+                  resizable: "false",
+                  buttons: { "OK": function () { $(this).dialog("close"); } },   
+              });
+      } else {
+          window.location.href = "../php/rptventa.php?folio="+folio;
+      }
+      return false;
+  }
+
   function borrar(){
     var folio = $("#ventas").jqGrid('getGridParam','selrow'); 
 
@@ -119,7 +146,6 @@ $(document).ready(function(){
                       data: {opc:"cancelar_venta", folio:folio},
                       success: function(response)  {
                           if(response.respuesta == true)  {
-                            $("#mensajealta").append(response.folio);
                              $("#mensajealta").dialog({
                                   modal: true,
                                   width: 270,
@@ -149,6 +175,7 @@ $(document).ready(function(){
                    });
                       $( this ).dialog( "close" );
                       $("#ventas").trigger('reloadGrid');
+                      $("#dv").trigger('reloadGrid');
                   },
                   Cancelar: function() {
                     $( this ).dialog( "close" );

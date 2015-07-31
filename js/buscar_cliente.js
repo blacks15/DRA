@@ -8,9 +8,10 @@ $(document).ready(function(){
 			url:'../php/buscar_clientes.php',
 			datatype: 'json',
 			mtype: 'POST',
-			colNames:['ID','EMPRESA','CONTACTO','A. PATERNO','A. MATERNO','CALLE','NÚM','COLONIA','CIUDAD','ESTADO','TELÉFONO','CELULAR','EMAIL','STATUS'],
+			colNames:['ID','RFC','EMPRESA','CONTACTO','A. PATERNO','A. MATERNO','CALLE','NÚM','COLONIA','CIUDAD','ESTADO','TELÉFONO','CELULAR','EMAIL'],
 			colModel:[
 				{name:'matricula', index:'matricula', width:100, resizable:false, align:"center",search:false,key:true},
+                {name:'rfc', index:'rfc', width:270,resizable:false,search:true},
 				{name:'empresa', index:'empresa', width:270,resizable:false,search:true},
             	{name:'nombre_contacto', index:'nombre_contacto', width:220,search:true},
             	{name:'apellido_paterno', index:'apellido_paterno', width:200,search:false},
@@ -23,7 +24,6 @@ $(document).ready(function(){
                 {name:'telefono', index:'telefono',search:false, width:200},
                 {name:'celular', index:'celular',search:false, width:200},
             	{name:'email', index:'email', width:250,search:false},
-                {name:'status', index:'status', width:170,search:false}
 			],
 			height: "100%",
 			autowidth: true,

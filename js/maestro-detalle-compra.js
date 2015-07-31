@@ -38,13 +38,22 @@ $(document).ready(function(){
     }
   });
 
-  jQuery("#compras").jqGrid('navGrid','#pager',{add:false,edit:false,del:false});
+  jQuery("#compras").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false});
 
    $(window).on("resize", function () {
       var $grid = $("#compras"),
           newWidth = $grid.closest(".ui-jqgrid").parent().width();
       $grid.jqGrid("setGridWidth", newWidth, true);
     });
+
+    $("#compras").jqGrid('navButtonAdd','#pager',{
+        caption: "", 
+        autowidth: true,
+        buttonicon :'ui-icon-print',
+        onClickButton : function (){ 
+                printer();
+        } 
+    }); 
 
   jQuery("#dc").jqGrid({
     height: "100%",
@@ -68,12 +77,30 @@ $(document).ready(function(){
     sortorder: "asc",
     multiselect: false,
     caption:"DETALLE COMPRA"
-  }).navGrid('#pager2',{add:false,edit:false,del:false});
+  }).navGrid('#pager2',{add:false,edit:false,del:false,search:false});
 
    $(window).on("resize", function () {
       var $grid = $("#dc"),
           newWidth = $grid.closest(".ui-jqgrid").parent().width();
       $grid.jqGrid("setGridWidth", newWidth, true);
     });
+
+    function printer(){
+      var folio = $("#compras").jqGrid('getGridParam','selrow'); 
+      if( folio == null ){
+              $("#war").dialog({
+                  modal: true,
+                  width: 270,
+                  height: 170,
+                  show: {effect : "fold" ,duration: 300},
+                  hide: {effect : "explode", duration: 300},
+                  resizable: "false",
+                  buttons: { "OK": function () { $(this).dialog("close"); } },   
+              });
+      } else {
+          window.location.href = "../php/rptcompras.php?folio="+folio;
+      }
+      return false;
+  }
 
 });

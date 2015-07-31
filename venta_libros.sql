@@ -2,10 +2,10 @@
 -- version 4.3.11
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2015 a las 01:09:18
--- Versión del servidor: 5.6.24
--- Versión de PHP: 5.6.8
+-- Host: 127.0.0.1
+-- Generation Time: Jul 31, 2015 at 05:25 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `venta_libros`
+-- Database: `venta_libros`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `autores`
+-- Table structure for table `autores`
 --
 
 CREATE TABLE IF NOT EXISTS `autores` (
@@ -34,23 +34,24 @@ CREATE TABLE IF NOT EXISTS `autores` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `autores`
+-- Dumping data for table `autores`
 --
 
 INSERT INTO `autores` (`clave_autor`, `nombre_autor`, `apellido_autor`, `estado`) VALUES
 (1, 'jorge', 'bucay', 'ACTIVO'),
-(2, 'carlos Cuahuctemoc', 'sanchez', 'ACTIVO'),
+(2, 'carlos Cuauctemoc', 'sanchez', 'ACTIVO'),
 (3, 'vina', 'jackson', 'ACTIVO'),
 (4, 'dante ', 'alighieri', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clientes`
+-- Table structure for table `clientes`
 --
 
 CREATE TABLE IF NOT EXISTS `clientes` (
   `matricula` bigint(20) NOT NULL,
+  `rfc` char(13) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `empresa` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `nombre_contacto` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `apellido_paterno` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -64,24 +65,25 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `celular` int(11) NOT NULL,
   `email` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `status` char(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `clientes`
+-- Dumping data for table `clientes`
 --
 
-INSERT INTO `clientes` (`matricula`, `empresa`, `nombre_contacto`, `apellido_paterno`, `apellido_materno`, `calle`, `numero`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `email`, `status`) VALUES
-(1, '', 'cliente general', '', '', 'xx', 0, 'xx', 'xx', 'xx', 0, 0, 'null@null.com', 'ACTIVO'),
-(2, 'ed', 'de', 'de', 'de', 'ed', 3, 'de', 'ed', 'BAJA', 3, 3, 'swswsw', 'BAJA'),
-(3, 'fr', 'vfr', 'vr', 'vr', 'vr', 44444, 'frf', 'fffr', 'frfr', 2147483647, 2147483647, 'ejemplo@yo.com', 'ACTIVO'),
-(5, 'librerÃ­a del sol', 'luis', 'perez', 'oso', 'lejana', 22, 'de', 'culiacan', 'sinaloa', 2222, 222, 'ejemplo@yo.com', 'ACTIVO'),
-(6, 'libreria caracol', 'jorge', 'mendoza', 'lopez', 'muy lejana', 4040, 'mazatlan', 'mazatlan', 'sinaloa', 657154875, 657859545, 'caracol@gmail.com', 'ACTIVO'),
-(7, 'librerÃ­a mÃ©xico', 'rosa', 'osuna', 'lopez', 'grande', 1515, 'centro', 'los mochis', 'sinaloa', 2147483647, 2147483647, 'yo@gmail.com', 'ACTIVO');
+INSERT INTO `clientes` (`matricula`, `rfc`, `empresa`, `nombre_contacto`, `apellido_paterno`, `apellido_materno`, `calle`, `numero`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `email`, `status`) VALUES
+(1, 'xxxxxxxxxxxxx', 'cliente general', 'cliente general', '', '', '', 0, '', '', '', 0, 0, 'null@null.com', 'ACTIVO'),
+(2, '', 'ed', 'de', 'de', 'de', 'ed', 3, 'de', 'ed', 'BAJA', 3, 3, 'swswsw', 'BAJA'),
+(3, '', 'fr', 'vfr', 'vr', 'vr', 'vr', 44444, 'frf', 'fffr', 'frfr', 2147483647, 2147483647, 'ejemplo@yo.com', 'ACTIVO'),
+(5, '', 'librerÃ­a del sol', 'luis', 'perez', 'oso', 'lejana', 22, 'de', 'culiacan', 'sinaloa', 2222, 222, 'ejemplo@yo.com', 'ACTIVO'),
+(6, '', 'libreria caracol', 'jorge', 'mendoza', 'lopez', 'muy lejana', 4040, 'mazatlan', 'mazatlan', 'sinaloa', 657154875, 657859545, 'caracol@gmail.com', 'ACTIVO'),
+(7, '', 'librerÃ­a mÃ©xico', 'rosa', 'osuna', 'lopez', 'grande', 1515, 'centro', 'los mochis', 'sinaloa', 2147483647, 2147483647, 'yo@gmail.com', 'ACTIVO'),
+(8, '1vwd1d15s3sds', 'libreria Buen libro', 'ruben', 'lopez', 'mendoza', 'principal', 152, 'las vegas', 'tepito', 'df', 2147483647, 2147483647, 'tepito@gmail.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compras`
+-- Table structure for table `compras`
 --
 
 CREATE TABLE IF NOT EXISTS `compras` (
@@ -92,16 +94,18 @@ CREATE TABLE IF NOT EXISTS `compras` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `compras`
+-- Dumping data for table `compras`
 --
 
 INSERT INTO `compras` (`folio`, `fecha`, `proveedor`, `total`) VALUES
-(2015070001, '2015-07-17', 2, '700.00');
+(2015070001, '2015-07-17', 2, '700.00'),
+(2015070002, '2015-07-25', 5, '350.00'),
+(2015070003, '2015-07-27', 5, '190.00');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_compra`
+-- Table structure for table `detalle_compra`
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_compra` (
@@ -113,15 +117,19 @@ CREATE TABLE IF NOT EXISTS `detalle_compra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `detalle_compra`
+-- Dumping data for table `detalle_compra`
 --
 
 INSERT INTO `detalle_compra` (`folio`, `clave_producto`, `cantidad`, `precio`, `subtotal`) VALUES
 (2015070001, 3, 2, '150.00', '300.00'),
-(2015070001, 4, 2, '200.00', '400.00');
+(2015070001, 4, 2, '200.00', '400.00'),
+(2015070002, 6, 5, '50.00', '250.00'),
+(2015070002, 7, 2, '50.00', '100.00'),
+(2015070003, 5, 3, '30.00', '90.00'),
+(2015070003, 7, 2, '50.00', '100.00');
 
 --
--- Disparadores `detalle_compra`
+-- Triggers `detalle_compra`
 --
 DELIMITER $$
 CREATE TRIGGER `entra_producto` AFTER INSERT ON `detalle_compra`
@@ -133,7 +141,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_venta`
+-- Table structure for table `detalle_venta`
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
@@ -145,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `detalle_venta`
+-- Dumping data for table `detalle_venta`
 --
 
 INSERT INTO `detalle_venta` (`folio`, `clave_producto`, `cantidad`, `precio`, `subtotal`) VALUES
@@ -155,10 +163,18 @@ INSERT INTO `detalle_venta` (`folio`, `clave_producto`, `cantidad`, `precio`, `s
 (2015070002, 4, 2, '251.00', '502.00'),
 (2015070003, 3, 3, '200.00', '600.00'),
 (2015070007, 3, 1, '200.00', '200.00'),
-(2015070007, 5, 2, '50.00', '100.00');
+(2015070007, 5, 2, '50.00', '100.00'),
+(2015070008, 5, 1, '50.00', '50.00'),
+(2015070008, 6, 1, '100.00', '100.00'),
+(2015070008, 7, 1, '100.00', '100.00'),
+(2015070009, 3, 1, '200.00', '200.00'),
+(2015070009, 6, 1, '100.00', '100.00'),
+(20150700010, 3, 1, '200.00', '200.00'),
+(20150700010, 5, 1, '50.00', '50.00'),
+(20150700010, 6, 1, '100.00', '100.00');
 
 --
--- Disparadores `detalle_venta`
+-- Triggers `detalle_venta`
 --
 DELIMITER $$
 CREATE TRIGGER `sale_producto` AFTER INSERT ON `detalle_venta`
@@ -170,7 +186,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `editoriales`
+-- Table structure for table `editoriales`
 --
 
 CREATE TABLE IF NOT EXISTS `editoriales` (
@@ -180,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `editoriales` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `editoriales`
+-- Dumping data for table `editoriales`
 --
 
 INSERT INTO `editoriales` (`clave_editorial`, `nombre_editorial`, `status`) VALUES
@@ -193,7 +209,7 @@ INSERT INTO `editoriales` (`clave_editorial`, `nombre_editorial`, `status`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleados`
+-- Table structure for table `empleados`
 --
 
 CREATE TABLE IF NOT EXISTS `empleados` (
@@ -214,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `empleados`
+-- Dumping data for table `empleados`
 --
 
 INSERT INTO `empleados` (`matricula`, `nombre`, `apellido_paterno`, `apellido_materno`, `calle`, `numero`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `sueldo`, `tipo`, `status`) VALUES
@@ -225,28 +241,28 @@ INSERT INTO `empleados` (`matricula`, `nombre`, `apellido_paterno`, `apellido_ma
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `folios`
+-- Table structure for table `folios`
 --
 
 CREATE TABLE IF NOT EXISTS `folios` (
   `id` bigint(20) NOT NULL,
   `nombre` char(10) COLLATE utf8_bin NOT NULL,
   `anio` int(11) NOT NULL,
-  `consecutivo` int(11) NOT NULL
+  `consecutivo` bigint(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `folios`
+-- Dumping data for table `folios`
 --
 
 INSERT INTO `folios` (`id`, `nombre`, `anio`, `consecutivo`) VALUES
-(1, 'ventas', 2015, 7),
-(4, 'compras', 2015, 1);
+(1, 'ventas', 2015, 10),
+(4, 'compras', 2015, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `generos`
+-- Table structure for table `generos`
 --
 
 CREATE TABLE IF NOT EXISTS `generos` (
@@ -256,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `generos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `generos`
+-- Dumping data for table `generos`
 --
 
 INSERT INTO `generos` (`clave_genero`, `nombre_genero`, `status`) VALUES
@@ -268,7 +284,7 @@ INSERT INTO `generos` (`clave_genero`, `nombre_genero`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `libros`
+-- Table structure for table `libros`
 --
 
 CREATE TABLE IF NOT EXISTS `libros` (
@@ -284,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `libros` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `libros`
+-- Dumping data for table `libros`
 --
 
 INSERT INTO `libros` (`clave_libro`, `nombre_libro`, `isbn`, `genero`, `autor`, `editorial`, `pag`, `descripcion`, `status`) VALUES
@@ -297,7 +313,7 @@ INSERT INTO `libros` (`clave_libro`, `nombre_libro`, `isbn`, `genero`, `autor`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `productos`
+-- Table structure for table `productos`
 --
 
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -310,21 +326,23 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `compra` decimal(10,0) NOT NULL,
   `venta` decimal(10,0) NOT NULL,
   `status` varchar(15) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `productos`
+-- Dumping data for table `productos`
 --
 
 INSERT INTO `productos` (`clave_producto`, `nombre_producto`, `proveedor`, `codigo_proveedor`, `cantidad_actual`, `cantidad_minima`, `compra`, `venta`, `status`) VALUES
-(3, 1, 2, 1515, 4, 1, '150', '200', 'DISPONIBLE'),
-(4, 2, 3, 151515, 6, 1, '200', '251', 'DISPONIBLE'),
-(5, 3, 5, 302530, 2, 1, '30', '50', 'DISPONIBLE');
+(3, 1, 2, 1515, 3, 1, '150', '200', 'DISPONIBLE'),
+(4, 2, 3, 151515, 8, 1, '200', '251', 'DISPONIBLE'),
+(5, 3, 5, 302530, 4, 1, '30', '50', 'DISPONIBLE'),
+(6, 4, 5, 3123131, 3, 1, '50', '100', 'DISPONIBLE'),
+(7, 6, 5, 2321212, 3, 1, '50', '100', 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedores`
+-- Table structure for table `proveedores`
 --
 
 CREATE TABLE IF NOT EXISTS `proveedores` (
@@ -332,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `nombre` varchar(30) COLLATE utf8_bin NOT NULL,
   `contacto` varchar(30) COLLATE utf8_bin NOT NULL,
   `observaciones` varchar(100) COLLATE utf8_bin NOT NULL,
-  `calle` varchar(15) COLLATE utf8_bin NOT NULL,
+  `calle` varchar(30) COLLATE utf8_bin NOT NULL,
   `num_ext` int(5) NOT NULL,
   `num_int` int(5) DEFAULT NULL,
   `colonia` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -345,19 +363,19 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `proveedores`
+-- Dumping data for table `proveedores`
 --
 
 INSERT INTO `proveedores` (`clave_proveedor`, `nombre`, `contacto`, `observaciones`, `calle`, `num_ext`, `num_int`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `email`, `status`) VALUES
 (2, 'rsoft', 'hector lopez', 'ventas', 'lejana', 44444, 44, 'muy lejos', 'grande', 'sinaloa', '4333434343', '4343434343', 'ejemplo@yo.com', 'ACTIVO'),
 (3, 'oceano', 'juan perez', 'eccewec', 'ceceec', 33333, 33333, 'cecece', 'cececeec', 'ceecec', '3333333333', '3333333333', 'ejemplo@yo.com', 'ACTIVO'),
 (4, 'ecwewccew', 'cececeecw', 'cewceecwecwecw', 'ecceece', 33, 3333, 'ceceecec', 'ceceececw', 'ecwecc', '3333333333', '3323223332', 'ejemplo@yo.com', 'ACTIVO'),
-(5, 'tomo sa de cv', 'jorge lopez', 'editorial tomo', 'nicolÃ¡s san ju', 1043, 1043, 'del valle', 'd f', 'd f', '55756615', '55750186', 'tomo@gmail.com', 'ACTIVO');
+(5, 'tomo sa de cv', 'jorge lopez', 'editorial tomo', 'nicolÃ¡s san juan', 1043, 1043, 'real del valle', 'd f', 'd f', '55756615', '55750186', 'tomo@gmail.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -369,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`matricula`, `nombre_usuario`, `password`, `status`, `fecha_creacion`) VALUES
@@ -378,7 +396,7 @@ INSERT INTO `usuarios` (`matricula`, `nombre_usuario`, `password`, `status`, `fe
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventas`
+-- Table structure for table `ventas`
 --
 
 CREATE TABLE IF NOT EXISTS `ventas` (
@@ -391,178 +409,181 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Volcado de datos para la tabla `ventas`
+-- Dumping data for table `ventas`
 --
 
 INSERT INTO `ventas` (`folio`, `fecha`, `empleado`, `cliente`, `total`, `status`) VALUES
 (2015070001, '2015-07-16', 1, 1, '702.00', 'CANCELADA'),
 (2015070002, '2015-07-16', 1, 1, '702.00', 'CANCELADA'),
-(2015070003, '2015-07-16', 2, 1, '600.00', 'PAGADO'),
-(2015070007, '2015-07-22', 1, 1, '300.00', 'CANCELADA');
+(2015070003, '2015-07-16', 2, 1, '600.00', 'PAGADA'),
+(2015070007, '2015-07-22', 1, 1, '300.00', 'CANCELADA'),
+(2015070008, '2015-07-30', 1, 5, '250.00', 'PAGADA'),
+(2015070009, '2015-07-30', 1, 1, '300.00', 'PAGADA'),
+(20150700010, '2015-07-30', 2, 1, '350.00', 'PAGADA');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `autores`
+-- Indexes for table `autores`
 --
 ALTER TABLE `autores`
   ADD PRIMARY KEY (`clave_autor`);
 
 --
--- Indices de la tabla `clientes`
+-- Indexes for table `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`matricula`);
 
 --
--- Indices de la tabla `compras`
+-- Indexes for table `compras`
 --
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`folio`), ADD KEY `proveedor` (`proveedor`);
 
 --
--- Indices de la tabla `detalle_compra`
+-- Indexes for table `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
   ADD PRIMARY KEY (`folio`,`clave_producto`), ADD KEY `clave_producto` (`clave_producto`);
 
 --
--- Indices de la tabla `detalle_venta`
+-- Indexes for table `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
   ADD PRIMARY KEY (`folio`,`clave_producto`), ADD KEY `venta_producto` (`clave_producto`);
 
 --
--- Indices de la tabla `editoriales`
+-- Indexes for table `editoriales`
 --
 ALTER TABLE `editoriales`
   ADD PRIMARY KEY (`clave_editorial`);
 
 --
--- Indices de la tabla `empleados`
+-- Indexes for table `empleados`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`matricula`);
 
 --
--- Indices de la tabla `folios`
+-- Indexes for table `folios`
 --
 ALTER TABLE `folios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `generos`
+-- Indexes for table `generos`
 --
 ALTER TABLE `generos`
   ADD PRIMARY KEY (`clave_genero`);
 
 --
--- Indices de la tabla `libros`
+-- Indexes for table `libros`
 --
 ALTER TABLE `libros`
   ADD PRIMARY KEY (`clave_libro`), ADD KEY `genero` (`genero`), ADD KEY `autor` (`autor`), ADD KEY `editorial` (`editorial`);
 
 --
--- Indices de la tabla `productos`
+-- Indexes for table `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`clave_producto`), ADD KEY `proveedor` (`proveedor`), ADD KEY `nombre_producto` (`nombre_producto`);
 
 --
--- Indices de la tabla `proveedores`
+-- Indexes for table `proveedores`
 --
 ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`clave_proveedor`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`matricula`);
 
 --
--- Indices de la tabla `ventas`
+-- Indexes for table `ventas`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`folio`), ADD KEY `empleado` (`empleado`), ADD KEY `cliente` (`cliente`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `autores`
+-- AUTO_INCREMENT for table `autores`
 --
 ALTER TABLE `autores`
   MODIFY `clave_autor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de la tabla `clientes`
+-- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT de la tabla `editoriales`
+-- AUTO_INCREMENT for table `editoriales`
 --
 ALTER TABLE `editoriales`
   MODIFY `clave_editorial` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT de la tabla `empleados`
+-- AUTO_INCREMENT for table `empleados`
 --
 ALTER TABLE `empleados`
   MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de la tabla `folios`
+-- AUTO_INCREMENT for table `folios`
 --
 ALTER TABLE `folios`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de la tabla `generos`
+-- AUTO_INCREMENT for table `generos`
 --
 ALTER TABLE `generos`
   MODIFY `clave_genero` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de la tabla `libros`
+-- AUTO_INCREMENT for table `libros`
 --
 ALTER TABLE `libros`
   MODIFY `clave_libro` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT de la tabla `productos`
+-- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT de la tabla `proveedores`
+-- AUTO_INCREMENT for table `proveedores`
 --
 ALTER TABLE `proveedores`
   MODIFY `clave_proveedor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `compras`
+-- Constraints for table `compras`
 --
 ALTER TABLE `compras`
 ADD CONSTRAINT `compra_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`clave_proveedor`);
 
 --
--- Filtros para la tabla `detalle_compra`
+-- Constraints for table `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
 ADD CONSTRAINT `compra_detalle` FOREIGN KEY (`folio`) REFERENCES `compras` (`folio`),
 ADD CONSTRAINT `compra_producto` FOREIGN KEY (`clave_producto`) REFERENCES `productos` (`clave_producto`);
 
 --
--- Filtros para la tabla `detalle_venta`
+-- Constraints for table `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
 ADD CONSTRAINT `venta_detalle` FOREIGN KEY (`folio`) REFERENCES `ventas` (`folio`),
 ADD CONSTRAINT `venta_producto` FOREIGN KEY (`clave_producto`) REFERENCES `productos` (`clave_producto`);
 
 --
--- Filtros para la tabla `libros`
+-- Constraints for table `libros`
 --
 ALTER TABLE `libros`
 ADD CONSTRAINT `libro_autor` FOREIGN KEY (`autor`) REFERENCES `autores` (`clave_autor`),
@@ -570,20 +591,20 @@ ADD CONSTRAINT `libro_editorial` FOREIGN KEY (`editorial`) REFERENCES `editorial
 ADD CONSTRAINT `libro_genero` FOREIGN KEY (`genero`) REFERENCES `generos` (`clave_genero`);
 
 --
--- Filtros para la tabla `productos`
+-- Constraints for table `productos`
 --
 ALTER TABLE `productos`
 ADD CONSTRAINT `producto_libro` FOREIGN KEY (`nombre_producto`) REFERENCES `libros` (`clave_libro`),
 ADD CONSTRAINT `producto_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`clave_proveedor`);
 
 --
--- Filtros para la tabla `usuarios`
+-- Constraints for table `usuarios`
 --
 ALTER TABLE `usuarios`
 ADD CONSTRAINT `empleado_usuario` FOREIGN KEY (`matricula`) REFERENCES `empleados` (`matricula`);
 
 --
--- Filtros para la tabla `ventas`
+-- Constraints for table `ventas`
 --
 ALTER TABLE `ventas`
 ADD CONSTRAINT `venta_cliente` FOREIGN KEY (`cliente`) REFERENCES `clientes` (`matricula`),

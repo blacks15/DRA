@@ -27,7 +27,7 @@
 				from ventas v
 				inner join empleados e on e.matricula = v.empleado
 				inner join clientes c on c.matricula = v.cliente
-				where v.status = 'PAGADO'
+				where v.status = 'PAGADA'
 				ORDER BY $sidx $sord LIMIT $start , $limit";
 		$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
 
