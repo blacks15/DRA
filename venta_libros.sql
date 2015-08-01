@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2015 a las 01:09:18
+-- Tiempo de generación: 01-08-2015 a las 04:11:16
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `autores`
 --
+-- Creación: 18-07-2015 a las 00:55:53
+--
 
 CREATE TABLE IF NOT EXISTS `autores` (
   `clave_autor` bigint(20) NOT NULL,
@@ -39,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `autores` (
 
 INSERT INTO `autores` (`clave_autor`, `nombre_autor`, `apellido_autor`, `estado`) VALUES
 (1, 'jorge', 'bucay', 'ACTIVO'),
-(2, 'carlos Cuahuctemoc', 'sanchez', 'ACTIVO'),
+(2, 'carlos Cuauctemoc', 'sanchez', 'ACTIVO'),
 (3, 'vina', 'jackson', 'ACTIVO'),
 (4, 'dante ', 'alighieri', 'ACTIVO');
 
@@ -48,9 +50,12 @@ INSERT INTO `autores` (`clave_autor`, `nombre_autor`, `apellido_autor`, `estado`
 --
 -- Estructura de tabla para la tabla `clientes`
 --
+-- Creación: 30-07-2015 a las 05:27:12
+--
 
 CREATE TABLE IF NOT EXISTS `clientes` (
   `matricula` bigint(20) NOT NULL,
+  `rfc` char(13) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `empresa` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `nombre_contacto` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `apellido_paterno` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -64,44 +69,55 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `celular` int(11) NOT NULL,
   `email` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `status` char(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`matricula`, `empresa`, `nombre_contacto`, `apellido_paterno`, `apellido_materno`, `calle`, `numero`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `email`, `status`) VALUES
-(1, '', 'cliente general', '', '', 'xx', 0, 'xx', 'xx', 'xx', 0, 0, 'null@null.com', 'ACTIVO'),
-(2, 'ed', 'de', 'de', 'de', 'ed', 3, 'de', 'ed', 'BAJA', 3, 3, 'swswsw', 'BAJA'),
-(3, 'fr', 'vfr', 'vr', 'vr', 'vr', 44444, 'frf', 'fffr', 'frfr', 2147483647, 2147483647, 'ejemplo@yo.com', 'ACTIVO'),
-(5, 'librerÃ­a del sol', 'luis', 'perez', 'oso', 'lejana', 22, 'de', 'culiacan', 'sinaloa', 2222, 222, 'ejemplo@yo.com', 'ACTIVO'),
-(6, 'libreria caracol', 'jorge', 'mendoza', 'lopez', 'muy lejana', 4040, 'mazatlan', 'mazatlan', 'sinaloa', 657154875, 657859545, 'caracol@gmail.com', 'ACTIVO'),
-(7, 'librerÃ­a mÃ©xico', 'rosa', 'osuna', 'lopez', 'grande', 1515, 'centro', 'los mochis', 'sinaloa', 2147483647, 2147483647, 'yo@gmail.com', 'ACTIVO');
+INSERT INTO `clientes` (`matricula`, `rfc`, `empresa`, `nombre_contacto`, `apellido_paterno`, `apellido_materno`, `calle`, `numero`, `colonia`, `ciudad`, `estado`, `telefono`, `celular`, `email`, `status`) VALUES
+(1, 'xxxxxxxxxxxxx', 'cliente general', 'cliente general', '', '', '', 0, '', '', '', 0, 0, 'null@null.com', 'ACTIVO'),
+(2, '', 'ed', 'de', 'de', 'de', 'ed', 3, 'de', 'ed', 'BAJA', 3, 3, 'swswsw', 'BAJA'),
+(3, '', 'fr', 'vfr', 'vr', 'vr', 'vr', 44444, 'frf', 'fffr', 'frfr', 2147483647, 2147483647, 'ejemplo@yo.com', 'ACTIVO'),
+(5, '', 'librerÃ­a del sol', 'luis', 'perez', 'oso', 'lejana', 22, 'de', 'culiacan', 'sinaloa', 2222, 222, 'ejemplo@yo.com', 'ACTIVO'),
+(6, '', 'libreria caracol', 'jorge', 'mendoza', 'lopez', 'muy lejana', 4040, 'mazatlan', 'mazatlan', 'sinaloa', 657154875, 657859545, 'caracol@gmail.com', 'ACTIVO'),
+(7, '', 'librerÃ­a mÃ©xico', 'rosa', 'osuna', 'lopez', 'grande', 1515, 'centro', 'los mochis', 'sinaloa', 2147483647, 2147483647, 'yo@gmail.com', 'ACTIVO'),
+(8, '1vwd1d15s3sds', 'libreria Buen libro', 'ruben', 'lopez', 'mendoza', 'principal', 152, 'las vegas', 'tepito', 'df', 2147483647, 2147483647, 'tepito@gmail.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `compras`
 --
+-- Creación: 01-08-2015 a las 00:11:18
+--
 
 CREATE TABLE IF NOT EXISTS `compras` (
   `folio` bigint(20) NOT NULL,
   `fecha` date NOT NULL,
   `proveedor` bigint(20) NOT NULL,
-  `total` decimal(10,2) NOT NULL
+  `total` decimal(10,2) NOT NULL,
+  `status` char(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `compras`
 --
 
-INSERT INTO `compras` (`folio`, `fecha`, `proveedor`, `total`) VALUES
-(2015070001, '2015-07-17', 2, '700.00');
+INSERT INTO `compras` (`folio`, `fecha`, `proveedor`, `total`, `status`) VALUES
+(2015070001, '2015-07-17', 2, '700.00', 'PAGADA'),
+(2015070002, '2015-07-25', 5, '350.00', 'PAGADA'),
+(2015070003, '2015-07-27', 5, '190.00', 'PAGADA'),
+(2015080004, '2015-07-31', 2, '1500.00', 'PAGADA'),
+(2015080005, '2015-07-31', 5, '160.00', 'CANCELADA'),
+(2015080006, '2015-07-31', 2, '300.00', 'PAGADA');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `detalle_compra`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_compra` (
@@ -118,7 +134,15 @@ CREATE TABLE IF NOT EXISTS `detalle_compra` (
 
 INSERT INTO `detalle_compra` (`folio`, `clave_producto`, `cantidad`, `precio`, `subtotal`) VALUES
 (2015070001, 3, 2, '150.00', '300.00'),
-(2015070001, 4, 2, '200.00', '400.00');
+(2015070001, 4, 2, '200.00', '400.00'),
+(2015070002, 6, 5, '50.00', '250.00'),
+(2015070002, 7, 2, '50.00', '100.00'),
+(2015070003, 5, 3, '30.00', '90.00'),
+(2015070003, 7, 2, '50.00', '100.00'),
+(2015080004, 3, 10, '150.00', '1500.00'),
+(2015080005, 5, 2, '30.00', '60.00'),
+(2015080005, 6, 2, '50.00', '100.00'),
+(2015080006, 3, 2, '150.00', '300.00');
 
 --
 -- Disparadores `detalle_compra`
@@ -134,6 +158,8 @@ DELIMITER ;
 
 --
 -- Estructura de tabla para la tabla `detalle_venta`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
@@ -155,7 +181,15 @@ INSERT INTO `detalle_venta` (`folio`, `clave_producto`, `cantidad`, `precio`, `s
 (2015070002, 4, 2, '251.00', '502.00'),
 (2015070003, 3, 3, '200.00', '600.00'),
 (2015070007, 3, 1, '200.00', '200.00'),
-(2015070007, 5, 2, '50.00', '100.00');
+(2015070007, 5, 2, '50.00', '100.00'),
+(2015070008, 5, 1, '50.00', '50.00'),
+(2015070008, 6, 1, '100.00', '100.00'),
+(2015070008, 7, 1, '100.00', '100.00'),
+(2015070009, 3, 1, '200.00', '200.00'),
+(2015070009, 6, 1, '100.00', '100.00'),
+(20150700010, 3, 1, '200.00', '200.00'),
+(20150700010, 5, 1, '50.00', '50.00'),
+(20150700010, 6, 1, '100.00', '100.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -171,6 +205,8 @@ DELIMITER ;
 
 --
 -- Estructura de tabla para la tabla `editoriales`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `editoriales` (
@@ -194,6 +230,8 @@ INSERT INTO `editoriales` (`clave_editorial`, `nombre_editorial`, `status`) VALU
 
 --
 -- Estructura de tabla para la tabla `empleados`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `empleados` (
@@ -227,12 +265,14 @@ INSERT INTO `empleados` (`matricula`, `nombre`, `apellido_paterno`, `apellido_ma
 --
 -- Estructura de tabla para la tabla `folios`
 --
+-- Creación: 18-07-2015 a las 00:55:53
+--
 
 CREATE TABLE IF NOT EXISTS `folios` (
   `id` bigint(20) NOT NULL,
   `nombre` char(10) COLLATE utf8_bin NOT NULL,
   `anio` int(11) NOT NULL,
-  `consecutivo` int(11) NOT NULL
+  `consecutivo` bigint(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -240,13 +280,15 @@ CREATE TABLE IF NOT EXISTS `folios` (
 --
 
 INSERT INTO `folios` (`id`, `nombre`, `anio`, `consecutivo`) VALUES
-(1, 'ventas', 2015, 7),
-(4, 'compras', 2015, 1);
+(1, 'ventas', 2015, 10),
+(4, 'compras', 2015, 6);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `generos`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `generos` (
@@ -269,6 +311,8 @@ INSERT INTO `generos` (`clave_genero`, `nombre_genero`, `status`) VALUES
 
 --
 -- Estructura de tabla para la tabla `libros`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `libros` (
@@ -299,6 +343,8 @@ INSERT INTO `libros` (`clave_libro`, `nombre_libro`, `isbn`, `genero`, `autor`, 
 --
 -- Estructura de tabla para la tabla `productos`
 --
+-- Creación: 18-07-2015 a las 00:55:53
+--
 
 CREATE TABLE IF NOT EXISTS `productos` (
   `clave_producto` bigint(20) NOT NULL,
@@ -310,21 +356,25 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `compra` decimal(10,0) NOT NULL,
   `venta` decimal(10,0) NOT NULL,
   `status` varchar(15) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`clave_producto`, `nombre_producto`, `proveedor`, `codigo_proveedor`, `cantidad_actual`, `cantidad_minima`, `compra`, `venta`, `status`) VALUES
-(3, 1, 2, 1515, 4, 1, '150', '200', 'DISPONIBLE'),
-(4, 2, 3, 151515, 6, 1, '200', '251', 'DISPONIBLE'),
-(5, 3, 5, 302530, 2, 1, '30', '50', 'DISPONIBLE');
+(3, 1, 2, 1515, 15, 1, '150', '200', 'DISPONIBLE'),
+(4, 2, 3, 151515, 8, 1, '200', '251', 'DISPONIBLE'),
+(5, 3, 5, 302530, 4, 1, '30', '50', 'DISPONIBLE'),
+(6, 4, 5, 3123131, 3, 1, '50', '100', 'DISPONIBLE'),
+(7, 6, 5, 2321212, 3, 1, '50', '100', 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `proveedores`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `proveedores` (
@@ -332,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `nombre` varchar(30) COLLATE utf8_bin NOT NULL,
   `contacto` varchar(30) COLLATE utf8_bin NOT NULL,
   `observaciones` varchar(100) COLLATE utf8_bin NOT NULL,
-  `calle` varchar(15) COLLATE utf8_bin NOT NULL,
+  `calle` varchar(30) COLLATE utf8_bin NOT NULL,
   `num_ext` int(5) NOT NULL,
   `num_int` int(5) DEFAULT NULL,
   `colonia` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -352,12 +402,14 @@ INSERT INTO `proveedores` (`clave_proveedor`, `nombre`, `contacto`, `observacion
 (2, 'rsoft', 'hector lopez', 'ventas', 'lejana', 44444, 44, 'muy lejos', 'grande', 'sinaloa', '4333434343', '4343434343', 'ejemplo@yo.com', 'ACTIVO'),
 (3, 'oceano', 'juan perez', 'eccewec', 'ceceec', 33333, 33333, 'cecece', 'cececeec', 'ceecec', '3333333333', '3333333333', 'ejemplo@yo.com', 'ACTIVO'),
 (4, 'ecwewccew', 'cececeecw', 'cewceecwecwecw', 'ecceece', 33, 3333, 'ceceecec', 'ceceececw', 'ecwecc', '3333333333', '3323223332', 'ejemplo@yo.com', 'ACTIVO'),
-(5, 'tomo sa de cv', 'jorge lopez', 'editorial tomo', 'nicolÃ¡s san ju', 1043, 1043, 'del valle', 'd f', 'd f', '55756615', '55750186', 'tomo@gmail.com', 'ACTIVO');
+(5, 'tomo sa de cv', 'jorge lopez', 'editorial tomo', 'nicolÃ¡s san juan', 1043, 1043, 'real del valle', 'd f', 'd f', '55756615', '55750186', 'tomo@gmail.com', 'ACTIVO');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
+--
+-- Creación: 18-07-2015 a las 00:55:53
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -380,6 +432,8 @@ INSERT INTO `usuarios` (`matricula`, `nombre_usuario`, `password`, `status`, `fe
 --
 -- Estructura de tabla para la tabla `ventas`
 --
+-- Creación: 22-07-2015 a las 08:29:53
+--
 
 CREATE TABLE IF NOT EXISTS `ventas` (
   `folio` bigint(20) NOT NULL,
@@ -397,8 +451,11 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 INSERT INTO `ventas` (`folio`, `fecha`, `empleado`, `cliente`, `total`, `status`) VALUES
 (2015070001, '2015-07-16', 1, 1, '702.00', 'CANCELADA'),
 (2015070002, '2015-07-16', 1, 1, '702.00', 'CANCELADA'),
-(2015070003, '2015-07-16', 2, 1, '600.00', 'PAGADO'),
-(2015070007, '2015-07-22', 1, 1, '300.00', 'CANCELADA');
+(2015070003, '2015-07-16', 2, 1, '600.00', 'PAGADA'),
+(2015070007, '2015-07-22', 1, 1, '300.00', 'CANCELADA'),
+(2015070008, '2015-07-30', 1, 5, '250.00', 'PAGADA'),
+(2015070009, '2015-07-30', 1, 1, '300.00', 'PAGADA'),
+(20150700010, '2015-07-30', 2, 1, '350.00', 'PAGADA');
 
 --
 -- Índices para tablas volcadas
@@ -501,7 +558,7 @@ ALTER TABLE `autores`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `editoriales`
 --
@@ -531,7 +588,7 @@ ALTER TABLE `libros`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
