@@ -25,6 +25,7 @@
 		$SQL = "select c.folio,c.fecha,p.nombre,c.total
 				from compras c
 				inner join proveedores p on p.clave_proveedor = c.proveedor
+				where c.status = 'PAGADA'
 				ORDER BY $sidx $sord LIMIT $start , $limit";
 		$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
 

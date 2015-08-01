@@ -32,7 +32,7 @@ $(document).ready(function(){
 				            	window.location.href = "../php/rptventa.php?folio="+response.folio;
 				            },
 				            No: function() {$( this ).dialog( "close" );
-                  } },   
+                			} },   
 				        });
 				        $("#ventas").jqGrid("clearGridData", true).trigger("reloadGrid");
 						limpiar();

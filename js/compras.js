@@ -27,7 +27,8 @@ $(document).ready(function(){
 				url: "../php/compra.php",
 				data: {opc:"guardar_compra", prov: prov, date: date, id_prov: id_prov, detalle  },
 				success: function(response){
-					if(response.respuesta == true){				
+					if(response.respuesta == true){		
+						$("#mensajealta").append('¿Desear Imprimir?');		
 						$("#mensajealta").dialog({
 							modal: true,
 				            width: 270,
@@ -35,7 +36,11 @@ $(document).ready(function(){
 				            show: {effect : "fold", duration: 300},
 				            hide: {effect : "explode", duration: 300},
 				            resizable: "false",
-				            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				            buttons: { "Si": function () {
+				            	window.location.href = "../php/rptcompras.php?folio="+response.folio;
+				            },
+				            No: function() {$( this ).dialog( "close" );
+                			} },   
 				        });
 				        $("#compras").jqGrid("clearGridData", true).trigger("reloadGrid");
 						limpiar();

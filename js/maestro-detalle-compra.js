@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+  $("#mensajealta").hide();
+  $("#war").hide();
+  $("#delete").hide();
+  $("#fallo").hide();
+  
   jQuery("#compras").jqGrid({
       url:'../php/maestro_compra.php',
       datatype: "json",
@@ -45,7 +50,13 @@ $(document).ready(function(){
           newWidth = $grid.closest(".ui-jqgrid").parent().width();
       $grid.jqGrid("setGridWidth", newWidth, true);
     });
-
+    $("#compras").jqGrid('navButtonAdd','#pager',{
+        caption: "Cancelar", 
+        buttonicon :'ui-icon-trash',
+        onClickButton : function (){ 
+                borrar();
+        } 
+    }); 
     $("#compras").jqGrid('navButtonAdd','#pager',{
         caption: "", 
         autowidth: true,
@@ -102,5 +113,75 @@ $(document).ready(function(){
       }
       return false;
   }
+
+  function borrar(){
+    var folio = $("#compras").jqGrid('getGridParam','selrow'); 
+
+      if( folio == null ){
+          $("#war").dialog({
+              modal: true,
+              width: 270,
+              height: 170,
+              show: {effect : "fold" ,duration: 300},
+              hide: {effect : "explode", duration: 300},
+              resizable: "false",
+              buttons: { "OK": function () { $(this).dialog("close"); } },   
+          });
+      }else {
+          $( "#delete" ).dialog({
+                resizable: false,
+                height: 170,
+                modal: true,
+                show: {effect : "fold" ,duration: 300},
+                hide: {effect : "explode", duration: 300},
+                buttons: {
+                  "Eliminar": function() {
+                    $.ajax({
+                      cache: false,
+                      type: "POST",
+                      datatype: "json",
+                      url: "../php/compra.php",
+                      data: {opc:"cancelar_compra", folio:folio},
+                      success: function(response)  {
+                          if(response.respuesta == true)  {
+                             $("#mensajealta").dialog({
+                                  modal: true,
+                                  width: 270,
+                                  height: 170,
+                                  show: {effect : "fold" ,duration: 300},
+                                  hide: {effect : "explode", duration: 300},
+                                  resizable: "false",
+                                  buttons: { "OK": function () { $(this).dialog("close"); } },   
+                              });
+                          }
+                          else if (response.fallo == true) {
+                            $("#fallo").append(response.folio);
+                             $("#fallo").dialog({
+                                  modal: true,
+                                  width: 270,
+                                  height: 170,
+                                  show: {effect : "fold" ,duration: 300},
+                                  hide: {effect : "explode", duration: 300},
+                                  resizable: "false",
+                                  buttons: { "OK": function () { $(this).dialog("close"); } },   
+                              });
+                      }
+                  },  
+                      error: function(xhr,ajaxOptions,throwError){
+                          console.log("Ocurrio un Error");
+                      }
+                   });
+                      $( this ).dialog( "close" );
+                      $("#compras").trigger('reloadGrid');
+                      $("#dc").trigger('reloadGrid');
+                  },
+                  Cancelar: function() {
+                    $( this ).dialog( "close" );
+                  }
+                }
+              });
+  }
+  return false;
+}
 
 });

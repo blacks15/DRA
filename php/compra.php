@@ -18,6 +18,36 @@
 		case 'guardar_compra':
 			guardar_compra();
 		break;
+
+		case 'cancelar_compra':
+			cancelar_compra();
+		break;
+	}
+
+	function cancelar_compra(){
+		$folio = trim($_POST['folio']);
+		$sql = "select * from detalle_compra where folio = '".$folio."' ";
+		$detalle = mysql_query($sql) or die(mysql_error());
+		while ($row = mysql_fetch_array($detalle)) {
+			$up = "update productos set cantidad_actual = cantidad_actual - '".$row['cantidad']."' 
+			where clave_producto = '".$row['clave_producto']."'  ";
+			mysql_query($up) or die(mysql_error());
+		}
+		$consulta = "update compras set status = 'CANCELADA' where folio = '".$folio."' ";
+		$resultado = mysql_query($consulta) or die(mysql_error());
+		if ($resultado == true) {
+			$res = true;
+			$salidaJSON = array('respuesta' => $res ,
+								'folio' =>$folio);
+			print json_encode($salidaJSON);
+		} else {
+			$fallo = true;
+			$falloJSON = array('fallo' => $fallo,
+								'folio' =>$folio);
+			print(json_encode($falloJSON));
+		}
+
+		
 	}
 
 	function guardar_compra(){
@@ -28,6 +58,7 @@
 		$id_prov = trim($_POST['id_prov']);
 		$date = trim($_POST['date']);
 		$fecha = date('Y-m-d',strtotime($date));
+		$status = 'PAGADA';
 			//RECIBIMOS LAS VARIABLES PARA EL DETALLE DE VENTA
 		$json = trim($_POST['detalle']);
 		$detalle = json_decode($json,true);
@@ -46,16 +77,14 @@
 			while($row = mysql_fetch_array($r)){
                     $respuesta = $row['consecutivo'];
               }
-              if ($respuesta['consecutivo'] > 0) {
-              	$respuesta['consecutivo'] = $respuesta['consecutivo'] + 1;
+              	$respuesta = $respuesta + 1;
               	$uf = "update folios set consecutivo = '".$respuesta."' where nombre = 'compras' and anio = '".date('Y')."' ";
               	mysql_query($uf) or die(mysql_error());
               	$folio.= $respuesta;
-              }
 		}
 			//SE INSERTA LA COMPRA Y SE RECUPERA EL FOLIO
-		$insventa = "insert into compras (folio,fecha,proveedor,total) values ('".$folio."',
-      		'".$fecha."','".$id_prov."',0) ";
+		$insventa = "insert into compras (folio,fecha,proveedor,total,status) values ('".$folio."',
+      		'".$fecha."','".$id_prov."',0,'".$status."') ";
 		$rventa = mysql_query($insventa) or die(mysql_error());
 		$recfol = "select folio from compras where folio = '".$folio."' ";
 		$ref = mysql_query($recfol) or die(mysql_error());
@@ -76,7 +105,8 @@
 			mysql_query($t)or die(mysql_error());
 			if ($resultado == true) {
 				$res = true;
-				$salidaJSON = array('respuesta' => $res );
+				$salidaJSON = array('respuesta' => $res,
+									'folio'=>$vfolio );
 				print json_encode($salidaJSON);
 			} else {
 				$fallo = true;
