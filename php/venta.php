@@ -62,15 +62,16 @@
 				$p = "select cantidad_actual from productos where clave_producto = '".$value['codigo']."' ";
 				$ca = mysql_query($p) or die(mysql_error());
 				while ($row = mysql_fetch_array($ca)) {
-					if ($row['cantidad_actual'] - $value['cantidad'] < 0) {
-						$name = $value['producto'];
-						$ins = true;
-						$salidaJSON = array('ins' => $ins,
-											'name' => $name);
-		       	 		print(json_encode($salidaJSON));
-					}
+					$insu = $row['cantidad_actual'] - $value['cantidad'];
 				}
 			}
+			if ( $insu < 0) {
+					$name = $value['producto'];
+					$ins = true;
+					$salidaJSON = array('ins' => $ins,
+										'name' => $name);
+	       	 		print(json_encode($salidaJSON));
+			} else{
 			//CREAMOS EL CONSECUTIVO SINO EXISTE Y SI EXISTE SE LE INCREMENTA UNO
 		$tfolio = "select consecutivo from folios where nombre = 'ventas' and anio = '".date('Y')."' ";
 		$r = mysql_query($tfolio) or die(mysql_errno());
@@ -107,11 +108,11 @@
           } 
           //SE INSERTA EL DETALLE DE LA VENTA Y SE CALCULA EL TOTAL
               foreach ($detalle as $key => $value) {
-				$total = $total + $value['subtotal'];
-				$sql = "insert into detalle_venta (folio,clave_producto,cantidad,precio,subtotal)
-				values('".$vfolio."','".$value['codigo']."','".$value['cantidad']."',
-					'".$value['precio']."','".$value['subtotal']."' )  ";
-				$resultado = mysql_query($sql) or die(mysql_error());
+					$total = $total + $value['subtotal'];
+					$sql = "insert into detalle_venta (folio,clave_producto,cantidad,precio,subtotal)
+					values('".$vfolio."','".$value['codigo']."','".$value['cantidad']."',
+						'".$value['precio']."','".$value['subtotal']."' )  ";
+					$resultado = mysql_query($sql) or die(mysql_error());
 				}
 				$t = "update ventas set total = '".$total."' where folio = '".$vfolio."' ";
 				mysql_query($t)or die(mysql_error());
@@ -126,6 +127,7 @@
 					print(json_encode($falloJSON));
 				}
 			}
+	}
 
 	function buscar_producto(){
 		$prod = trim($_POST['prod']);

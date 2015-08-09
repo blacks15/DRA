@@ -9,6 +9,7 @@
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/ok.css">
+    <link rel="stylesheet" href="../jqueryui/jquery-ui.css">
 
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -17,28 +18,34 @@
   <tr>
     <td>
     <div id="navbar-example" class="navbar navbar-static">
-        <figure>
-          <img src="img/libro.jpg" width="60" height="74">
-        </figure>
       <div class="navbar-inner">
         <div class="container" style="width: auto;">
           <ul class="nav" role="navigation">
           <li class="dropdown">
-           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Compras <b class="caret"></b></a>
+           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Movimientos<b class="caret"></b></a>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+           <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarRetiros.html" target="admin">Ver Retiros</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/Retiros.html" target="admin">Retiros</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CorteCaja.html" target="admin">Corte de Caja</a></li>
+          </ul>
+          </li>
+          <li class="dropdown">
+           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Compras<b class="caret"></b></a>
            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarCompras.html" target="admin">Ver Compras</a></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearCompras.html" target="admin">Compra Proveedor</a></li>
           </ul>
           </li>
           <li class="dropdown">
-           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Ventas <b class="caret"></b></a>
+           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Ventas<b class="caret"></b></a>
            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarVentas.html" target="admin">Ver Ventas</a></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearVentas.html" target="admin">Crear Venta</a></li>
           </ul>
           </li>
             <li class="dropdown">
-              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Clientes <b class="caret"></b></a>
+              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Clientes<b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/BuscarClientes.html" target="admin">Buscar Clientes</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="pages/CrearClientes.html" target="admin">Crear Clientes</a></li>
@@ -111,6 +118,15 @@
                 Estado de Inventario</a></li>
               </ul>
             </li>
+            <figure> <img src="img/libro.jpg" width="50"></figure>
+           <ul class="nav pull-right">
+            <li id="menu" class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Hola!<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="php/cerrar_sesion.php"><i class="icon-off"></i> Salir</a></li>
+              </ul>
+            </li>
+          </ul>  
           </ul>
         </div>
       </div>
@@ -126,7 +142,12 @@
     </td>
   </tr>
 </table>
+    <div class="" id="mensajealta" title="Alerta">
+      <span class="ui-icon-red ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
+        <center><strong>Acceso Restringido.</strong></center>
+    </div>
     <script src="js/jquery.js"></script>
+    <script src="../jqueryui/jquery-ui.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/menu.js"></script>
 </body>

@@ -57,6 +57,7 @@ $(document).ready(function(){
 				            resizable: "false",
 				            buttons: { "OK": function () { $(this).dialog("close"); } },   
 				        });
+				        $("#ventas").jqGrid("clearGridData", true).trigger("reloadGrid");
 					}
 				},	
 					error: function(xhr,ajaxOptions,throwError){

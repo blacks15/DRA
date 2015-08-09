@@ -32,7 +32,7 @@
       if($value != false) $b[]="$key = '$value'";
     }
         //Creamos la consulta where
-    $se=" where p.status = 'DISPONIBLE' and ".implode(' and ',$b );  
+    $se=" where  ".implode(' and ',$b );  
   }
       //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   $query = mysql_query("select count(*) as t from productos p
@@ -58,7 +58,7 @@
     from productos p
     inner join libros l on l.clave_libro = p.nombre_producto
     inner join proveedores prov on prov.clave_proveedor = p.proveedor 
-    where p.status = 'DISPONIBLE' ";
+    ";
     if( !empty($post['orden']) && !empty($post['orderby']))
      //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Corte de Caja</title>
+
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../jqueryui/jquery-ui.css">
+	<link rel="stylesheet" media="screen" href="../jqgrid/css/ui.jqgrid.css" />
+	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
+</head>
+<body>
+<form action="post" name="form1" id="form1">
+	<table class="table" border="0">
+		<tr>
+			<td>
+				<label for="textfield">Fecha:</label><br>
+				<label for="textfield">Empleado:</label><br>
+			</td>
+			<td>
+				<input type="text" name="date" id="date" readonly="true" class="form-control input-medium"><br>
+				<input type="text" name="usuario" id="usuario" class="form-control input-xlarge" readonly="true">
+			</td>
+			<td>
+				<button class="btn btn-primary" type="button" id="btnSave"><span class="ui-icon ui-icon-disk "></span>Corte Caja</button>
+			</td>
+		</tr>
+	</table>
+</form>
+<table name="corte" id="corte"></table>
+<div id="pager2"></div>
+	<div class="" id="mensajealta" title="Información Guardada">
+		<span class="ui-icon-blue ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+	    <center> <strong>Corte Realizado con Exito</strong></center>
+	</div>
+	<div class="" id="ng" title="Advertencia">
+		<span class="ui-icon-red ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
+	    <center> <strong>Error Corte no Realizada</strong></center>
+	</div>
+	<div class="" id="existe" title="Advertencia">
+		<span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+		<center><strong>El Corte ya Fue Realizado.</strong></center>
+	</div>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/cortecaja.js" type="text/javascript"></script>
+	<script src="../jqueryui/jquery-ui.min.js"></script>
+	<script src="../jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="../jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+</body>	
+</html>

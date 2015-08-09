@@ -10,7 +10,7 @@
 		$sidx = $_GET['sidx']; // get index row - i.e. user click to sort
 		$sord = $_GET['sord']; // get the direction
 		if (!$sidx) $sidx = 1;
-
+		$fecha = date('Y-m-d');
 		$result = mysql_query("select COUNT(*) AS count FROM ventas ");
 		$row = mysql_fetch_array($result,MYSQL_ASSOC);
 		$count = $row['count'];
@@ -27,7 +27,7 @@
 				from ventas v
 				inner join empleados e on e.matricula = v.empleado
 				inner join clientes c on c.matricula = v.cliente
-				where v.status = 'PAGADA'
+				where v.status = 'PAGADA' and fecha = '".$fecha."'
 				ORDER BY $sidx $sord LIMIT $start , $limit";
 		$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
 

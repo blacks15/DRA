@@ -32,6 +32,7 @@ $(document).ready(function(){
         gridview : true,
         pagination:true,
         loadComplete: function(data){
+          estado();
             var rowIds = $('#productos').jqGrid('getDataIDs');
              for (i = 0; i < rowIds.length; i++) { 
              rowData = $('#productos').jqGrid('getRowData', rowIds[i]);
@@ -123,5 +124,25 @@ $(document).ready(function(){
         }
         return false;
 }
+    
+  function estado(){
+        var id = $("#productos").jqGrid('getGridParam','selrow'); 
+        var data = $("#productos").getRowData(id);
+        var detalle = JSON.stringify(data);
+        console.log(detalle);
+
+      $.ajax({
+        cache: false,
+        type: "POST",
+        datatype: "json",
+        url: "../php/estado_producto.php",
+        data: {detalle:detalle},
+        success: function(opciones){
+        },
+        error: function(xhr,ajaxOptions,throwError){
+          console.log(xhr);
+        } 
+      });
+  }
 
 });

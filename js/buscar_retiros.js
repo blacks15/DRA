@@ -3,30 +3,33 @@ $(document).ready(function(){
     $("#war").hide();
     $("#mensajealta").hide();
     $("#delete").hide();
-		jQuery("#autores").jqGrid({
-            url:'../php/buscar_Autor.php',
+		jQuery("#retiros").jqGrid({
+            url:'../php/buscar_retiro.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['ID','NOMBRE', 'APELLIDO','ESTADO'],
+            colNames:['ID','FECHA','EMPLEADO','RETIRO','OBSERVACIÓN'],
             colModel:[
-                {name:'clave_autor', index:'clave_autor',search:false,width:80,resizable:false, align:"center",key:true},
-                {name:'nombre_autor', index:'nombre_autor', width:190,resizable:true,search:true},
-                {name:'apellido_autor', index:'apellido_autor', width:200,search:true},
-                {name:'estado', index:'estado', search:false, width:100, align:"center" }
+                {name:'id_retiro', index:'id_retiro',search:false,width:80,resizable:false, align:"center",key:true},
+                {name:'fecha', index:'fecha', width:190,resizable:true,search:false,formatter:'date',
+                    formatoptions: { srcformat: 'ISO8601Long',newformat: 'm/d/Y',defaultValue:null}},
+                {name:'empleado', index:'empleado', width:280,search:true},
+                {name:'retiro', index:'retiro', search:false, width:100, align:"center",
+                    formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','} },
+                {name:'observacion', index:'observacion', search:true, width:250 }
             ],
             height: "100%",
             autowidth: true,
             pager: '#pager2',
             rowNum:10,
             rowList:[10,20],
-            sortname: 'clave_autor',
+            sortname: 'id_retiro',
             sortorder: 'desc',
             viewrecords: true,
-            caption: 'AUTORES',
+            caption: 'RETIROS',
             altRows: true,
             pagination: true,
             onSelectRow: function(ids) {
-                var selr = jQuery('#autores').jqGrid('getGridParam','selrow'); 
+                var selr = jQuery('#retiros').jqGrid('getGridParam','selrow'); 
                     if(!selr){
                          $("#war").dialog({
                                 modal: true,
@@ -41,21 +44,23 @@ $(document).ready(function(){
                     return false; 
                    }
         });
-	jQuery("#autores").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false},
+	jQuery("#retiros").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false},
          {height:280,reloadAfterSubmit:true},//opciones edit
          {}, //opciones add
          {}, //opciones del
          {closeAfterSearch: true, closeOnEscape: true}//opciones search
          );
-                $("#autores").jqGrid('navButtonAdd','#pager2',{
-                caption: "Modificar", 
-                autowidth: true,
-                buttonicon :'ui-icon-pencil',
-                onClickButton : function (){ 
-                        modificar();
-                } 
+
+        $("#retiros").jqGrid('navButtonAdd','#pager2',{
+        caption: "Modificar", 
+        autowidth: true,
+        buttonicon :'ui-icon-pencil',
+        onClickButton : function (){ 
+                modificar();
+        } 
         }); 
-        $("#autores").jqGrid('navButtonAdd','#pager2',{
+
+        $("#retiros").jqGrid('navButtonAdd','#pager2',{
                 caption: "Borrar", 
                 autowidth: true,
                 buttonicon :'ui-icon-trash',
@@ -65,15 +70,15 @@ $(document).ready(function(){
         }); 
 
         $(window).on("resize", function () {
-            var $grid = $("#autores"),
+            var $grid = $("#retiros"),
                 newWidth = $grid.closest(".ui-jqgrid").parent().width();
             $grid.jqGrid("setGridWidth", newWidth, true);
-             });
+        });
 
-    jQuery("#autores").jqGrid("filterToolbar");
+    jQuery("#retiros").jqGrid("filterToolbar");
 
     function modificar(){
-        var id_tipo = $("#autores").jqGrid('getGridParam','selrow'); 
+        var id_tipo = $("#retiros").jqGrid('getGridParam','selrow'); 
 
         if( id_tipo == null ){
             $("#war").dialog({
@@ -89,17 +94,17 @@ $(document).ready(function(){
             //LIMPIAMOS LA SESSION
                 sessionStorage.clear();
             //ASIGNAMOS LOS VALORES DE LA FILA A LA VARIABLE
-                var data = $("#autores").getRowData(id_tipo);
+                var data = $("#retiros").getRowData(id_tipo);
             //CONVERTIMOS A JSON 
-                sessionStorage.autor = JSON.stringify(data);
+                sessionStorage.retiro = JSON.stringify(data);
             //ENVIAMOS LA INFORMACION 
-                window.location.href = "CrearAutor.html";
+                window.location.href = "Retiros.html";
             }
             return false;
     }
 
         function borrar(){
-            var clave_autor = $("#autores").jqGrid('getGridParam','selrow'); 
+            var clave_autor = $("#retiros").jqGrid('getGridParam','selrow'); 
 
             if( clave_autor == null ){
                 $("#war").dialog({
@@ -124,11 +129,11 @@ $(document).ready(function(){
                             cache: false,
                             type: "POST",
                             datatype: "json",
-                            url: "../php/autor.php",
-                            data: {opc:"baja_autor", clave_autor:clave_autor},
+                            url: "../php/.php",
+                            data: {opc:"", clave_autor:clave_autor},
                             success: function(response)  {
                                 if(response.respuesta == false)  {
-                                    alert("Autor No Eliminado");
+                                    alert("Retiro No Eliminado");
                                 }
                                 else{
                                    $("#mensajealta").dialog({
@@ -147,7 +152,7 @@ $(document).ready(function(){
                                 }
                             });
                             $( this ).dialog( "close" );
-                            $("#autores").trigger("reloadGrid");
+                            $("#retiros").trigger("reloadGrid");
                         },
                         Cancelar: function() {
                           $( this ).dialog( "close" );
@@ -159,5 +164,3 @@ $(document).ready(function(){
 }
 
 });
-
-      

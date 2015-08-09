@@ -27,7 +27,6 @@ $(document).ready(function(){
 						            buttons: { "OK": function () { $(this).dialog("close"); } },   
 						        });
 							}
-							alert("Ingreso exitoso"); 
 							window.location.href = "menu.php"; 
 
 						} else  if (response.fallo == true) {

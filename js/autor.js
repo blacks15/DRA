@@ -197,27 +197,27 @@ $(document).ready(function(){
     });
             
 
-		function entrar(){
-			var id;
-			if (sessionStorage.autor == undefined){
-				
-			} else {
-				//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
-				id = sessionStorage.key(0);
-				res = sessionStorage.getItem('autor');
-			//CONVERTIMOS EL JSON A UN OBJETO
-				ob = JSON.parse(res);
-			//ASGINAMOS VALORES A LOS INPUTS
-				$("#codigo").val(ob.clave_autor);
-				$("#nombre").val(ob.nombre_autor);
-				$("#apellido").val(ob.apellido_autor);
-				$("#status").val(ob.estado);
-			//OCULTAMOS BOTON GUARDAR Y MOSTRAMOS MODIFICAR
-				$("#btnUpdate").show();
-				$("#alta").hide();
-			//VACIAMOS LA SESSION
-				sessionStorage.clear();
-			}
+	function entrar(){
+		var id;
+		if (sessionStorage.autor == undefined){
+			
+		} else {
+			//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
+			id = sessionStorage.key(0);
+			res = sessionStorage.getItem('autor');
+		//CONVERTIMOS EL JSON A UN OBJETO
+			ob = JSON.parse(res);
+		//ASGINAMOS VALORES A LOS INPUTS
+			$("#codigo").val(ob.clave_autor);
+			$("#nombre").val(ob.nombre_autor);
+			$("#apellido").val(ob.apellido_autor);
+			$("#status").val(ob.estado);
+		//OCULTAMOS BOTON GUARDAR Y MOSTRAMOS MODIFICAR
+			$("#btnUpdate").show();
+			$("#alta").hide();
+		//VACIAMOS LA SESSION
+			sessionStorage.clear();
 		}
+	}
 
 });

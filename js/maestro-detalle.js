@@ -15,7 +15,7 @@ $(document).ready(function(){
              formatoptions: { srcformat: 'ISO8601Long',newformat: 'm/d/Y',defaultValue:null}},
         {name:'atendio',index:'atendio', width:100},
         {name:'cliente',index:'cliente', width:100, align:"left"}, 
-        {name:'total',index:'total', width:80,align:"center",formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','}},    
+        {name:'total',index:'total', width:80,align:"center",formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','} },    
       ],
       rowNum:10,
       rowList:[10,20,30],

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2015 a las 04:11:16
+-- Tiempo de generación: 09-08-2015 a las 02:09:55
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `autores` (
   `nombre_autor` varchar(30) COLLATE utf8_bin NOT NULL,
   `apellido_autor` varchar(30) COLLATE utf8_bin NOT NULL,
   `estado` varchar(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `autores`
@@ -43,7 +43,8 @@ INSERT INTO `autores` (`clave_autor`, `nombre_autor`, `apellido_autor`, `estado`
 (1, 'jorge', 'bucay', 'ACTIVO'),
 (2, 'carlos Cuauctemoc', 'sanchez', 'ACTIVO'),
 (3, 'vina', 'jackson', 'ACTIVO'),
-(4, 'dante ', 'alighieri', 'ACTIVO');
+(4, 'dante ', 'alighieri', 'ACTIVO'),
+(5, 'gabriel', 'garcia marquez', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,34 @@ INSERT INTO `compras` (`folio`, `fecha`, `proveedor`, `total`, `status`) VALUES
 (2015070003, '2015-07-27', 5, '190.00', 'PAGADA'),
 (2015080004, '2015-07-31', 2, '1500.00', 'PAGADA'),
 (2015080005, '2015-07-31', 5, '160.00', 'CANCELADA'),
-(2015080006, '2015-07-31', 2, '300.00', 'PAGADA');
+(2015080006, '2015-07-31', 2, '300.00', 'PAGADA'),
+(2015080007, '2015-08-07', 2, '2492.00', 'PAGADA'),
+(2015080008, '2015-08-07', 5, '390.00', 'PAGADA'),
+(2015080009, '2015-08-07', 5, '260.00', 'PAGADA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cortecaja`
+--
+-- Creación: 06-08-2015 a las 04:55:41
+--
+
+CREATE TABLE IF NOT EXISTS `cortecaja` (
+  `folio` bigint(20) NOT NULL,
+  `fecha` date NOT NULL,
+  `empleado` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `ingreso` decimal(10,2) NOT NULL,
+  `egreso` decimal(10,2) NOT NULL,
+  `total` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cortecaja`
+--
+
+INSERT INTO `cortecaja` (`folio`, `fecha`, `empleado`, `ingreso`, `egreso`, `total`) VALUES
+(2015080001, '2015-08-06', 'jorge leon moreno', '351.00', '150.00', '201.00');
 
 -- --------------------------------------------------------
 
@@ -142,7 +170,13 @@ INSERT INTO `detalle_compra` (`folio`, `clave_producto`, `cantidad`, `precio`, `
 (2015080004, 3, 10, '150.00', '1500.00'),
 (2015080005, 5, 2, '30.00', '60.00'),
 (2015080005, 6, 2, '50.00', '100.00'),
-(2015080006, 3, 2, '150.00', '300.00');
+(2015080006, 3, 2, '150.00', '300.00'),
+(2015080007, 8, 7, '356.00', '2492.00'),
+(2015080008, 5, 3, '30.00', '90.00'),
+(2015080008, 6, 3, '50.00', '150.00'),
+(2015080008, 7, 3, '50.00', '150.00'),
+(2015080009, 5, 7, '30.00', '210.00'),
+(2015080009, 6, 1, '50.00', '50.00');
 
 --
 -- Disparadores `detalle_compra`
@@ -189,7 +223,22 @@ INSERT INTO `detalle_venta` (`folio`, `clave_producto`, `cantidad`, `precio`, `s
 (2015070009, 6, 1, '100.00', '100.00'),
 (20150700010, 3, 1, '200.00', '200.00'),
 (20150700010, 5, 1, '50.00', '50.00'),
-(20150700010, 6, 1, '100.00', '100.00');
+(20150700010, 6, 1, '100.00', '100.00'),
+(20150800011, 5, 1, '50.00', '50.00'),
+(20150800011, 6, 1, '100.00', '100.00'),
+(20150800012, 5, 1, '50.00', '50.00'),
+(20150800013, 4, 2, '251.00', '502.00'),
+(20150800013, 6, 2, '100.00', '200.00'),
+(20150800014, 4, 1, '251.00', '251.00'),
+(20150800014, 7, 1, '100.00', '100.00'),
+(20150800015, 5, 10, '50.00', '500.00'),
+(20150800016, 6, 3, '100.00', '300.00'),
+(20150800017, 4, 5, '251.00', '1255.00'),
+(20150800019, 5, 2, '50.00', '100.00'),
+(20150800020, 6, 1, '100.00', '100.00'),
+(20150800021, 7, 5, '100.00', '500.00'),
+(20150800022, 8, 1, '500.00', '500.00'),
+(20150800023, 5, 4, '50.00', '200.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -213,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `editoriales` (
   `clave_editorial` bigint(20) NOT NULL,
   `nombre_editorial` varchar(30) COLLATE utf8_bin NOT NULL,
   `status` varchar(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `editoriales`
@@ -224,7 +273,9 @@ INSERT INTO `editoriales` (`clave_editorial`, `nombre_editorial`, `status`) VALU
 (2, 'oceano', 'ACTIVO'),
 (3, 'rancho', 'BAJA'),
 (4, 'patria', 'BAJA'),
-(5, 'mega', 'ACTIVO');
+(5, 'mega', 'ACTIVO'),
+(6, 'sudamericano', 'ACTIVO'),
+(7, 'novela', 'BAJA');
 
 -- --------------------------------------------------------
 
@@ -273,15 +324,16 @@ CREATE TABLE IF NOT EXISTS `folios` (
   `nombre` char(10) COLLATE utf8_bin NOT NULL,
   `anio` int(11) NOT NULL,
   `consecutivo` bigint(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `folios`
 --
 
 INSERT INTO `folios` (`id`, `nombre`, `anio`, `consecutivo`) VALUES
-(1, 'ventas', 2015, 10),
-(4, 'compras', 2015, 6);
+(1, 'ventas', 2015, 23),
+(2, 'compras', 2015, 9),
+(3, 'cortecaja', 2015, 1);
 
 -- --------------------------------------------------------
 
@@ -295,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `generos` (
   `clave_genero` bigint(20) NOT NULL,
   `nombre_genero` varchar(20) COLLATE utf8_bin NOT NULL,
   `status` char(10) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `generos`
@@ -305,7 +357,8 @@ INSERT INTO `generos` (`clave_genero`, `nombre_genero`, `status`) VALUES
 (1, 'romance', 'ACTIVO'),
 (2, 'terror', 'ACTIVO'),
 (3, 'ClÃ¡sico literario', 'ACTIVO'),
-(4, 'comedia', 'ACTIVO');
+(4, 'comedia', 'ACTIVO'),
+(5, 'novela', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -325,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `libros` (
   `pag` int(11) NOT NULL,
   `descripcion` varchar(500) COLLATE utf8_bin DEFAULT NULL,
   `status` char(15) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `libros`
@@ -336,7 +389,8 @@ INSERT INTO `libros` (`clave_libro`, `nombre_libro`, `isbn`, `genero`, `autor`, 
 (2, 'ochenta melodÃ­as de pasiÃ³n en amarillo', '9786074009811', 1, 3, 2, 335, 'Summer es una joven violinista que ansia vivir emociones fuertes y se aburre en una relaciÃ³n que no la satisface. Entonces aparece Dominik, una atractivo y enigmÃ¡tico profesor de literatura que, fascinado por el talento  musical de Summer, se ofrece a regalarle un nuevo violÃ­n a cambio de que ella toque en privado para Ã©l', 'DISPONIBLE'),
 (3, 'la divina comedia infierno', '9706667253', 3, 4, 1, 272, 'la divina comedia una gran obra de la literatura medieval', 'DISPONIBLE'),
 (4, 'la divina comedia purgatorio', '98758154871', 3, 4, 1, 280, 'continuaciÃ³n de la divina comedia infierno', 'DISPONIBLE'),
-(6, 'la divina comedia paraiso', '15148725666', 3, 4, 1, 300, 'ultimo libro de la saga', 'DISPONIBLE');
+(6, 'la divina comedia paraiso', '15148725666', 3, 4, 1, 300, 'ultimo libro de la saga', 'DISPONIBLE'),
+(7, 'cien aÃ±os de soledad', '34535454354455445', 5, 5, 6, 678, 'el mejor libro de todos', 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
@@ -356,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `compra` decimal(10,0) NOT NULL,
   `venta` decimal(10,0) NOT NULL,
   `status` varchar(15) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -364,10 +418,11 @@ CREATE TABLE IF NOT EXISTS `productos` (
 
 INSERT INTO `productos` (`clave_producto`, `nombre_producto`, `proveedor`, `codigo_proveedor`, `cantidad_actual`, `cantidad_minima`, `compra`, `venta`, `status`) VALUES
 (3, 1, 2, 1515, 15, 1, '150', '200', 'DISPONIBLE'),
-(4, 2, 3, 151515, 8, 1, '200', '251', 'DISPONIBLE'),
-(5, 3, 5, 302530, 4, 1, '30', '50', 'DISPONIBLE'),
-(6, 4, 5, 3123131, 3, 1, '50', '100', 'DISPONIBLE'),
-(7, 6, 5, 2321212, 3, 1, '50', '100', 'DISPONIBLE');
+(4, 2, 3, 151515, 5, 1, '200', '251', 'DISPONIBLE'),
+(5, 3, 5, 302530, 0, 1, '30', '50', 'AGOTADO'),
+(6, 4, 5, 3123131, 8, 1, '50', '100', 'DISPONIBLE'),
+(7, 6, 5, 2321212, 10, 1, '50', '100', 'DISPONIBLE'),
+(8, 7, 2, 123113, 6, 2, '356', '500', 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
@@ -403,6 +458,30 @@ INSERT INTO `proveedores` (`clave_proveedor`, `nombre`, `contacto`, `observacion
 (3, 'oceano', 'juan perez', 'eccewec', 'ceceec', 33333, 33333, 'cecece', 'cececeec', 'ceecec', '3333333333', '3333333333', 'ejemplo@yo.com', 'ACTIVO'),
 (4, 'ecwewccew', 'cececeecw', 'cewceecwecwecw', 'ecceece', 33, 3333, 'ceceecec', 'ceceececw', 'ecwecc', '3333333333', '3323223332', 'ejemplo@yo.com', 'ACTIVO'),
 (5, 'tomo sa de cv', 'jorge lopez', 'editorial tomo', 'nicolÃ¡s san juan', 1043, 1043, 'real del valle', 'd f', 'd f', '55756615', '55750186', 'tomo@gmail.com', 'ACTIVO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `retiros`
+--
+-- Creación: 06-08-2015 a las 04:24:40
+--
+
+CREATE TABLE IF NOT EXISTS `retiros` (
+  `id_retiro` bigint(20) NOT NULL,
+  `fecha` date NOT NULL,
+  `empleado` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `retiro` decimal(10,2) NOT NULL,
+  `observacion` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `retiros`
+--
+
+INSERT INTO `retiros` (`id_retiro`, `fecha`, `empleado`, `retiro`, `observacion`) VALUES
+(1, '2015-08-05', 'jorge leon moreno', '150.00', 'comida'),
+(2, '2015-08-06', 'jorge leon moreno', '150.00', 'cena');
 
 -- --------------------------------------------------------
 
@@ -455,7 +534,20 @@ INSERT INTO `ventas` (`folio`, `fecha`, `empleado`, `cliente`, `total`, `status`
 (2015070007, '2015-07-22', 1, 1, '300.00', 'CANCELADA'),
 (2015070008, '2015-07-30', 1, 5, '250.00', 'PAGADA'),
 (2015070009, '2015-07-30', 1, 1, '300.00', 'PAGADA'),
-(20150700010, '2015-07-30', 2, 1, '350.00', 'PAGADA');
+(20150700010, '2015-07-30', 2, 1, '350.00', 'PAGADA'),
+(20150800011, '2015-08-03', 1, 1, '150.00', 'PAGADA'),
+(20150800012, '2015-08-05', 1, 1, '50.00', 'PAGADA'),
+(20150800013, '2015-08-05', 1, 1, '702.00', 'PAGADA'),
+(20150800014, '2015-08-06', 1, 1, '351.00', 'PAGADA'),
+(20150800015, '2015-08-07', 1, 1, '500.00', 'PAGADA'),
+(20150800016, '2015-08-07', 1, 1, '0.00', 'CANCELADA'),
+(20150800017, '2015-08-07', 1, 1, '0.00', 'CANCELADA'),
+(20150800018, '2015-08-07', 1, 1, '0.00', 'CANCELADA'),
+(20150800019, '2015-08-07', 1, 1, '0.00', 'CANCELADA'),
+(20150800020, '2015-08-07', 1, 1, '0.00', 'CANCELADA'),
+(20150800021, '2015-08-07', 1, 1, '0.00', 'CANCELADA'),
+(20150800022, '2015-08-07', 1, 1, '500.00', 'PAGADA'),
+(20150800023, '2015-08-09', 1, 1, '200.00', 'PAGADA');
 
 --
 -- Índices para tablas volcadas
@@ -478,6 +570,12 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`folio`), ADD KEY `proveedor` (`proveedor`);
+
+--
+-- Indices de la tabla `cortecaja`
+--
+ALTER TABLE `cortecaja`
+  ADD PRIMARY KEY (`folio`);
 
 --
 -- Indices de la tabla `detalle_compra`
@@ -534,6 +632,12 @@ ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`clave_proveedor`);
 
 --
+-- Indices de la tabla `retiros`
+--
+ALTER TABLE `retiros`
+  ADD PRIMARY KEY (`id_retiro`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -553,7 +657,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `clave_autor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `clave_autor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
@@ -563,37 +667,37 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `editoriales`
 --
 ALTER TABLE `editoriales`
-  MODIFY `clave_editorial` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `clave_editorial` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
   MODIFY `matricula` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de la tabla `folios`
---
-ALTER TABLE `folios`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `clave_genero` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `clave_genero` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `clave_libro` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `clave_libro` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `clave_producto` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
   MODIFY `clave_proveedor` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `retiros`
+--
+ALTER TABLE `retiros`
+  MODIFY `id_retiro` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

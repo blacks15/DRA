@@ -1,4 +1,5 @@
 $(function(){
+	$("#mensajealta").hide();
 	$(".dropdown-menu > li > a.trigger").on("mouseover",function(e){
 		var current = $(this).next();
 		var grandparent = $(this).parent().parent();
@@ -20,11 +21,19 @@ $(function(){
 		cache: false,
 		type: "POST",
 		datatype: "json",
-		url: "../php/login.php",
+		url: "../php/error.php",
 		success: function(opciones){
-			$("#editorial").html(opciones.opcion_ed);
-			$("#autor").html(opciones.opcion_aut);
-			$("#genero").html(opciones.opcion_genero);
+			if (opciones.respuesta == true) {
+				$("#mensajealta").dialog({
+					modal: true,
+		            width: 270,
+		            height: 170,
+		            show: {effect : "fold", duration: 300},
+		            hide: {effect : "explode", duration: 300},
+		            resizable: "false",
+		            buttons: {"ok": function() {window.location.href = "../index.php";} },   
+		        });
+			}
 		},
 		error: function(xhr,ajaxOptions,throwError){
 			console.log(xhr);
