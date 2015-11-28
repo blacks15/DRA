@@ -18,7 +18,7 @@
   if($post['search'] == 'true'){
     $b = array();
     //Usamos la funci{on elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['like']=elements(array('nombre_genero'),$_REQUEST);
+    $search['like'] = elements(array('nombre_genero'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando la consulta.
     foreach($search['like'] as $key => $value){
       if($value != false) $b[]="$key like '%$value%'";

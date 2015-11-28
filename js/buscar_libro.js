@@ -5,44 +5,40 @@ $(document).ready(function(){
 
 		jQuery("#libros").jqGrid({
 			url:'../php/buscar_libro.php',
-			datatype: 'json',
+			datatype: 'JSON',
 			mtype: 'POST',
-			colNames:['ID','NOMBRE','ISBN','GÉNERO','AUTOR','EDITORIAL','NÚM PÁG','STATUS'],
+			colNames:['ID','NOMBRE'],
 			colModel:[
-				{name:'clave_libro', index:'clave_libro', width:80, resizable:false, align:"center",search:false,key:true},
-				{name:'nombre_libro', index:'nombre_libro', width:450,resizable:false,search: true},
-            	{name:'isbn', index:'isbn', width:200,search:false},
-            	{name:'nombre_genero', index:'nombre_genero',search:true,width:170,search:true},
-            	{name:'nombre_autor', index:'nombre_autor',search:false, width:190,search:true},
-                {name:'nombre_editorial', index:'nombre_editorial',search:false, width:150,search:true},
-            	{name:'pag', index:'pag',search:false, width:130},
-                {name:'status', index:'status',search:true, width:110,search:false}
+				{name:'clave_libro', index:'clave_libro', width:150, resizable:false, align:"center",search:true,key:true},
+				{name:'nombre_libro', index:'nombre_libro', width:450,resizable:false,search:true},
 			],
 			height: "100%",
 			autowidth: true,
 			pager: '#pager2',
-            rowNum:10,
-	        rowList:[10,20],
-    	    sortname: 'clave_libro',
-            sortorder: 'desc',
-            viewrecords: true,
-            caption: 'LIBROS',
-            altRows: true,
-            onSelectRow: function(ids) {
-            var selr = jQuery('#libros').jqGrid('getGridParam','selrow'); 
-                if(!selr){
-                     $("#war").dialog({
-                            modal: true,
-                            width: 270,
-                            height: 170,
-                            show: {effect : "fold" ,duration: 300},
-                            hide: {effect : "explode", duration: 300},
-                            resizable: "false",
-                            buttons: { "OK": function () { $(this).dialog("close"); } },   
-                        });
-                }  
-                return false; 
-               }
+      rowNum: 15,
+      rowList:[15,30,45],
+	    sortname: 'clave_libro',
+      sortorder: 'desc',
+      viewrecords: true,
+      gridview: true,
+      caption: 'LIBROS',
+      altRows: true,
+      pagination:true,
+      onSelectRow: function(ids) {
+      var selr = jQuery('#libros').jqGrid('getGridParam','selrow'); 
+          if(!selr){
+               $("#war").dialog({
+                      modal: true,
+                      width: 270,
+                      height: 170,
+                      show: {effect : "fold" ,duration: 300},
+                      hide: {effect : "explode", duration: 300},
+                      resizable: "false",
+                      buttons: { "OK": function () { $(this).dialog("close"); } },   
+                  });
+          }  
+          return false; 
+         }
     });
 	jQuery("#libros").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
          {},//opciones edit

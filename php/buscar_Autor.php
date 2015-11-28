@@ -68,7 +68,7 @@
   }
   if (!$se) {
     $estado = 'activo';
-    $sql = "select clave_autor,nombre_autor,apellido_autor,estado from autores where  estado = 'ACTIVO'";
+    $sql = "select clave_autor,nombre_autor,apellido_autor,estado from autores where estado = 'ACTIVO'";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";

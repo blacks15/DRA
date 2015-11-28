@@ -43,18 +43,18 @@
                       <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR UN NOMBRE.
                     </p>
                   </div>
-             </div>
+             </div><br><br>
             <label>Proveedor</label>
             <select name="prov" id="prov" class="input-medium">
                 <option value="0"></option>
             </select>
              <div class="ui-widget" id="errorprov">
-                  <div class="ui-corner-all" style="padding: 0 .2em;">
-                    <p>
-                      <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN PROVEEDOR.
-                    </p>
-                  </div>
+                <div class="ui-corner-all" style="padding: 0 .2em;">
+                  <p>
+                    <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN PROVEEDOR.
+                  </p>
                 </div>
+            </div><br><br>
             <label>Cod. Producto del Proveedor: </label>
             <input type="text" class="input-medium" name="cprov" id="cprov" value="" required maxlength="50"><br>
             <div class="ui-widget" id="errorcpp">
@@ -69,30 +69,38 @@
             <button type="reset" class="btn" id="reset">Cancelar</button>
             <button id="bus" class="btn" type="button"><span class="ui-icon ui-icon-search "></span></button>
         </td>
-    	<td width="28%">            
-            <label>Cantidad Minima: </label>
-            <input type="number" class="input-small" name="minimo" id="minimo" value="" required >
-             <div class="ui-widget" id="errorcmin">
-                  <div class="ui-corner-all" style="padding: 0 .2em;">
-                    <p>
-                      <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR LA CANTIDAD MINIMA.
-                    </p>
-                  </div>
-                </div>
+    	  <td width="28%">      
+        <label>Cantidad Actual: </label>
+        <input type="number" class="input-small" name="actual" id="actual" required >
+         <div class="ui-widget" id="erroractual">
+            <div class="ui-corner-all" style="padding: 0 .2em;">
+              <p>
+                <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR LA CANTIDAD ACTUAL.
+              </p>
             </div>
-             <label>Precio Compra: </label>
+         </div>      
+        <label>Cantidad Minima: </label>
+        <input type="number" class="input-small" name="minimo" id="minimo" required >
+           <div class="ui-widget" id="errorcmin">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR LA CANTIDAD MINIMA.
+                </p>
+              </div>
+           </div>
+        <label>Precio Compra: </label>
             <div class="input-prepend input-append">
                 <label class="add-on">$</label>
-                <input type="number" class="input-small" name="compra" id="compra" value="" required> 
+                <input type="number" class="input-small" name="compra" id="compra" required> 
                 <label class="add-on">.00</label>
             </div>
-             <div class="ui-widget" id="errorpcompra">
-                  <div class="ui-corner-all" style="padding: 0 .2em;">
-                    <p>
-                      <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR EL PRECIO DE COMPRA.
-                    </p>
-                  </div>
-             </div>
+            <div class="ui-widget" id="errorpcompra">
+              <div class="ui-corner-all" style="padding: 0 .2em;">
+                <p>
+                  <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE INGRESAR EL PRECIO DE COMPRA.
+                </p>
+              </div>
+            </div>
             <label>Precio Venta: </label>
             <div class="input-prepend input-append">
                 <label class="add-on">$</label>
@@ -134,11 +142,10 @@
         <span class="ui-icon-red ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Error al Actualizar el Producto.</strong></center>
       </div>
+     </td> 
+    </tr>
+   </form>
   </div>
-           </td> 
-        </tr>
-    </form>
-    </div>
   </table>
   </div>
     <script src="../js/jquery.js"></script>

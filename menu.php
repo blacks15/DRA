@@ -14,7 +14,7 @@
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <div align="center">
-<table width="80%" border="1">
+<table width="95%" border="1">
   <tr>
     <td>
     <div id="navbar-example" class="navbar navbar-static">

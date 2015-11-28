@@ -14,11 +14,10 @@
 </head>
 <body>
 <div id="wrapper">
-	<div id="login" class="animate form">
+	<div id="login">
 	 <form action=""method="post">
-		<h2>Iniciar Sesión</h2>
-			<img src="css/img/user.jpg" id="logo" width="100" height="100">
-			<br>
+		<h2 align="center">Iniciar Sesión</h2>
+			<figure id="img_login"><img src="css/img/user.jpg" id="logo" width="100" height="100"></figure>
 		<input type="text" class="input-text" id="usuario" name="usuario" placeholder="Usuario" required>
 		<div class="ui-widget" id="errornom">
 	    	<div class="ui-corner-all" style="padding: 0 .2em;">
@@ -52,7 +51,7 @@
 	</div>
     </div>
      <script src="js/jquery.js"></script>
-     <script src="js/login.js"></script>
      <script src="jqueryui/jquery-ui.min.js"></script>
+     <script src="js/login.js"></script>
 </body>
 </html>

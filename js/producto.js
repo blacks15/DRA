@@ -159,11 +159,13 @@ $(document).ready(function(){
 				if (respuesta.noexiste == true) {
 					$("#errornoex").show();
 				} else {
+					console.log(respuesta);
 					$("#codigo").val(respuesta.id);
 					$("#libro").val(respuesta.nombre).attr('selected', 'selected');
 					$("#prov").val(respuesta.proveedor).attr('selected', 'selected');
 					$("#cprov").val(respuesta.codigo_proveedor);
 					$("#minimo").val(respuesta.cm);
+					$("#actual").val(respuesta.ca);
 					$("#compra").val(respuesta.compra);
 					$("#venta").val(respuesta.venta);
 					$("#errornoex").hide();
@@ -202,6 +204,7 @@ $(document).ready(function(){
 		$("#ng").hide();
 		$("#nu").hide();
 		$("#numeros").hide();
+		$("#erroractual").hide();
 		$("#errornom").hide();
 		$("#errorprov").hide();
 		$("#errorcpp").hide();
@@ -214,6 +217,7 @@ $(document).ready(function(){
 		var prov = $("#prov").val();
 		var name = $("#libro").val();
 		var cprov = $("#cprov").val();
+		var act = $("#actual").val();
 		var min = $("#minimo").val();
 		var cost = $("#costo").val();
 		var sell = $("#venta").val();
@@ -240,6 +244,10 @@ $(document).ready(function(){
 		} else if (sell == "" || sell == 0) {
 			$("#venta").focus();
 			$("#errorpventa").show();
+			return false;
+		} else if (act == "") {
+			$("#actual").focus();
+			$("#erroractual").hide();
 			return false;
 		}
 		ocultar();
