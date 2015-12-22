@@ -1,21 +1,21 @@
 $(document).ready(function(){
 	   
-       $("#war").hide();
-       $("#mensajealta").hide();
-       $("#delete").hide();
-
+     $("#war").hide();
+     $("#mensajealta").hide();
+     $("#delete").hide();
+     var rowsToColor = [];
+  
 		jQuery("#productos").jqGrid({
 				url:'../php/buscar_producto.php',
 				datatype: 'json',
 				mtype: 'POST',
-				colNames:['ID','NOMBRE','PROVEEDOR','CÓDIGO DEL PROVEEDOR','CANTIDAD ACTUAL','CANTIDAD MINIMA','PRECIO VENTA', 'STATUS'],
+				colNames:['ID','NOMBRE','PROVEEDOR','CÓDIGO DEL PROVEEDOR','CANTIDAD ACTUAL','PRECIO VENTA', 'STATUS'],
 				colModel:[
 					{name:'clave_producto', index:'clave_producto', width:90, resizable:false, align:"center",search:false,key:true},
 					{name:'nombre_libro', index:'nombre_libro', width:400,resizable:false,search:true},
           {name:'nombre', index:'nombre', width:200,search:true},
           {name:'codigo_proveedor', index:'codigo_proveedor', width:270,search:true},
-          {name:'cantidad_actual', index:'cantidad_actual', width:230,search:false, align:"center"},
-          {name:'cantidad_minima', index:'cantidad_minima',search:false, width:230, align:"center"},
+          {name:'cantidad_actual', index:'cantidad_actual', width:230,search:false, align:"center",formatter:rowcolor},
           {name:'precio_venta', index:'precio_venta',formatter:'currency',formatoptions: {prefix:'$', suffix:'', thousandsSeparator:','},search:false, width:180, align:"center"},
           {name:'status', index:'status',search:false, width:180},
 				],
@@ -29,18 +29,15 @@ $(document).ready(function(){
         viewrecords: true,
         caption: 'PRODUCTOS',
         altRows: true,
-        //gridview : true,
+        gridview : true,
         pagination:true,
         loadComplete: function(data){
           estado();
-          var rowIds = $('#productos').jqGrid('getDataIDs');
-          for (i = 0; i < rowIds.length; i++) { 
-            rowData = $('#productos').jqGrid('getRowData', rowIds[i]);
-            if (rowData['cantidad_actual']  < 3) {
-               $(this).jqGrid('setCell',rowIds[i],false,{color:'white','background':'#ff0000',});
-            } 
-          } 
-        }
+          for (var i = 0; i < rowsToColor.length; i++) {
+                $("#" + rowsToColor[i]).find("td").css("background-color", "#ff0000");
+                $("#" + rowsToColor[i]).find("td").css("color", "white");
+          }//END FOR
+        },
     });
 	
   jQuery("#productos").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false},
@@ -49,6 +46,12 @@ $(document).ready(function(){
    {}, //opciones del
    {multipleSearch:true,closeAfterSearch: true, closeOnEscape: true}//opciones search
   );
+
+  function rowcolor(cellValue, options, rowObject) {
+      if (cellValue == 0)
+          rowsToColor[rowsToColor.length] = options.rowId;
+      return cellValue;
+  }
 
   $("#productos").jqGrid('navButtonAdd','#pager2',{
     caption: "Borrar", 
@@ -133,15 +136,20 @@ $(document).ready(function(){
       $.ajax({
         cache: false,
         type: "POST",
-        datatype: "json",
+        dataType: "json",
         url: "../php/estado_producto.php",
-        data: {detalle:detalle},
-        success: function(opciones){
+        data: {detalle: detalle},
+        success: function(msg){
+          if (msg.respuesta == true) {
+            console.log("");
+          } else {
+            console.log("error");
+          }
         },
         error: function(xhr,ajaxOptions,throwError){
-          console.log(xhr);
+          console.log(throwError);
         } 
       });
+      $("#productos").trigger("reloadGrid");
   }
-
 });

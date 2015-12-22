@@ -3,6 +3,12 @@ $(document).ready(function(){
 	ocultar();
 	$("#prod").focus();
 
+	$('.chosen').chosen({
+		allow_single_deselect: true,
+		placeholder_text_single: "SELECCIONE",
+		no_results_text: "!No Hay Resultados!"
+	});
+
 	$("#btnSave").click(function(){
 	 	var user = $("#usuario").val();
 	 	var date = $("#date").val();
@@ -11,7 +17,7 @@ $(document).ready(function(){
  		var data = $("#ventas").getRowData(id);
  		var detalle = JSON.stringify(data);
 
-		if (validar_venta() && id == null ) {
+		if (validar_venta() && id == null && id == "") {
 			$.ajax({
 				cache: false,
 				type: "POST",
@@ -74,7 +80,7 @@ $(document).ready(function(){
 	            resizable: "false",
 	            buttons: { "OK": function () { $(this).dialog("close"); } },   
 	        });
-			}
+		}
     });
 
 	$("#prod").focusout(function(){
@@ -120,6 +126,7 @@ $(document).ready(function(){
 		success: function(opciones){
 			$("#usuario").html(opciones.opcion_user);
 			$("#cliente").html(opciones.opcion_cliente);
+			$('.chosen').trigger('chosen:updated');
 		},
 		error: function(xhr,ajaxOptions,throwError){
 			console.log(throwError);
@@ -152,11 +159,11 @@ $(document).ready(function(){
           }
     });
 	jQuery("#ventas").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false,refresh:false},
-         {height:280,reloadAfterSubmit:true},//opciones edit
-         {}, //opciones add
-         {}, //opciones del
-         {closeAfterSearch: true, closeOnEscape: true}//opciones search
-         );
+		{height:280,reloadAfterSubmit:true},//opciones edit
+		{}, //opciones add
+		{}, //opciones del
+		{closeAfterSearch: true, closeOnEscape: true}//opciones search
+    );
     $("#ventas").jqGrid('navButtonAdd','#pager2',{
         caption: "Borrar", 
         autowidth: true,
@@ -187,11 +194,35 @@ $(document).ready(function(){
  		var cantidad = $("#cant").val();
  		var precio = $("#precio").val();
  		var subtotal = precio * cantidad;
+	 	var id = $("#ventas").jqGrid('getRowData');
 	 		if (validar_grid()) {
-		 		var data = {codigo,producto,cantidad,precio,subtotal};
-		 		$("#ventas").jqGrid('addRowData',codigo,data,"last");
-		 		limpiar_grid();
-		 	} else {}
+	 			if (id != 0 || id != "") {
+	 				for (var i = 0 ; i < id.length; i++) {
+	 					var row = id[i];
+						if (codigo == row['codigo']) {
+			 				$("#ex").dialog({
+								modal: true,
+					            width: 270,
+					            height: 170,
+					            show: {effect : "fold", duration: 300},
+					            hide: {effect : "explode", duration: 300},
+					            resizable: "false",
+					            buttons: { "OK": function () { $(this).dialog("close"); } },   
+				       		});
+					  	} else {
+					  		var data = {codigo,producto,cantidad,precio,subtotal};
+			 				$("#ventas").jqGrid('addRowData',codigo,data,"last");
+			 				limpiar_grid();
+					  	}
+					}
+	 			} else {
+					var data = {codigo,producto,cantidad,precio,subtotal};
+			 		$("#ventas").jqGrid('addRowData',codigo,data,"last");
+			 		limpiar_grid();
+				}
+		 	} else {
+		 		console.log('Error al insertar datos en el grid');
+		 	}
 	 });
 
  	 $('#bus').click(function(){
@@ -229,6 +260,7 @@ $(document).ready(function(){
 	 	$("#usuario").val("");
 	 	$("#date").val("");
 	 	$("#cliente").val("");
+	 	$('.chosen').trigger('chosen:updated');
 	 }
 
 	 function validar_grid(){
@@ -240,7 +272,7 @@ $(document).ready(function(){
 
 	 	if (producto == "") {
 	 		return false;
-	 	}else if (codigo == "") {
+	 	} else if (codigo == "") {
 	 		return false;
 	 	} else if (cantidad <= 0 || cantidad == "") {
 	 		return false;
@@ -271,6 +303,7 @@ $(document).ready(function(){
 	 	$("#ng").hide();
 	 	$("#error").hide();
 	 	$("#ins").hide();
+	 	$("#ex").hide();;
 	 }
 
 	 function validar_venta(){

@@ -18,24 +18,24 @@
   if($post['search'] == 'true'){
     $b = array();
     //Usamos la funci{on elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['like']=elements(array('nombre_autor','apellido_autor'),$_REQUEST);
+    $search['like']=elements(array('nombre_autor'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando la consulta.
     foreach($search['like'] as $key => $value){
       if($value != false) $b[]="$key like '%$value%'";
     }
     //Usamos la funcion elements para crear un arreglo con los datos que van a ser para buscar por like
-    $search['where'] = elements(array('nombre_autor','apellido_autor'),$_REQUEST);
+    $search['where'] = elements(array('nombre_autor'),$_REQUEST);
     //haciendo un recorrido sobre ellos vamos creando al consulta.
     foreach($search['where'] as $key => $value){
       if($value != false) $b[]="$key = '$value'";
     }
     //Creamos la consulta where
-    $se=" where estado = 'ACTIVO' and ".implode(' and ',$b );   
+    $se=" where ".implode(' or ',$b );   
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   if (!$se) {
-    $query = mysql_query("select count(*) as t from autores where estado ='ACTIVO' ");
+    $query = mysql_query("select count(*) as t from autor ");
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -51,7 +51,7 @@
     $post['offset'] = 0;
   }
   }
-  $query = mysql_query("select count(*) as t from autores".$se);
+  $query = mysql_query("select count(*) as t from autor".$se);
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -67,8 +67,7 @@
     $post['offset']=0;
   }
   if (!$se) {
-    $estado = 'activo';
-    $sql = "select clave_autor,nombre_autor,apellido_autor,estado from autores where estado = 'ACTIVO'";
+    $sql = "select clave_autor,nombre_autor from autor ";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -81,7 +80,7 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-  $sql = "select clave_autor,nombre_autor,apellido_autor,estado from autores".$se;
+  $sql = "select clave_autor,nombre_autor from autor".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -97,7 +96,7 @@
 
     while($row = mysql_fetch_object($query)){
       $result[$i]['clave_autor']=$row->clave_autor;
-      $result[$i]['cell']=array($row->clave_autor,$row->nombre_autor,$row->apellido_autor,$row->estado);
+      $result[$i]['cell']=array($row->clave_autor,utf8_encode($row->nombre_autor));
       $i++;    
   }   
   //Asignamos todo esto en variables de json, para enviarlo al navegador.
@@ -107,8 +106,7 @@
   $json->records = $count;
   echo json_encode($json);
 
- function elements($items, $array, $default = FALSE)
-  {
+ function elements($items, $array, $default = FALSE) {
     $return = array();
     if ( ! is_array($items)){
       $items = array($items);

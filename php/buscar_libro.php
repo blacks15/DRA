@@ -25,25 +25,26 @@
     foreach($search['like'] as $key => $value){
       if($value != false) $b[]="$key like '%$value%'";
     }
-    //Usamos la funcion elements para crear un arreglo con los datos que van a ser para buscar por like
+      //Usamos la funcion elements para crear un arreglo con los datos que van a ser para buscar por like
     $search['where'] = elements(array('clave_libro','nombre_libro'),$_REQUEST);
-    //haciendo un recorrido sobre ellos vamos creando al consulta.
+      //haciendo un recorrido sobre ellos vamos creando al consulta.
     foreach($search['where'] as $key => $value){
       if($value != false) $b[] = "$key = '$value'";
     }
-    //Creamos la consulta where
-    $se = " where ".implode(' and ',$b );   
+      //Creamos la consulta where
+    $se = " where ".implode(' or ',$b );   
   }
   $query = mysql_query("select count(*) as t from lb".$se);
   if(!$query)
     echo mysql_error();
-  $count = mysql_result($query);
+  $count = mysql_result($query,0);
   if( $count > 0 && $post['limit'] > 0) {
-    //Calculamos el numero de paginas que tiene el sistema
+      //Calculamos el numero de paginas que tiene el sistema
     $total_pages = ceil($count/$post['limit']);
-    if ($post['page'] > $total_pages) $post['page']=$total_pages;
-    //calculamos el offset para la consulta mysql.
-    $post['offset']=$post['limit']*$post['page'] - $post['limit'];
+    if ($post['page'] > $total_pages) 
+      $post['page']=$total_pages;
+        //calculamos el offset para la consulta mysql.
+      $post['offset']=$post['limit']*$post['page'] - $post['limit'];
   } else {
     $total_pages = 0;
     $post['page'] = 0;
@@ -62,13 +63,13 @@
     if(!$query)
     echo mysql_error();
   } else {
-  //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
+    //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
    $sql = "select clave_libro,nombre_libro from lb ".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
-    //Añadimos de una ves la parte de la consulta para ordenar el resultado
+     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql.= " ORDER BY $post[orderby] $post[orden] ";
   if($post['limit'] && $post['offset']) $sql.=" limit $post[offset], $post[limit]";
-    //añadimos el limite para solamente sacar las filas de la apgina actual que el sistema esta consultando
+      //añadimos el limite para solamente sacar las filas de la apgina actual que el sistema esta consultando
     else if($post['limit']) $sql.=" limit 0,$post[limit]";
   $query = mysql_query($sql);
   if(!$query)

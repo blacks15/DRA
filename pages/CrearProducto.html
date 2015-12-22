@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/style.css">
+	  <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chosen.css">
     <link rel="stylesheet" href="../jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="../css/bootstrap-responsive.css">
 
@@ -34,8 +35,8 @@
         	<label>Codigo: </label>
             <input type="text" name="codigo" id="codigo" value="" readonly class="input-medium">
             <label>Nombre: </label>
-            <select name="libro" id="libro" class="input-large">
-                <option value="0"></option>
+            <select class="chosen" name="libro" id="libro" class="input-large">
+                <option value="0">SELECCIONE</option>
             </select>
              <div class="ui-widget" id="errornom">
                   <div class="ui-corner-all" style="padding: 0 .2em;">
@@ -45,8 +46,8 @@
                   </div>
              </div><br><br>
             <label>Proveedor</label>
-            <select name="prov" id="prov" class="input-medium">
-                <option value="0"></option>
+            <select class="chosen" name="prov" id="prov" class="input-medium">
+                <option value="0">SELECCIONE</option>
             </select>
              <div class="ui-widget" id="errorprov">
                 <div class="ui-corner-all" style="padding: 0 .2em;">
@@ -114,33 +115,33 @@
                     </p>
                   </div>
                 </div>
-      <div class="" id="mensajealta" title="Información Guardada">
-        <span class="ui-icon-blue ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Producto Guardado con Exito</strong></center>
+      <div id="mensajealta" title="Información Guardada">
+        <span class="ui-icon-blue ui-icon-circle-check"></span>
+        <center><strong>!Producto Guardado con Éxito!</strong></center>
       </div>
-      <div class="" id="upd" title="Información Guardada">
-        <span class="ui-icon-blue ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Producto Modificado con Exito</strong></center>
+      <div id="upd" title="Información Guardada">
+        <span class="ui-icon-blue ui-icon-circle-check"></span>
+        <center><strong>!Producto Modificado Con Éxito!</strong></center>
       </div>
-      <div class="" id="error" title="Advertencia">
-        <span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Debe Llenar Todos los Campos.</strong></center>
+      <div id="error" title="Advertencia">
+        <span class="ui-icon-red ui-icon-info"></span>
+        <center><strong>!Debe Llenar Todos los Campos!</strong></center>
       </div>
-      <div class="" id="numeros" title="Advertencia">
-        <span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Solo se Permiten Números.</strong></center>
+      <div id="numeros" title="Advertencia">
+        <span class="ui-icon-red ui-icon-info"></span>
+        <center><strong>!Solo Se Permiten Números!</strong></center>
       </div>
-            <div class="" id="existe" title="Advertencia">
-        <span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>El Producto ya Existe.</strong></center>
+      <div id="existe" title="Advertencia">
+        <span class="ui-icon-red ui-icon-info"></span>
+        <center><strong>!El Producto Ya Existe!</strong></center>
       </div>
-      <div class="" id="ng" title="Advertencia">
-        <span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Error al Guardar Producto.</strong></center>
+      <div id="ng" title="Advertencia">
+        <span class="ui-icon-red ui-icon-info"></span>
+        <center><strong>!Error Al Guardar Producto!</strong></center>
       </div>
-      <div class="" id="nu" title="Advertencia">
-        <span class="ui-icon-red ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
-        <center><strong>Error al Actualizar el Producto.</strong></center>
+      <div id="nu" title="Advertencia">
+        <span class="ui-icon-red ui-icon-alert"></span>
+        <center><strong>!Error Al Actualizar El Producto!</strong></center>
       </div>
      </td> 
     </tr>
@@ -151,6 +152,8 @@
     <script src="../js/jquery.js"></script>
     <script src="../js/producto.js"></script>
     <script src="../jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/chosen.js"></script>
+
 </body>
 
 </html>

@@ -7,11 +7,10 @@ $(document).ready(function(){
             url:'../php/buscar_editorial.php',
             datatype: 'json',
             mtype: 'POST',
-            colNames:['ID','NOMBRE','STATUS'],
+            colNames:['ID','NOMBRE'],
             colModel:[
                 {name:'clave_editorial', index:'clave_editorial',search:false,width:80,resizable:false, align:"center",key:true},
-                {name:'nombre_editorial', index:'nombre_editorial', width:190,resizable:true,search:true},
-                {name:'estado', index:'estado', search:false, width:100, align:"center" }
+                {name:'nombre_editorial', index:'nombre_editorial', width:190,resizable:true,search:true,align: "center"},
             ],
             height: "100%",
             autowidth: true,

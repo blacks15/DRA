@@ -81,6 +81,11 @@ input{
 	height: 16px;
 	background-image: url(../jqueryui/images/ui-icons_blue.png)/*{iconsContent}*/;
 }
+.ui-icon-white {
+	width: 16px;
+	height: 16px;
+	background-image: url(../jqueryui/images/ui-icons_blue.png)/*{iconsContent}*/;
+}
 .bs-docs-example-submenus .dropup > .dropdown-menu,
 .bs-docs-example-submenus .dropdown > .dropdown-menu {
   display: block;

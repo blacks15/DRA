@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/chosen.css">
 	<link rel="stylesheet" href="../jqueryui/jquery-ui.css">
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -57,7 +58,7 @@
 		             </div>
 		          </div>
 				<label>Género: </label>
-				<select name="genero" id="genero" class="input-medium">
+				<select class="chosen" name="genero" id="genero" class="input-medium">
 					<option value="0">SELECCIONE</option>
 				</select>
 				<div class="ui-widget" id="errorgen">
@@ -68,8 +69,7 @@
 		             </div>
 		          </div>
 				<label>Autor: </label>
-				<select name="autor" id="autor">
-				</select>
+				<select class="chosen" name="autor" id="autor"></select>
 				<div class="ui-widget" id="errorautor">
 		          <div class="ui-corner-all" style="padding: 0 .2em;">
 		             <p>
@@ -80,7 +80,7 @@
 			</td>
 			<td>
 				<label>Editorial: </label>
-				<select name="editorial" id="editorial" class="input-medium">
+				<select class="chosen" name="editorial" id="editorial" class="input-medium">
 					<option value="0">SELECCIONE</option>
 				</select>
 				<div class="ui-widget" id="erroredit">
@@ -143,5 +143,6 @@
 	<script src="../js/libros.js"></script>
 	<script src="../jqueryui/jquery-ui.min.js"></script>
 	<script src="../js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/chosen.js"></script>
 </body>
 </html>

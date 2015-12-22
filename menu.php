@@ -110,6 +110,12 @@
                     <li><a role="menuitem" tabindex="-1" target="admin" href="php/rptlistado_cliente.php"><i class="icon-th-list"></i>Lista de Clientes</a></li>
                   </ul>
               </li>
+              <li>
+                <a href="#" class="trigger right-caret"><img src="css/img/glyphicons/glyphicons-228-usd.png" width="10"> Ventas</a>
+                  <ul class="dropdown-menu sub-menu">
+                    <li><a role="menuitem" tabindex="-1" target="admin" href="pages/VentasFecha.html"><i class="icon-calendar"></i> Ventas Por Fecha</a></li>
+                  </ul>
+              </li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="php/rptlistado_proveedores.php" target="admin"><i class="icon-th-list"></i> 
                 Listados de Proveedores</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="php/rptlistado_productos.php" target="admin"><i class="icon-th-list"></i> 

@@ -5,6 +5,12 @@ $(document).ready(function (){
 	$("#pag").keypress(validatenum);
 	$("#btnUpdate").hide();
 
+	$('.chosen').chosen({
+		allow_single_deselect: true,
+		placeholder_text_single: "SELECCIONE",
+		no_results_text: "!No Hay Resultados!"
+	});
+
 	$.ajax({
 		cache: false,
 		type: "POST",
@@ -14,6 +20,7 @@ $(document).ready(function (){
 			$("#editorial").html(opciones.opcion_ed);
 			$("#autor").html(opciones.opcion_aut);
 			$("#genero").html(opciones.opcion_genero);
+			$('.chosen').trigger('chosen:updated');
 		},
 		error: function(xhr,ajaxOptions,throwError){
 			console.log(xhr);
@@ -169,6 +176,8 @@ $(document).ready(function (){
 					$("#btnUpdate").show();
 					$("#btnsave").hide();
 					$("#bu").val("");
+					$('.chosen').trigger('chosen:updated');
+
 				}
 			},
 			error: function(xhr,ajaxOptions,throwError){
@@ -180,6 +189,7 @@ $(document).ready(function (){
 	$("#reset").click(function(){
 		$("#btnsave").show();
 		$("#btnUpdate").hide();
+		$('.chosen').trigger('chosen:updated');
 	});
 
 	function validar(){
@@ -246,40 +256,42 @@ $(document).ready(function (){
 		$("#genero").prop('selectedIndex', 0);
 		$("#autor").prop('selectedIndex', 0);
 		$("#editorial").prop('selectedIndex', 0);
+		$('.chosen').trigger('chosen:updated');
+
 	}
 	$(".letras").keypress(function (key) {
+	    if ((key.charCode < 97 || key.charCode > 122) //letras mayusculas
+	        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
+	        && (key.charCode != 45) //retroceso
+	        && (key.charCode != 241) //ñ
+	         && (key.charCode != 209) //Ñ
+	         && (key.charCode != 32) //espacio
+	         && (key.charCode != 225) //á
+	         && (key.charCode != 233) //é
+	         && (key.charCode != 237) //í
+	         && (key.charCode != 243) //ó
+	         && (key.charCode != 250) //ú
+	         && (key.charCode != 193) //Á
+	         && (key.charCode != 201) //É
+	         && (key.charCode != 205) //Í
+	         && (key.charCode != 211) //Ó
+	         && (key.charCode != 218) //Ú
+	        )  {
+	    	$("#letras").dialog({
+			modal: true,
+	        width: 270,
+	        height: 170,
+	        show: {effect : "fold" ,duration: 300},
+	        hide: {effect : "explode", duration: 300},
+	        resizable: "false",
+	        buttons: { "OK": function () { $(this).dialog("close"); } },   
+	    });
+	        return false;
+	    } else {
+	    	return true
+	    } 
+	});
 
-    if ((key.charCode < 97 || key.charCode > 122) //letras mayusculas
-        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
-        && (key.charCode != 45) //retroceso
-        && (key.charCode != 241) //ñ
-         && (key.charCode != 209) //Ñ
-         && (key.charCode != 32) //espacio
-         && (key.charCode != 225) //á
-         && (key.charCode != 233) //é
-         && (key.charCode != 237) //í
-         && (key.charCode != 243) //ó
-         && (key.charCode != 250) //ú
-         && (key.charCode != 193) //Á
-         && (key.charCode != 201) //É
-         && (key.charCode != 205) //Í
-         && (key.charCode != 211) //Ó
-         && (key.charCode != 218) //Ú
-        )  {
-    	$("#letras").dialog({
-		modal: true,
-        width: 270,
-        height: 170,
-        show: {effect : "fold" ,duration: 300},
-        hide: {effect : "explode", duration: 300},
-        resizable: "false",
-        buttons: { "OK": function () { $(this).dialog("close"); } },   
-    });
-        return false;
-    } else {
-    	return true
-    } 
-});
 	function validatenum(event) {
 		var key = window.event ? event.keyCode : event.which;
 	
