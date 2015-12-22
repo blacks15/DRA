@@ -21,13 +21,12 @@ $pdf->ezSetCmMargins(1.5,1,2,3);
 $pdf->addJpegFromFile("../img/libro.jpg",50,750,60);  
 $folio = trim($_GET['folio']);
 
-$result = mysql_query("select nombre_libro,isbn,
-  concat(nombre_autor,' ',apellido_autor) as nombre_autor,g.nombre_genero,e.nombre_editorial
-            from libros l
-            inner join autores a on a.clave_autor = l.autor
-            inner join generos g on g.clave_genero = l.genero
-            inner join editoriales e on e.clave_editorial = l.editorial
-            where l.status = 'DISPONIBLE' and clave_genero = '".$folio."' ");
+$result = mysql_query("select nombre_libro,isbn as isbn,
+  nombre_autor,g.nombre_genero,e.nombre_editorial
+            from lb l
+            inner join autor a on a.clave_libro = l.clave_libro
+            inner join editorial on e.clave_libro = l.clave_libro
+            where clave_libro = '".$folio."' ");
 
   while ($datatmp = mysql_fetch_array($result)) {
       $data[] = array_merge($datatmp, array('clave_genero'));
@@ -42,7 +41,6 @@ $result = mysql_query("select nombre_libro,isbn,
   );  $titles = array('nombre_libro'=>'<b>NOMBRE LIBRO</b>',
             'isbn'=>'<b>ISBN</b>',
             'nombre_autor'=>'<b>NOMBRE AUTOR</b>',
-            'nombre_genero'=>'<b>NOMBRE GÉNERO</b>',
             'nombre_editorial'=>'<b>NOMBRE EDITORIAL</b>',);
 
 $pdf->ezText("\n\n\n\n\n", 10);

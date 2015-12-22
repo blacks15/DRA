@@ -3,7 +3,8 @@ $(document).ready(function(){
 	$("#retiro").keypress(validatenum);
 	ocultar();
 	entrar();
-//BOTÓN GUARDAR
+	$("#btnUpdate").hide();
+		//BOTÓN GUARDAR
 	$("#btnSave").click(function() {
 		var cadena = $("#form1").serialize();
 		if (validar() ) {
@@ -55,11 +56,10 @@ $(document).ready(function(){
 		}
 	});
 
-//BOTÓN ACTUALIZAR
+		//BOTÓN ACTUALIZAR
 	$("#btnUpdate").click(function(){
-
 		if( validar() ){
-		var cadena = $("#form1").serialize();
+			var cadena = $("#form1").serialize();
 		$.ajax({
 			cache: false,
 			type: "POST",
@@ -101,7 +101,7 @@ $(document).ready(function(){
 	        });
 		}
 	});
-//TRAER EL NOMBRE COMPLETO DEL USUARIO LOGUEADO
+		//TRAER EL NOMBRE COMPLETO DEL USUARIO LOGUEADO
 	$.ajax({
 		cache: false,
 		type: "POST",
@@ -115,12 +115,12 @@ $(document).ready(function(){
 		} 
 	});
 	
-//LLENAR CON LA FECHA ACTUAL	
+		//LLENAR CON LA FECHA ACTUAL	
 	$("#date").datepicker({
 			dateFormat: "dd-M-yy"
 	});
 	$("#date").datepicker('setDate', '+0');
-//FUNCIÓN PARA VALIDAR FORMULARIO
+		//FUNCIÓN PARA VALIDAR FORMULARIO
 	function validar(){
 		ocultar();
 		var retiro =  $("#retiro").val();
@@ -141,12 +141,12 @@ $(document).ready(function(){
 	 $("#ref").click(function(){
 	 	window.location.reload();
 	 });
-//FUNCIÓN PARA LIMPIAR LOS CAMPOS
+		//FUNCIÓN PARA LIMPIAR LOS CAMPOS
 	function limpiar(){
 		$("#retiro").val("");
 		$("#obs").val("");
 	}
-//FUNCIÓN PARA OCULTAR MENSAJES
+		//FUNCIÓN PARA OCULTAR MENSAJES
 	function ocultar(){
 		$("#mensajealta").hide();
 		$("#upd").hide();
@@ -155,7 +155,7 @@ $(document).ready(function(){
 		$("#errorobs").hide();
 		$("#ng").hide();
 	}
-//FUNCION PARA ACEPTAR SOLO NÚMEROS
+		//FUNCION PARA ACEPTAR SOLO NÚMEROS
 	function validatenum(event) {
 		var key = window.event ? event.keyCode : event.which;
 	
@@ -180,7 +180,7 @@ $(document).ready(function(){
 		if (sessionStorage.retiro == undefined){
 			
 		} else {
-			//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
+				//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
 			id = sessionStorage.key(0);
 			res = sessionStorage.getItem('retiro');
 		//CONVERTIMOS EL JSON A UN OBJETO

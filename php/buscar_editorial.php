@@ -30,12 +30,12 @@
       if($value != false) $b[]="$key = '$value'";
     }
     //Creamos la consulta where
-    $se=" where status = 'ACTIVO' and ".implode(' and ',$b );   
+    $se=" where ".implode(' or ',$b );   
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   if (!$se) {
-    $query = mysql_query("select count(*) as t from editoriales where status ='ACTIVO' ");
+    $query = mysql_query("select count(*) as t from editorial ");
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -51,7 +51,7 @@
     $post['offset'] = 0;
   }
   }
-  $query = mysql_query("select count(*) as t from editoriales".$se);
+  $query = mysql_query("select count(*) as t from editorial".$se);
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query);
@@ -67,7 +67,7 @@
     $post['offset'] = 0;
   }
   if (!$se) {
-    $sql = "select clave_editorial,nombre_editorial,status from editoriales where status = 'ACTIVO'";
+    $sql = "select clave_editorial,nombre_editorial from editorial group by nombre_editorial";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -80,7 +80,7 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-   $sql = "select clave_editorial,nombre_editorial,status from editoriales ".$se;
+   $sql = "select clave_editorial,nombre_editorial from editorial ".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -96,7 +96,7 @@
 
     while($row = mysql_fetch_object($query)){
       $result[$i]['clave_editorial'] = $row->clave_editorial;
-      $result[$i]['cell']=array($row->clave_editorial,$row->nombre_editorial,$row->status);
+      $result[$i]['cell']=array($row->clave_editorial,utf8_encode($row->nombre_editorial));
       $i++;    
   }   
   //Asignamos todo esto en variables de json, para enviarlo al navegador.

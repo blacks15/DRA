@@ -6,6 +6,12 @@ $(document).ready(function(){
 	 	window.location.reload();
 	 });
 
+	$('.chosen').chosen({
+		allow_single_deselect: true,
+		placeholder_text_single: "SELECCIONE",
+		no_results_text: "!No Hay Resultados!"
+	});
+
 	$("#date").datepicker({
 		dateFormat: "dd-M-yy"
 	});
@@ -78,6 +84,20 @@ $(document).ready(function(){
         source: "../php/buscar_venta.php",
         autoFocus: true
     });
+
+	$.ajax({
+		cache: false,
+		type: "POST",
+		datatype: "json",
+		url: "../php/combo_venta.php",
+		success: function(opciones){
+			$("#usuario").html(opciones.opcion_user);
+			$('.chosen').trigger('chosen:updated');
+		},
+		error: function(xhr,ajaxOptions,throwError){
+			console.log(throwError);
+		} 
+	});
 
 	$("#prod").focusout(function(){
 		var prod = $("#prod").val();
@@ -217,6 +237,7 @@ $(document).ready(function(){
 	 	$("#error").hide();
 	 	$("#errorprov").hide();
 	 	$("#errorgrid").hide();
+	 	$("#erroruser").hide();
 	 }
 
 	jQuery("#compras").jqGrid({
@@ -245,11 +266,11 @@ $(document).ready(function(){
           }
     });
 	jQuery("#compras").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false,search:false,view:false,refresh:false},
-         {height:280,reloadAfterSubmit:true},//opciones edit
-         {}, //opciones add
-         {}, //opciones del
-         {closeAfterSearch: true, closeOnEscape: true}//opciones search
-         );
+       {height:280,reloadAfterSubmit:true},//opciones edit
+       {}, //opciones add
+       {}, //opciones del
+       {closeAfterSearch: true, closeOnEscape: true}//opciones search
+    );
     $("#compras").jqGrid('navButtonAdd','#pager2',{
         caption: "Borrar", 
         autowidth: true,
@@ -267,7 +288,7 @@ $(document).ready(function(){
         var $grid = $("#compras"),
             newWidth = $grid.closest(".ui-jqgrid").parent().width();
         $grid.jqGrid("setGridWidth", newWidth, true);
-         });
+    });
 
 	function limpiar_grid(){
 	 	$("#prod").val("");
@@ -280,6 +301,7 @@ $(document).ready(function(){
 		$("#id_prov").val("");
 	 	$("#prov").val("");
 	 	$("#date").val("");
+	 	$('.chosen').trigger('chosen:updated');
 	}
 
 	function validar_grid(){

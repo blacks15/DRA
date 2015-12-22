@@ -48,7 +48,9 @@ $options = array(
                 'justification'=>'center',
                 'cols'=>array('clave_producto'=>array('justification'=>'center'),
                     'nombre_libro'=>array('justification'=>'center'),
-                    'nombre'=>array('justification'=>'center'),'compra'=>array('justification'=>'center'),'venta'=>array('justification'=>'center') ),
+                    'nombre'=>array('justification'=>'center'),
+                    'compra'=>array('justification'=>'center'),
+                    'venta'=>array('justification'=>'center') ),
             );
 $pdf->ezImage('../img/libro.jpg',0,60,'none','left');
 $pdf->line($pdf->ez['leftMargin'], $pdf->ez['bottomMargin']+10, $pdf->ez['pageWidth']-$pdf->ez['rightMargin'], $pdf->ez['bottomMargin']+10);//the bottom line

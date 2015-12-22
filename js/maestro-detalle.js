@@ -63,11 +63,11 @@ $(document).ready(function(){
         } 
     }); 
 
-   $(window).on("resize", function () {
-      var $grid = $("#ventas"),
-          newWidth = $grid.closest(".ui-jqgrid").parent().width();
-      $grid.jqGrid("setGridWidth", newWidth, true);
-    });
+ $(window).on("resize", function () {
+    var $grid = $("#ventas"),
+      newWidth = $grid.closest(".ui-jqgrid").parent().width();
+   $grid.jqGrid("setGridWidth", newWidth, true);
+ });
 
   jQuery("#dv").jqGrid({
     height: "100%",
@@ -92,24 +92,24 @@ $(document).ready(function(){
     caption:"DETALLE VENTA"
   }).navGrid('#pager2',{add:false,edit:false,del:false,refresh:false,search:false});
 
-   $(window).on("resize", function () {
-      var $grid = $("#dv"),
-          newWidth = $grid.closest(".ui-jqgrid").parent().width();
-      $grid.jqGrid("setGridWidth", newWidth, true);
-    });
+  $(window).on("resize", function () {
+    var $grid = $("#dv"),
+      newWidth = $grid.closest(".ui-jqgrid").parent().width();
+    $grid.jqGrid("setGridWidth", newWidth, true);
+  });
 
     function printer(){
       var folio = $("#ventas").jqGrid('getGridParam','selrow'); 
       if( folio == null ){
-              $("#war").dialog({
-                  modal: true,
-                  width: 270,
-                  height: 170,
-                  show: {effect : "fold" ,duration: 300},
-                  hide: {effect : "explode", duration: 300},
-                  resizable: "false",
-                  buttons: { "OK": function () { $(this).dialog("close"); } },   
-              });
+          $("#war").dialog({
+              modal: true,
+              width: 270,
+              height: 170,
+              show: {effect : "fold" ,duration: 300},
+              hide: {effect : "explode", duration: 300},
+              resizable: "false",
+              buttons: { "OK": function () { $(this).dialog("close"); } },   
+          });
       } else {
           window.location.href = "../php/rptventa.php?folio="+folio;
       }

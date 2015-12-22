@@ -22,8 +22,8 @@ $pdf->addJpegFromFile("../img/libro.jpg",50,750,60);
 
 $result = mysql_query("select clave_proveedor,nombre,contacto,
 	concat(calle,' ',num_ext,' ',num_int,' ',colonia,'') as direccion,ciudad,estado,telefono,celular,email
-						from proveedores 
-						where status = 'ACTIVO'  ");
+				from proveedores 
+				where status = 'ACTIVO'  ");
 
 	while ($datatmp = mysql_fetch_array($result)) {
 	    $data[] = array_merge($datatmp, array('clave_proveedor'));

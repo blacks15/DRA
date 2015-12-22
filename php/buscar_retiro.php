@@ -31,7 +31,7 @@
       if($value != false) $b[]="$key = '$value'";
     }
     //Creamos la consulta where
-    $se=" where fecha = '".$fecha."' ".implode(' and ',$b );   
+    $se=" where fecha = '".$fecha."' ".implode(' or ',$b );   
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros

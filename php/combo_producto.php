@@ -13,6 +13,7 @@
 
 	function mostrar_libro(){
 			global $opciones;
+			$opciones_libro = '<option value="0">SELECCIONE </option>';
 			$consulta = "select clave_libro,nombre_libro from libros where status = 'DISPONIBLE'";
 			$resultado = mysql_query($consulta) or die(mysql_error());
 			 while ($fila = mysql_fetch_array($resultado)) {
@@ -23,6 +24,7 @@
 	}
 	function mostrar_proveedor(){
 			global $opciones;
+			$opcion_proveedor = '<option value="0">SELECCIONE </option>';
 			$consulta = "select clave_proveedor, nombre from proveedores where status = 'ACTIVO'";
 			$resultado = mysql_query($consulta) or die(mysql_error());
 			 while ($fila = mysql_fetch_array($resultado)) {
