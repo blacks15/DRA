@@ -30,7 +30,7 @@
       if($value != false) $b[]="$key = '$value'";
     }
     //Creamos la consulta where
-    $se=" where ".implode(' and ',$b );   
+    $se=" where ".implode(' or ',$b );   
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros

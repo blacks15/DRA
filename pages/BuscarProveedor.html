@@ -12,11 +12,12 @@
 
 	</head>
 	<body data-spy="scroll" data-target=".bs-docs-sidebar">
+	<div id="img">
 		<table width="100%" border="0" class="table">
 			<tr>
 				<td>
 					<div class="btn-group" data-toggle="buttons-checkbox">
-						<button type="button" class="btn btn-primary" onclick="window.location=''">Reporte</button>
+						<button type="button" class="btn btn-primary" onclick="window.location='../php/rptlistado_proveedores.php' ">Reporte</button>
 						<button type="button" class="btn btn-primary" onclick="window.location='CrearProveedor.html'">Ingresar Nuevo</button>
 					</div>
 				</td>
@@ -26,21 +27,21 @@
 		</table>
 		<div id="pager2"></div>
 		<div id="delete" title="Advertencia">
-		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Está seguro de que desea eliminar el registro seleccionado?</p>
+		  <p><span class="ui-icon-red ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Está seguro de que desea eliminar el registro seleccionado?</p>
 		</div>
 		<div class="" id="war" title="Advertencia">
-				<span class="ui-icon ui-icon-info" style: "float: left; margin-right: .2em;"></span>
+				<span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
 			    <center> <strong>No Selecciono una Fila.</strong></center>
 		</div>
 		<div class="" id="mensajealta" title="Información Eliminada">
-				<span class="ui-icon ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
-			    <center> <strong>Proveedor Eliminado con Exito.</strong></center>
+			<span class="ui-icon-blue ui-icon-circle-check" style: "float: left; margin-right: .2em;"></span>
+			<center><strong>Proveedor Eliminado con Exito.</strong></center>
 		</div>
 		<script src="../js/jquery.js"></script>
 	    <script src="../jqueryui/jquery-ui.min.js"></script>
 		<script src="../jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 		<script src="../jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
 		<script src="../js/buscar_proveedor.js" type="text/javascript"></script>
-	</body>
+		</div>
 	</body>
 </html>

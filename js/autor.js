@@ -31,7 +31,7 @@ $(document).ready(function(){
 						$("#errornom").hide();
 						$("#errorap").hide();
 					} else if (response.existe == true) {
-							$("#existe").dialog({
+						$("#existe").dialog({
 							modal: true,
 				            width: 270,
 				            height: 170,
@@ -120,6 +120,9 @@ $(document).ready(function(){
 		}
 	});
 
+ 	 $('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarAutor.html";
+ 	 });
 
     function validar(){
 
@@ -194,27 +197,27 @@ $(document).ready(function(){
     });
             
 
-		function entrar(){
-			var id;
-			if (sessionStorage.genero == undefined){
-				
-			} else {
-				//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
-				id = sessionStorage.key(0);
-				res = sessionStorage.getItem('autor');
-			//CONVERTIMOS EL JSON A UN OBJETO
-				ob = JSON.parse(res);
-			//ASGINAMOS VALORES A LOS INPUTS
-				$("#codigo").val(ob.clave_autor);
-				$("#nombre").val(ob.firstname_autor);
-				$("#apellido").val(ob.lastname_autor);
-				$("#status").val(ob.estado);
-			//OCULTAMOS BOTON GUARDAR Y MOSTRAMOS MODIFICAR
-				$("#btnUpdate").show();
-				$("#alta").hide();
-			//VACIAMOS LA SESSION
-				sessionStorage.clear();
-			}
+	function entrar(){
+		var id;
+		if (sessionStorage.autor == undefined){
+			
+		} else {
+			//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
+			id = sessionStorage.key(0);
+			res = sessionStorage.getItem('autor');
+		//CONVERTIMOS EL JSON A UN OBJETO
+			ob = JSON.parse(res);
+		//ASGINAMOS VALORES A LOS INPUTS
+			$("#codigo").val(ob.clave_autor);
+			$("#nombre").val(ob.nombre_autor);
+			$("#apellido").val(ob.apellido_autor);
+			$("#status").val(ob.estado);
+		//OCULTAMOS BOTON GUARDAR Y MOSTRAMOS MODIFICAR
+			$("#btnUpdate").show();
+			$("#alta").hide();
+		//VACIAMOS LA SESSION
+			sessionStorage.clear();
 		}
+	}
 
 });

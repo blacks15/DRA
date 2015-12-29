@@ -119,6 +119,10 @@ $(document).ready(function(){
 		}
     });
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarEditorial.html";
+ 	});
+
     function validar () {
     	if ($("#nombre").val() == "") {
     		$("#nombre").focus();

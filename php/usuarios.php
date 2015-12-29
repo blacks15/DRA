@@ -33,14 +33,18 @@
 		if ($count == 1) {
 			$row = mysql_fetch_array($resultado);
 			$user = $row['nombre_usuario'];
+			$id = $row['matricula'];
 			if ((password_verify($pass,$row['password'])) && ($usuario == $user) ) {
 					$respuesta = true;
-					$_SESSION['loggedin'] = true;
+					session_start();
+					$_SESSION['autentificado'] = "si";
+					$_SESSION['id'] = $row['matricula'];
 					$_SESSION['username'] = $row['nombre_usuario'];
+					$_SESSION['tipo'] = $row['tipo'];
 					$_SESSION['start'] = time();
 					$_SESSION['expire'] = $_SESSION['start'] + (5 * 60) ;
 					$salidaJSON = array('respuesta' => $respuesta,
-										'usuario' => $usuario);
+										'usuario' => $_SESSION['username']);
 					print(json_encode($salidaJSON));
 				} else {
 					$fallo = true;

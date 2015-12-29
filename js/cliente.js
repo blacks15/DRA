@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
 	ocultar();
-	$("#empresa").focus();
+	$("#btnUpdate").hide();
+	$("#rfc").focus();
 	entrar();
 	$("#num").keypress(validatenum);
 	$("#telefono").keypress(validatenum);
@@ -119,6 +120,10 @@ $(document).ready(function(){
 		}
 	});
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarClientes.html";
+ 	});
+
 	function entrar(){
 		var id;
 		if (sessionStorage.cliente == undefined){
@@ -126,7 +131,7 @@ $(document).ready(function(){
 		} else {
 		//OCULTAMOS BOTON GUARDAR Y MOSTRAMOS MODIFICAR
 			$("#btnUpdate").show();
-			$("#btncliente").hide();
+			$("#btnSave").hide();
 		//RECUPERAMOS LOS VALORES ALMACENADOS EN SESSION 
 			id = sessionStorage.key(0);
 			res = sessionStorage.getItem('cliente');
@@ -134,6 +139,7 @@ $(document).ready(function(){
 			ob = JSON.parse(res);
 		//ASGINAMOS VALORES A LOS INPUTS
 			$("#codigo").val(ob.matricula);
+			$("#rfc").val(ob.rfc);
 			$("#empresa").val(ob.empresa);
 			$("#nombre").val(ob.nombre_contacto);
 			$("#apaterno").val(ob.apellido_paterno);
@@ -154,6 +160,7 @@ $(document).ready(function(){
 
 	function limpiar (){
 		$("#codigo").val("");
+		$("#rfc").val("");
 		$("#empresa").val("");
 		$("#nombre").val("");
 		$("#apaterno").val("");
@@ -187,9 +194,9 @@ $(document).ready(function(){
 		$("#numeros").hide();
 		$("#nomail").hide();
 		$("#upd").hide();
-		$("#btnUpdate").hide();
 		$("#ng").hide();
 		$("#existe").hide();
+		$("#errorrfc").hide();
 	}
 
 	function validar_datos(){
@@ -206,7 +213,7 @@ $(document).ready(function(){
 		var cel = $("#celular").val();
 		var email = $("#correo").val();
 		var emailreg =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-		
+		var rfc = $("#rfc").val();
 		if (name == "") {
 			$("#nombre").focus();
 			$("#errornom").show();
@@ -255,6 +262,10 @@ $(document).ready(function(){
 			$("#correo").focus();
 			$("#nomail").show();
 			return false
+		}else if (rfc == "") {
+			$("#rfc").focus();
+			$("#errorrfc").show();
+			return false;
 		}
 		return true;
 	}

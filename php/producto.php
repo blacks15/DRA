@@ -12,8 +12,8 @@
 			guardar_producto();
 		break;
 
-		case 'baja_producto':
-			baja_producto();
+		case 'buscar_producto':
+			buscar_producto();
 		break;
 
 		case 'modificar_producto':
@@ -27,7 +27,7 @@
 		$nom = trim($_POST['libro']);
 		$prov = trim($_POST['prov']);
 		$cprov = trim($_POST['cprov']);
-		$cantidad = trim($_POST['cantidad']);
+		$actual = trim($_POST['actual']);
 		$minimo = trim($_POST['minimo']);
 		$compra = trim($_POST['compra']);
 		$venta = trim($_POST['venta']);
@@ -45,7 +45,7 @@
 				//GENERAMOS LA CONSULTA
 			$consulta = "insert into productos (nombre_producto,proveedor,codigo_proveedor,cantidad_actual,
 					cantidad_minima,compra,venta,status) values 
-					('".$nom."','".$prov."','".$cprov."','".$cantidad."','".$minimo."','".$compra."',
+					('".$nom."','".$prov."','".$cprov."','".$actual."','".$minimo."','".$compra."',
 					'".$venta."','".$status."')";
 				//EJECUTAMOS LA CONSULTA
 			$resultado = mysql_query($consulta) or die(mysql_error());
@@ -63,7 +63,37 @@
 		}		
 	}
 
-	function baja_producto(){}
+	function buscar_producto(){
+		$bu = trim($_POST['bu']);
+		if (!empty($bu)) {
+			$sql = "select clave_producto,nombre_producto,proveedor,codigo_proveedor,
+					cantidad_actual,cantidad_minima,compra,venta
+                from productos p
+                inner join libros l on l.clave_libro = p.nombre_producto
+        		WHERE nombre_libro LIKE '%".$bu."%'  and p.status = 'DISPONIBLE' ";
+	        $resultado = mysql_query($sql) or die(mysql_error());
+	        $contar = mysql_num_rows($resultado);
+	        if($contar == 0){
+	        	$noexiste = true;
+		       	$noexisteJSON = array('noexiste' => $noexiste);
+		       	print(json_encode($noexisteJSON));
+	        } else {
+	           while($row = mysql_fetch_array($resultado)){
+              	$respuesta->id = $row['clave_producto'];
+                $respuesta->nombre = $row['nombre_producto'];
+                $respuesta->proveedor = $row['proveedor'];
+                $respuesta->codigo_proveedor = $row['codigo_proveedor'];
+                $respuesta->ca = $row['cantidad_actual'];
+                $respuesta->cm = $row['cantidad_minima'];
+                $respuesta->compra = $row['compra'];
+                $respuesta->venta = $row['venta'];
+              }
+	        	print(json_encode($respuesta));
+	         } 
+		} else {
+				echo json_encode("Vacio");
+			}
+	}
 
   	function modificar_producto(){
   		//RECIBIMOS EL SERIALIZE() Y LO ASIGNAMOS A VARIABLES
@@ -72,14 +102,13 @@
 		$libro = trim($_POST['libro']);
 		$prov = trim($_POST['prov']);
 		$cprov = trim($_POST['cprov']);
-		$cantidad = trim($_POST['cantidad']);
 		$minimo = trim($_POST['minimo']);
 		$compra = trim($_POST['compra']);
 		$venta = trim($_POST['venta']);
 		$status = 'DISPONIBLE';
 			//GENERAMOS LA CONSULTA
 		$consulta = "update productos set clave_producto = '".$codigo."',nombre_producto = '".$libro."',
-		proveedor = '".$prov."',codigo_proveedor = '".$cprov."',cantidad_actual = '".$cantidad."',
+		proveedor = '".$prov."',codigo_proveedor = '".$cprov."',
 		cantidad_minima = '".$minimo."',compra = '".$compra."',venta = '".$venta."',
 		status = '".$status."' where clave_producto = '".$codigo."' ";
 		

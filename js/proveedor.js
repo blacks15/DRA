@@ -2,8 +2,8 @@ $(document).ready(function(){
 
 	$("#nombre").focus();
 		ocultar();
-		entrar();
 	$("#btnUpdate").hide();
+		entrar();
 	$("#numi").keypress(validatenum);
 	$("#nume").keypress(validatenum);
 	$("#telefono").keypress(validatenum);
@@ -25,7 +25,6 @@ $(document).ready(function(){
 					alert("Proveedor No Registrado");
 					limpiar();
 				} else {
-					alert("Proveedor Registrado ");
 					$("#mensajealta").dialog({
 						modal: true,
 			            width: 270,
@@ -104,6 +103,10 @@ $(document).ready(function(){
 	        });
 		}
 	});
+
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarProveedor.html";
+ 	});
 
 	function validar_datos(){
 		ocultar();

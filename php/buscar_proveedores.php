@@ -30,14 +30,14 @@
       if($value != false) $b[]="$key = '$value'";
     }
     //Creamos la consulta where
-    $se=" where status = 'ACTIVO' and ".implode(' and ',$b );   
+    $se=" where status = 'ACTIVO' and ".implode(' or ',$b );   
      
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   $query = mysql_query("select count(*) as t from proveedores".$se);
   if(!$query)
     echo mysql_error();
-  $count = mysql_result($query);
+  $count = mysql_result($query,0);
   if( $count > 0 && $post['limit'] > 0) {
     //Calculamos el numero de paginas que tiene el sistema
     $total_pages = ceil($count/$post['limit']);
@@ -51,7 +51,10 @@
   }
   if (!$se) {
     $estado = 'activo';
-    $sql = "select clave_proveedor,nombre,contacto,observaciones,calle,num_ext,num_int,colonia,ciudad,estado,telefono,celular,email,status from proveedores  where  status = 'ACTIVO'";
+    $sql = "select clave_proveedor,nombre,contacto,
+      concat(calle,' ',num_ext,' ',num_int,' ',colonia) as direccion,
+      ciudad,estado,telefono,celular,email from proveedores 
+      where  status = 'ACTIVO'";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -64,7 +67,9 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-  $sql = "select clave_proveedor,nombre,contacto,observaciones,calle,num_ext,num_int,colonia,ciudad,estado,telefono,celular,email,status from proveedores".$se;
+  $sql = "select clave_proveedor,nombre,contacto,
+    concat(calle,' ',num_ext,' ',num_int,' ',colonia) as direccion,
+    ciudad,estado,telefono,celular,email from proveedores".$se;
     if ( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -80,9 +85,9 @@
 
      while ($row = mysql_fetch_object($query)){
        $result[$i]['clave_proveedor'] = $row->clave_proveedor;
-       $result[$i]['cell'] = array($row->clave_proveedor,$row->nombre,$row->contacto,$row->observaciones,
-       $row->calle,$row->num_ext,$row->num_int,$row->colonia,$row->ciudad,
-       $row->estado,$row->telefono,$row->celular,$row->email,$row->status);
+       $result[$i]['cell'] = array($row->clave_proveedor,$row->nombre,$row->contacto,
+       $row->direccion,$row->ciudad,$row->estado,$row->telefono,
+       $row->celular,$row->email,);
      $i++;
     }     
   //Asignamos todo esto en variables de json, para enviarlo al navegador.

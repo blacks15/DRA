@@ -1,4 +1,5 @@
 $(function(){
+	$("#mensajealta").hide();
 	$(".dropdown-menu > li > a.trigger").on("mouseover",function(e){
 		var current = $(this).next();
 		var grandparent = $(this).parent().parent();
@@ -14,6 +15,29 @@ $(function(){
 		var root = $(this).closest('.dropdown');
 		root.find('.left-caret').toggleClass('right-caret left-caret');
 		root.find('.sub-menu:visible').hide();
+	});
+
+	$.ajax({
+		cache: false,
+		type: "POST",
+		datatype: "json",
+		url: "../php/error.php",
+		success: function(opciones){
+			if (opciones.respuesta == true) {
+				$("#mensajealta").dialog({
+					modal: true,
+		            width: 270,
+		            height: 170,
+		            show: {effect : "fold", duration: 300},
+		            hide: {effect : "explode", duration: 300},
+		            resizable: "false",
+		            buttons: {"ok": function() {window.location.href = "../index.php";} },   
+		        });
+			}
+		},
+		error: function(xhr,ajaxOptions,throwError){
+			console.log(xhr);
+		} 
 	});
 
 });

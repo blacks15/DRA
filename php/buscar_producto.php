@@ -32,7 +32,7 @@
       if($value != false) $b[]="$key = '$value'";
     }
         //Creamos la consulta where
-    $se=" where ".implode(' and ',$b );   
+    $se=" where  ".implode(' or ',$b );  
   }
       //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   $query = mysql_query("select count(*) as t from productos p
@@ -54,10 +54,11 @@
   }
   if (!$se) {
     $sql = "select p.clave_producto,l.nombre_libro,prov.nombre,p.codigo_proveedor,
-    p.cantidad_actual,p.cantidad_minima,p.venta,p.status
+    p.cantidad_actual,p.venta,p.status
     from productos p
     inner join libros l on l.clave_libro = p.nombre_producto
-    inner join proveedores prov on prov.clave_proveedor = p.proveedor";
+    inner join proveedores prov on prov.clave_proveedor = p.proveedor 
+    ";
     if( !empty($post['orden']) && !empty($post['orderby']))
      //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -71,7 +72,7 @@
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
   $sql = "select p.clave_producto,l.nombre_libro,prov.nombre,p.codigo_proveedor,
-    p.cantidad_actual,p.cantidad_minima,p.venta,p.status
+    p.cantidad_actual,p.venta,p.status
     from productos p
     inner join libros l on l.clave_libro = p.nombre_producto
     inner join proveedores prov on prov.clave_proveedor = p.proveedor".$se;
@@ -91,7 +92,7 @@
      while($row = mysql_fetch_object($query)){
       $result[$i]['clave_producto'] = $row->clave_producto;
       $result[$i]['cell'] = array($row->clave_producto,$row->nombre_libro,$row->nombre,
-      $row->codigo_proveedor,$row->cantidad_actual,$row->cantidad_minima,$row->venta,
+      $row->codigo_proveedor,$row->cantidad_actual,$row->venta,
       $row->status);
      $i++;
     }     

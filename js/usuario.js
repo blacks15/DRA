@@ -70,6 +70,10 @@ $(document).ready(function(){
 			}
     });
 
+ 	 $('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarUsuario.html";
+ 	 });
+
 	$("#usuario").focusout(function(){
 		var user = $("#usuario").val();
 		if (user != "") {

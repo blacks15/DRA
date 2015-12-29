@@ -114,6 +114,10 @@ $(document).ready(function(){
 		}
     });
 
+ 	$('#bus').click(function(){
+ 	 	window.location.href = "../pages/BuscarGenero.html";
+ 	});
+
     function validar() {
     	if ($("#nombre").val() == "") {
     		$("#nombre").focus();

@@ -5,18 +5,19 @@ html{
 	text-transform: capitalize;
 }
 body{
+	background-image: url(../css/img/tapiz.png);
 	position: relative;
 	font-size: 12px;
 	background-color: #f5f5f5;
 	background-repeat: center;
 }
 body .navbar{
-	margin-top: 2em;
+	margin-top: 1em;
 }
 body > .navbar .brand {
   padding-right: 0;
   padding-left: 0;
-  margin-left: 20px;
+  margin-left: 5px;
   float: right;
   font-weight: bold;
   color: #000;
@@ -29,16 +30,21 @@ body > .navbar .brand:hover {
   text-decoration: none;
   text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
 }
-
 figure{
-	margin-left: 2em;
-	margin-bottom: .4em;
+	float: right;
+	border: 2px solid gray;
+	margin: 0 .3em 1em 1em;
+	padding: 0;
+	border-radius: 800px;
+	overflow: hidden;
 }
 h2{
+	font-weight: bold;
+	font-style: italic;
 	color: black;
 	font-size: 16px;
 	font-family: sans-serif; 
-	margin-left: .5em;
+	margin-left: 1em;
 }
 header{
 	width:90%;
@@ -47,7 +53,7 @@ header{
 }
 
 table{
-	margin: .1em auto;
+	margin: 0 auto;
 	background-color: #D3D3D3;
 }
 input{
@@ -62,11 +68,23 @@ input{
 #correo{
 	text-transform: none;
 }
-.ui-icon-alert{
-	background-image: url(../jqueryui/images/ui-icons_red.png);
+#rfc {
+	text-transform: uppercase;
 }
-.ui-icon-circle-check .ui-icon-info{
-	background-image: url(../jqueryui/images/ui-icons_blue.png);
+.ui-icon-red {
+	width: 16px;
+	height: 16px;
+	background-image: url(../jqueryui/images/ui-icons_ff0000_256x240.png)/*{iconsContent}*/;
+}
+.ui-icon-blue {
+	width: 16px;
+	height: 16px;
+	background-image: url(../jqueryui/images/ui-icons_blue.png)/*{iconsContent}*/;
+}
+.ui-icon-white {
+	width: 16px;
+	height: 16px;
+	background-image: url(../jqueryui/images/ui-icons_blue.png)/*{iconsContent}*/;
 }
 .bs-docs-example-submenus .dropup > .dropdown-menu,
 .bs-docs-example-submenus .dropdown > .dropdown-menu {
@@ -85,11 +103,19 @@ input{
 .container {
   position: relative;
   z-index: 2;
-  max-width: 970px;
+  max-width: auto;
 }
-
+#img_login {
+	position: relative;
+	float: left;
+	border: 2px solid gray;
+	margin: 0 .6em 1em 1em;
+	padding: 0;
+	border-radius: 800px;
+	overflow: hidden;
+}
 .input-text{
-	font-family: sans-serif;
+	font-family: sans-serif arial;
 	font-size: 12px;
 	margin-bottom: .4em;
 }
@@ -97,10 +123,11 @@ input{
 	cursor: pointer;
 	text-align: center;
 	margin-bottom: .6em;
-}a.hiddenanchor{
+	margin-left: .2em;
+}
+a.hiddenanchor{
 	display: none;
 }
-/** The wrapper that will contain our two forms **/
 #wrapper{
 	width: 60%;
 	right: 0px;
@@ -109,49 +136,7 @@ input{
 	width: 500px;
 	position: relative;	
 }
-p.change_link{
-	position: absolute;
-	color: rgb(127, 124, 124);
-	left: 0px;
-	height: 20px;
-	width: 440px;
-	padding: 17px 30px 20px 30px;
-	font-size: 16px	;
-	text-align: right;
-	border-top: 1px solid rgb(219, 229, 232);
-	-webkit-border-radius: 0 0  5px 5px;
-	   -moz-border-radius: 0 0  5px 5px;
-	        border-radius: 0 0  5px 5px;
-	background: rgb(225, 234, 235);
-}
-#wrapper p.change_link a {
-	display: inline-block;
-	font-weight: bold;
-	background: rgb(247, 248, 241);
-	padding: 2px 6px;
-	color: rgb(29, 162, 193);
-	margin-left: 10px;
-	text-decoration: none;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	border: 1px solid rgb(203, 213, 214);
-	-webkit-transition: all 0.4s linear;
-	-moz-transition: all 0.4s  linear;
-	-o-transition: all 0.4s linear;
-	-ms-transition: all 0.4s  linear;
-	transition: all 0.4s  linear;
-}
-#wrapper p.change_link a:hover {
-	color: rgb(57, 191, 215);
-	background: rgb(247, 247, 247);
-	border: 1px solid rgb(74, 179, 198);
-}
-#wrapper p.change_link a:active{
-	position: relative;
-	top: 1px;
-}
-#register, 
+
 #login{
 	position: absolute;
 	top: 0px;
@@ -167,58 +152,7 @@ p.change_link{
 	-moz-border-radius: 5px;
 		 border-radius: 5px;
 }
-#toregister:target ~  #login,
-#tologin:target ~  #register{
-	-webkit-animation-name: fadeOutLeft;
-	-moz-animation-name: fadeOutLeft;
-	-ms-animation-name: fadeOutLeft;
-	-o-animation-name: fadeOutLeft;
-	animation-name: fadeOutLeft;
-}
 
-#register{	
-	z-index: 21;
-	opacity: 0;
-}
-#login{
-	z-index: 22;
-}
-#toregister:target ~ #wrapper #register,
-#tologin:target ~ #wrapper #login{
-	z-index: 22;
-	-webkit-animation-name: fadeInLeft;
-	-moz-animation-name: fadeInLeft;
-	-ms-animation-name: fadeInLeft;
-	-o-animation-name: fadeInLeft;
-	animation-name: fadeInLeft;
-	-webkit-animation-delay: .1s;
-	-moz-animation-delay: .1s;
-	-o-animation-delay: .1s;
-	-ms-animation-delay: .1s;
-	animation-delay: .1s;
-}
-/** the actual animation, credit where due : http://daneden.me/animate/ ***/
-.animate{
-	-webkit-animation-duration: 0.5s;
-	-webkit-animation-timing-function: ease;
-	-webkit-animation-fill-mode: both;
-	
-	-moz-animation-duration: 0.5s;
-	-moz-animation-timing-function: ease;
-	-moz-animation-fill-mode: both;
-	
-	-o-animation-duration: 0.5s;
-	-o-animation-timing-function: ease;
-	-o-animation-fill-mode: both;
-	
-	-ms-animation-duration: 0.5s;
-	-ms-animation-timing-function: ease;
-	-ms-animation-fill-mode: both;
-	
-	animation-duration: 0.5s;
-	animation-timing-function: ease;
-	animation-fill-mode: both;
-}
 p{
 	margin: .5em 0;
 	color: red;
