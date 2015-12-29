@@ -20,6 +20,7 @@ $(document).ready(function (){
 			$("#editorial").html(opciones.opcion_ed);
 			$("#autor").html(opciones.opcion_aut);
 			$("#genero").html(opciones.opcion_genero);
+			$("#bu").html(opciones.opcion_libro);
 			$('.chosen').trigger('chosen:updated');
 		},
 		error: function(xhr,ajaxOptions,throwError){
@@ -145,39 +146,36 @@ $(document).ready(function (){
  	 	window.location.href = "../pages/BuscarLibro.html";
  	});
 
-	$("#bu").autocomplete({
-		minLength: 2,
-        source: "../php/autocom_libro.php",
-        autoFocus: true
-    });
-
 	$("#btnbus").click(function(){
 		var bu = $("#bu").val();
 
 		$.ajax({
 			cache: false,
-			datatype: "JSON",
+			dataType: "json",
 			type: "POST",
 			url: "../php/libro.php",
 			data: {opc: "buscar_libro", bu:bu},
 			success: function(respuesta){
 				if (respuesta.noexiste == true) {
-					$("#errornoex").show();
+					$("#errornoex").dialog({
+						modal: true,
+			            width: 270,
+			            height: 170,
+			            show: {effect : "fold" ,duration: 350},
+			            hide: {effect : "explode", duration: 300},
+			            resizable: "false",
+			            buttons: { "OK": function () { $(this).dialog("close"); } },   
+			        });
 				} else {
 					$("#codigo").val(respuesta.id);
 					$("#nombre").val(respuesta.nombre);
-					$("#isbn").val(respuesta.isbn);
-					$("#genero").val(respuesta.genero).attr('selected', 'selected');
+					$("#isbn").val(respuesta.id);
 					$("#autor").val(respuesta.autor).attr('selected', 'selected');
 					$("#editorial").val(respuesta.editorial).attr('selected', 'selected');
-					$("#pag").val(respuesta.pag);
-					$("#obs").val(respuesta.descripcion);
-					$("#errornoex").hide();
 					$("#btnUpdate").show();
 					$("#btnsave").hide();
 					$("#bu").val("");
 					$('.chosen').trigger('chosen:updated');
-
 				}
 			},
 			error: function(xhr,ajaxOptions,throwError){
@@ -196,10 +194,8 @@ $(document).ready(function (){
 		ocultar();
 		var name = $("#nombre").val();
 		var isbn = $("#isbn").val();
-		var genero = $("#genero").val();
 		var autor = $("#autor").val();
 		var editorial = $("#editorial").val();
-		var obs = $("#obs").val();
 		if (name == "") {
 			$("#nombre").focus();
 			$("#errornom").show();
@@ -208,11 +204,7 @@ $(document).ready(function (){
 			$("#isbn").focus();
 			$("#errorisbn").show();
 			return false;
-		} else if (genero == null || genero == 0) {
-			$("#genero").focus();
-			$("#errorgen").show();
-			return false;
-		} else 	if (autor == null || autor == 0) {
+		} else if (autor == null || autor == 0) {
 			$("#autor").focus();
 			$("#errorautor").show();
 			return false;
@@ -220,12 +212,7 @@ $(document).ready(function (){
 			$("#editorial").focus();
 			$("#erroredit").show();
 			return false;
-		} else if (obs == "") {
-			$("#obs").focus();
-			$("#errordes").show();
-			return false;
-		}
-		ocultar();
+		} 
 		return true;
 	}
 
@@ -234,8 +221,6 @@ $(document).ready(function (){
 		$("#errorisbn").hide();
 		$("#errorautor").hide();
 		$("#erroredit").hide();
-		$("#errordes").hide();
-		$("#errorgen").hide();
 		$("#error").hide();
 		$("#mensajealta").hide();
 		$("#numeros").hide();

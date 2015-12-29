@@ -35,7 +35,7 @@
 	 		$existeJSON = array('existe' => $existe);
 	 		print (json_encode($existeJSON));
 		} else {
-			$consulta = "insert into autores (nombre_autor,apellido_autor,estado) values('".$first_name."','".$last_name."','".$estado."')";
+			$consulta = "insert into autores (nombre_autor) values('".$first_name."','".$last_name."','".$estado."')";
 			//ejecutar consulta
 			$resultado = mysql_query($consulta) or die(mysql_error());
 

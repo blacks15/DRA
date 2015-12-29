@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../jqueryui/jquery-ui.css">
     <link rel="stylesheet" href="../css/bootstrap-responsive.css">
 
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<body data-spy="scroll">
 <div align="center">
 <table width="80%" border="0" class="table">
   <tr class="info">
@@ -20,22 +20,28 @@
    <tr>
     <td colspan="3">
     <div class="control-group info">
-    <form name="form1" method="post" action="">
-    	<div class="input-append">
-   			 <input class="span2" id="bu" name="bu" type="text" placeholder="Codigo del Articulo">
-    	 	 <button class="btn" type="button" id="btnbus">Confirmar Código</button>
-   		</div>
+    <select class="chosen input-xlarge" name="bu" id="bu">
+      <option value="0">SELECCIONE</option>
+    </select>
+    <button class="btn" type="button" id="btnbus"><span class="ui-icon-blue ui-icon-search"></span></button>
+    <div class="ui-widget" id="errornoex">
+      <div class="ui-corner-all" style="padding: 0 .2em;">
+         <p>
+          <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN PRODUCTO.
+         </p>
+      </div>
+    </div>
      </form>
      </div>
    	</td>    
     <div class="control-group info">
-    <form id ="form1" method="post" enctype="multipart/form-data" action="">
+    <form id ="form1" method="post" enctype="multipart/form-data">
   	<tr>
-    	<td width="24%">
+    	<td width="35%">
         	<label>Codigo: </label>
             <input type="text" name="codigo" id="codigo" value="" readonly class="input-medium">
             <label>Nombre: </label>
-            <select class="chosen" name="libro" id="libro" class="input-large">
+            <select class="chosen" name="libro" id="libro" class="input-xlarge">
                 <option value="0">SELECCIONE</option>
             </select>
              <div class="ui-widget" id="errornom">
@@ -142,6 +148,10 @@
       <div id="nu" title="Advertencia">
         <span class="ui-icon-red ui-icon-alert"></span>
         <center><strong>!Error Al Actualizar El Producto!</strong></center>
+      </div>
+      <div id="errornop" title="Advertencia">
+        <span class="ui-icon-red ui-icon-alert"></span>
+        <center><strong>!Error No Existe El Producto!</strong></center>
       </div>
      </td> 
     </tr>

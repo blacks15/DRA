@@ -35,7 +35,7 @@
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   if (!$se) {
-    $query = mysql_query("select count(*) as t from autor ");
+    $query = mysql_query("select count(*) as t from autores ");
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -51,7 +51,7 @@
     $post['offset'] = 0;
   }
   }
-  $query = mysql_query("select count(*) as t from autor".$se);
+  $query = mysql_query("select count(*) as t from autores".$se);
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -67,7 +67,7 @@
     $post['offset']=0;
   }
   if (!$se) {
-    $sql = "select clave_autor,nombre_autor from autor ";
+    $sql = "select clave_autor,nombre_autor from autores ";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -80,7 +80,7 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-  $sql = "select clave_autor,nombre_autor from autor".$se;
+  $sql = "select clave_autor,nombre_autor from autores".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";

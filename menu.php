@@ -5,14 +5,14 @@
     <title>Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="../jqueryui/jquery-ui.css">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/ok.css">
-    <link rel="stylesheet" href="../jqueryui/jquery-ui.css">
 
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<body data-spy="scroll">
 <div align="center">
 <table width="95%" border="1">
   <tr>

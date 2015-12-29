@@ -7,10 +7,11 @@ $(document).ready(function(){
 			url:'../php/buscar_libro.php',
 			datatype: 'JSON',
 			mtype: 'POST',
-			colNames:['ID','NOMBRE'],
+			colNames:['ID','NOMBRE LIBRO','AUTOR'],
 			colModel:[
 				{name:'clave_libro', index:'clave_libro', width:150, resizable:false, align:"center",search:true,key:true},
 				{name:'nombre_libro', index:'nombre_libro', width:450,resizable:false,search:true},
+        {name:'nombre_autor', index:'nombre_autor', width:450,resizable:false,search:true}
 			],
 			height: "100%",
 			autowidth: true,

@@ -121,7 +121,7 @@ $(document).ready(function(){
 	$.ajax({
 		cache: false,
 		type: "POST",
-		datatype: "json",
+		dataType: "json",
 		url: "../php/combo_venta.php",
 		success: function(opciones){
 			$("#usuario").html(opciones.opcion_user);

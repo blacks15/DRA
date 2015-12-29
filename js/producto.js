@@ -20,7 +20,7 @@ $(document).ready(function(){
 			$.ajax({
 				cache: false,
 				type: "post",
-				datatype: "json",
+				dataType: "json",
 				url: "../php/producto.php",
 				data: {opc:"guardar_producto",cadena },
 				success: function(response) {
@@ -136,6 +136,7 @@ $(document).ready(function(){
 		success: function(opciones){
 			$("#prov").html(opciones.opcion_proveedor);
 			$("#libro").html(opciones.opcion_libro);
+			$("#bu").html(opciones.opcion_producto);
 			$('.chosen').trigger('chosen:updated');
 		},
 		error: function(xhr,ajaxOptions,throwError){
@@ -147,24 +148,26 @@ $(document).ready(function(){
  	 	window.location.href = "../pages/BuscarProducto.html";
  	});
 
-	$("#bu").autocomplete({
-		minLength: 2,
-        source: "../php/autocom_prod.php",
-        autoFocus: true
-    });
-
 	$("#btnbus").click(function(){
 		var bu = $("#bu").val();
 
 		$.ajax({
 			cache: false,
-			datatype: "JSON",
+			dataType: "JSON",
 			type: "POST",
 			url: "../php/producto.php",
 			data: {opc: "buscar_producto", bu:bu},
 			success: function(respuesta){
 				if (respuesta.noexiste == true) {
-					$("#errornoex").show();
+					$("#errornop").dialog({
+						modal: true,
+				        width: 270,
+				        height: 170,
+				        show: {effect : "fold" ,duration: 350},
+				        hide: {effect : "explode", duration: 300},
+				        resizable: "false",
+				        buttons: { "OK": function () { $(this).dialog("close"); } },   
+				    });
 				} else {
 					console.log(respuesta);
 					$("#codigo").val(respuesta.id);
@@ -215,7 +218,9 @@ $(document).ready(function(){
 		$("#nu").hide();
 		$("#numeros").hide();
 		$("#erroractual").hide();
+		$("#errornoex").hide();
 		$("#errornom").hide();
+		$("#errornop").hide();
 		$("#errorprov").hide();
 		$("#errorcpp").hide();
 		$("#errorcmin").hide();

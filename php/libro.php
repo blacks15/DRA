@@ -26,15 +26,12 @@
 		$codigo = trim($_POST['codigo']);
 		$name = trim($_POST['nombre']);
 		$isbn = trim($_POST['isbn']);
-		$genero = trim($_POST['genero']);
 		$autor = trim($_POST['autor']);
 		$editorial = trim($_POST['editorial']);
-		$pag = trim($_POST['pag']);
-		$obs = trim($_POST['obs']);
 		
 		$sql = "update libros set clave_libro = '".$codigo."',nombre_libro = '".$name."',
-		isbn = '".$isbn."',genero = '".$genero."',autor = '".$autor."',editorial = '".$editorial."',
-		pag = '".$pag."',descripcion = '".$obs."' where clave_libro = '".$codigo."' ";
+		isbn = '".$isbn."',autor = '".$autor."',editorial = '".$editorial."',
+		where clave_libro = '".$codigo."' ";
 		$resultado = mysql_query($sql) or die(mysql_error());
 
 		if ($resultado == true) {
@@ -51,9 +48,9 @@
 	function buscar_libro(){
 		$bu = trim($_POST['bu']);
 		if (!empty($bu)) {
-			$sql = "select clave_libro,nombre_libro,isbn,genero,autor,editorial,pag,descripcion
+			$sql = "select clave_libro,nombre_libro,autor,editorial
                 	from libros 
-        	WHERE nombre_libro LIKE '%".$bu."%'  and status = 'DISPONIBLE' ";
+        			where clave_libro =".$bu." ";
 	        $resultado = mysql_query($sql) or die(mysql_error());
 	        $contar = mysql_num_rows($resultado);
 	        if($contar == 0){
@@ -63,13 +60,9 @@
 	        } else {
 	           while($row = mysql_fetch_array($resultado)){
               	$respuesta->id = $row['clave_libro'];
-                $respuesta->nombre = $row['nombre_libro'];
-                $respuesta->isbn = $row['isbn'];
-                $respuesta->genero = $row['genero'];
-                $respuesta->autor = $row['autor'];
-                $respuesta->editorial = $row['editorial'];
-                $respuesta->pag = $row['pag'];
-                $respuesta->descripcion = $row['descripcion'];
+                $respuesta->nombre = utf8_encode($row['nombre_libro']);
+                $respuesta->autor = utf8_encode($row['autor']);
+                $respuesta->editorial = utf8_encode($row['editorial']);
               }
 	        	print(json_encode($respuesta));
 	         } 
@@ -85,9 +78,6 @@
 		$genero = trim($_POST['genero']);
 		$autor = trim($_POST['autor']);
 		$editorial = trim($_POST['editorial']);
-		$pag = trim($_POST['pag']);
-		$obs = trim($_POST['obs']);
-		$status = 'DISPONIBLE';
 
 			//COMPROBAMOS SI EXISTE EL LIBRO
 		$sql = "select * from libros where nombre_libro = '".$name."' or isbn = '".$isbn."' ";
@@ -98,9 +88,8 @@
 			print(json_encode($existeJSON));
 		} else {
 				//REALIZAMOS LA CONSULTA
-			$consulta = "insert into libros (nombre_libro,isbn,genero,autor,editorial,
-			pag,descripcion,status) values ('".$name."','".$isbn."','".$genero."','".$autor."','".$editorial."',
-			'".$pag."','".$obs."','".$status."')";
+			$consulta = "insert into libros (clave_libro,nombre_libro,autor,editorial)
+			 values ('".$isbn."','".$name."','".$autor."','".$editorial."')";
 				//EJECUTAMOS LA CONSULTA
 			$resultado = mysql_query($consulta) or die(mysql_error());
 

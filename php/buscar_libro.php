@@ -34,7 +34,7 @@
       //Creamos la consulta where
     $se = " where ".implode(' or ',$b );   
   }
-  $query = mysql_query("select count(*) as t from lb".$se);
+  $query = mysql_query("select count(*) as t from libros".$se);
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -51,7 +51,9 @@
     $post['offset'] = 0;
   }
   if (!$se) {
-    $sql = "select clave_libro,nombre_libro from lb ";
+    $sql = "select l.clave_libro,nombre_libro,nombre_autor
+            from libros l
+            inner join autores a on a.clave_libro = l.clave_libro";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql.= " ORDER BY $post[orderby] $post[orden] ";
@@ -64,7 +66,9 @@
     echo mysql_error();
   } else {
     //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-   $sql = "select clave_libro,nombre_libro from lb ".$se;
+   $sql = "select l.clave_libro,nombre_libro,nombre_autor
+            from libros l
+            inner join autores a on a.clave_libro = l.clave_libro ".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
      //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql.= " ORDER BY $post[orderby] $post[orden] ";
@@ -80,7 +84,8 @@
 
     while($row = mysql_fetch_object($query)){
       $result[$i]['clave_libro'] = $row->clave_libro;
-      $result[$i]['cell'] = array($row->clave_libro,utf8_encode($row->nombre_libro ));
+      $result[$i]['cell'] = array($row->clave_libro,utf8_encode($row->nombre_libro ),
+              utf8_encode($row->nombre_autor));
       $i++;    
   }   
   mysql_free_result($query);

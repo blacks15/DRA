@@ -35,7 +35,7 @@
   }
   //Realizamos la consulta para saber el numero de filas que hay en la tabla con los filtros
   if (!$se) {
-    $query = mysql_query("select count(*) as t from editorial ");
+    $query = mysql_query("select count(*) as t from editoriales ");
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query,0);
@@ -51,7 +51,7 @@
     $post['offset'] = 0;
   }
   }
-  $query = mysql_query("select count(*) as t from editorial".$se);
+  $query = mysql_query("select count(*) as t from editoriales".$se);
   if(!$query)
     echo mysql_error();
   $count = mysql_result($query);
@@ -67,7 +67,7 @@
     $post['offset'] = 0;
   }
   if (!$se) {
-    $sql = "select clave_editorial,nombre_editorial from editorial group by nombre_editorial";
+    $sql = "select clave_editorial,nombre_editorial from editoriales group by nombre_editorial";
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";
@@ -80,7 +80,7 @@
     echo mysql_error();
   } else {
   //Creamos la consulta que va a ser enviada de una ves con la parte de filtrado
-   $sql = "select clave_editorial,nombre_editorial from editorial ".$se;
+   $sql = "select clave_editorial,nombre_editorial from editoriales ".$se;
     if( !empty($post['orden']) && !empty($post['orderby']))
     //Añadimos de una ves la parte de la consulta para ordenar el resultado
     $sql .= " ORDER BY $post[orderby] $post[orden] ";

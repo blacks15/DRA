@@ -10,12 +10,12 @@
       if(!empty($buscar)) {
       	$sql = "select nombre_libro
                 	from libros 
-        	WHERE nombre_libro LIKE '%".$buscar."%'  and status = 'DISPONIBLE' ";
+        	WHERE nombre_libro LIKE '%".$buscar."%' ";
         $resultado = mysql_query($sql) or die(mysql_error());
         $contar = mysql_num_rows($resultado);
         if($contar > 0){
               while($row = mysql_fetch_array($resultado)){
-                    $respuesta[] = $row['nombre_libro'];
+                    $respuesta[] = utf8_encode($row['nombre_libro']);
               }
               print(json_encode($respuesta));
         }

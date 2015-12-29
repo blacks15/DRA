@@ -17,30 +17,30 @@
 		<tr class="info">
 			<td colspan="4"><center><strong>Crear Libro</strong></center></td>
 		</tr>
-	    <td colspan="3">
+	    <td colspan="4">
 	    <div class="control-group info">
-	    	<div class="input-append">
-	   			 <input id="bu" name="bu" type="text" placeholder="Codigo del Articulo">
-	    	 	 <button class="btn" type="button" id="btnbus">Confirmar Código</button>
-	    	<div class="ui-widget" id="errornoex">
-				<div class="ui-corner-all" style="padding: 0 .2em;">
-					<p>
-						<span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>EL LIBRO NO EXISTE.
-					</p>
-				</div>
-			</div>
-	   		</div>
+			<select class="chosen input-xlarge" name="bu" id="bu">
+				<option value="0">SELECCIONE</option>
+			</select>
+			<div class="ui-widget" id="errornoex">
+	          <div class="ui-corner-all" style="padding: 0 .2em;">
+	             <p>
+	              <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN LIBRO.
+	             </p>
+	          </div>
+	         </div>
+    	 	 <button class="btn" type="button" id="btnbus"><span class="ui-icon-blue ui-icon-search"></span></button>
 	     </div>
 	   	</td>    
 		<tr>
 	<form action="post" id="form1">
-	<div class="control-group info">
+	<div class="control-group info input-group-lgx">
 		<tr>
-			<td width="24%">
+			<td width="35%">
 				<label>Código Libro: </label>
 				<input type="text" name="codigo" id="codigo" readonly="true">
 				<label>Nombre Libro: </label>
-				<input type="text" name="nombre" id="nombre" required class="letras">
+				<input type="text" name="nombre" id="nombre" class="letras input-xlarge">
 				<div class="ui-widget" id="errornom">
 		          <div class="ui-corner-all" style="padding: 0 .2em;">
 		             <p>
@@ -57,19 +57,14 @@
 		               </p>
 		             </div>
 		          </div>
+			</td>
+			<td>
 				<label>Género: </label>
 				<select class="chosen" name="genero" id="genero" class="input-medium">
 					<option value="0">SELECCIONE</option>
 				</select>
-				<div class="ui-widget" id="errorgen">
-		          <div class="ui-corner-all" style="padding: 0 .2em;">
-		             <p>
-		              <span class="ui-icon-red ui-icon-alert"></span><strong>ERROR: </strong>DEBE SELECCIONAR UN GÉNERO.
-		               </p>
-		             </div>
-		          </div>
 				<label>Autor: </label>
-				<select class="chosen" name="autor" id="autor"></select>
+				<select class="chosen input-xlarge" name="autor" id="autor"></select>
 				<div class="ui-widget" id="errorautor">
 		          <div class="ui-corner-all" style="padding: 0 .2em;">
 		             <p>
@@ -77,8 +72,6 @@
 		               </p>
 		             </div>
 		          </div>
-			</td>
-			<td>
 				<label>Editorial: </label>
 				<select class="chosen" name="editorial" id="editorial" class="input-medium">
 					<option value="0">SELECCIONE</option>
@@ -90,16 +83,11 @@
 		               </p>
 		             </div>
 		          </div>
-				<label>Núm. de Páginas: </label>
-				<input type="number" name="pag" id="pag" required class="input-small" maxlength="4">
-				<label>Descripción: </label>
-				<label for="textarea"></label>
-				<textarea class="form-control" name="obs" id="obs" cols="50" rows="7"></textarea>
-				<br>
+				<br><br>
 				<button type="button" name="btnsave" id="btnsave" class="btn btn-primary">Agregar</button>
 				<button type="button" name="btnUpdate" id="btnUpdate" class="btn btn-primary">Modificar</button>
 				<button type="reset" value="reset" class="btn" id="reset">Cancelar</button>
-				<button id="bus" class="btn" type="button"><span class="ui-icon ui-icon-search "></span></button>
+				<button id="bus" class="btn" type="button"><span class="ui-icon-blue ui-icon-search "></span></button>
 			</td>
 		</tr>
 	 </div>
@@ -134,8 +122,8 @@
         <span class="ui-icon-red ui-icon-info" style: "float: left; margin-right: .2em;"></span>
         <center><strong>Error al Guardar el Libro.</strong></center>
       </div>
-      <div class="" id="nu" title="Advertencia">
-        <span class="ui-icon-red ui-icon-alert" style: "float: left; margin-right: .2em;"></span>
+      <div id="nu" title="Advertencia">
+        <span class="ui-icon-red ui-icon-alert"></span>
         <center><strong>Error al Actualizar el Libro.</strong></center>
       </div>
 	</div>
